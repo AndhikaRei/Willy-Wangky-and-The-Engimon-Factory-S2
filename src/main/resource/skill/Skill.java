@@ -5,14 +5,14 @@ import java.util.List;
 import main.resource.element.Element;
 
 public class Skill {
-    /*** Fields ***/
+    /*** FIELDS ***/
     private String name;                    // Nama Skill
     private String desc;                    // Deskripsi Skill
     private int basePower;                  // Base Power
     private int masteryLevel;               // Mastery level, maksimal level 3
     private List<Element> listElements;     // Element yang bisa mempelajari skill
 
-    /*** Methods ***/
+    /*** METHODS ***/
     /** Default Constructor */
     public Skill() {
         name = "";
@@ -46,6 +46,15 @@ public class Skill {
         this.listElements = new ArrayList<Element>(listEl);
     }
 
+    /** Copy Constructor **/
+    public Skill(Skill other) {
+        this.name = other.name;
+        this.desc = other.desc;
+        this.basePower = other.basePower;
+        this.masteryLevel = other.masteryLevel;
+        this.listElements = new ArrayList<Element>(other.listElements);
+    }
+
     /** Cek apakah nama skill sama */
     @Override
     public boolean equals(Object obj) {
@@ -64,6 +73,11 @@ public class Skill {
             // Throw Exception
             System.out.println("Skill telah melebihi batas mastery level");
         }
+    }
+
+    /** Mengubah mastery level skill menjadi 1 */
+    public void levelReset() {
+        masteryLevel = 1;
     }
 
     /** Menghitung total damage dari suatu skill */
@@ -86,6 +100,23 @@ public class Skill {
             }
         }
         return found;
+    }
+
+    /** Getter **/
+    public String getName() {
+        return name;
+    }
+    public String getDesc() {
+        return desc;
+    }
+    public int getBasePower() {
+        return basePower;
+    }
+    public int getMasteryLevel() {
+        return masteryLevel;
+    }
+    public List<Element> getListElement() {
+        return listElements;
     }
 
     /** Printer **/
