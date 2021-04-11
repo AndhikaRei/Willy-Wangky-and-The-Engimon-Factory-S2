@@ -44,7 +44,7 @@ public class Skill_Item {
         if (contSkill.isElementCompatible(el)) {
             if (amount > 0) {
                 amount--;
-                return contSkill;
+                return new Skill(contSkill);
             } else {
                 return null;
                 // throw InvalidNotEnoughItemAmount();
@@ -60,7 +60,7 @@ public class Skill_Item {
         if (contSkill.isElementCompatible(listEl)) {
             if (amount > 0) {
                 amount--;
-                return contSkill;
+                return new Skill(contSkill);
             } else {
                 return null;
                 // throw InvalidNotEnoughItemAmount();
@@ -84,7 +84,7 @@ public class Skill_Item {
     /** GETTER **/
     /** Mengembalikan skill yang disimpan pada skill item */
     public Skill getSkill() {
-        return contSkill;
+        return new Skill(contSkill);
     }
 
     /** Mengembalikan jumlah amount skill item */

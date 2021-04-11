@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import main.resource.element.Element;
 
-public class Skill {
+public class Skill implements Cloneable {
     /*** FIELDS ***/
     private String name;                    // Nama Skill
     private String desc;                    // Deskripsi Skill
@@ -22,20 +22,23 @@ public class Skill {
     }
 
     /** User-Defined Constructor */
+    public Skill(String name, String desc, int basePower, Element el) {
+        this.name = name;
+        this.desc = desc;
+        this.basePower = basePower;
+        this.masteryLevel = 1;
+        this.listElements = new ArrayList<Element>();
+        this.listElements.add(el);
+    }
+
     public Skill(String name, String desc, int basePower, Element el1, Element el2) {
         this.name = name;
         this.desc = desc;
         this.basePower = basePower;
         this.masteryLevel = 1;
         this.listElements = new ArrayList<Element>();
-        if (el1 != null && el2 == null) {
-            this.listElements.add(el1);
-        } else if (el1 == null && el2 != null) {
-            this.listElements.add(el2);
-        } else if (el1 != null && el2 != null) {
-            this.listElements.add(el1);
-            this.listElements.add(el2);
-        }
+        this.listElements.add(el1);
+        this.listElements.add(el2);
     }
 
     public Skill(String name, String desc, int basePower, List<Element> listEl) {
@@ -147,5 +150,11 @@ public class Skill {
         }
         System.out.println("");
     }
+
+    /** Clone Skill **/
+    public Skill clone() {
+        return new Skill(this);
+    }
+
 
 }

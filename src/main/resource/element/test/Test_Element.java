@@ -10,6 +10,10 @@ public class Test_Element {
         
         double adv = Element.advantage(el1, el2);
         System.out.println(adv);
+
+        // if (Element.Fire == Element.Fire) {
+        //     System.out.println("Yess");
+        // }
         
 
     }
