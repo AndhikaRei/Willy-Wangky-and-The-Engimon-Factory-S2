@@ -1,12 +1,12 @@
-package main.resource.inventory.test;
+package resource.inventory.test;
 
-import main.resource.inventory.*;
+import resource.inventory.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.resource.element.*;
-import main.resource.skill.Skill;
+import resource.element.*;
+import resource.skill.Skill;
 
 public class Test_Skill_Item {
     public static void main(String[] args) {

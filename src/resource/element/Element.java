@@ -1,4 +1,4 @@
-package main.resource.element;
+package resource.element;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package main.resource.skill;
+package resource.skill;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.resource.element.Element;
+import resource.element.Element;
 
 public class Skidex {
     private static List<Skill> listSkill = new ArrayList<>();

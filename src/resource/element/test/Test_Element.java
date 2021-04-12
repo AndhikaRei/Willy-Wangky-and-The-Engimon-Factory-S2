@@ -1,6 +1,6 @@
-package main.resource.element.test;
+package resource.element.test;
 
-import main.resource.element.*;
+import resource.element.*;
 
 public class Test_Element {
     public static void main(String[] args) {
