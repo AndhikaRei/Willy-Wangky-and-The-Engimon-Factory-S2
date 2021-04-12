@@ -26,7 +26,7 @@
       </MenuBar>
       <Pane prefHeight="386.0" prefWidth="600.0">
          <children>
-            <Button fx:id="btn_msg" layoutX="67.0" layoutY="76.0" mnemonicParsing="false" onAction="#pressButton" text="Button" />
+            <Button fx:id="btn_msg" layoutX="67.0" layoutY="76.0" mnemonicParsing="false" onAction="#cek" text="Button" />
          </children>
       </Pane>
    </children>

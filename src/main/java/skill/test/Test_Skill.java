@@ -1,9 +1,9 @@
-package resource.skill.test;
+package main.java.skill.test;
 
 import java.util.List;
 
-import resource.element.*;
-import resource.skill.*;
+import main.java.element.*;
+import main.java.skill.*;
 
 
 public class Test_Skill {

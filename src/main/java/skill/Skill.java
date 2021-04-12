@@ -1,8 +1,8 @@
-package resource.skill;
+package main.java.skill;
 
 import java.util.ArrayList;
 import java.util.List;
-import resource.element.Element;
+import main.java.element.Element;
 
 public class Skill implements Cloneable {
     /*** FIELDS ***/

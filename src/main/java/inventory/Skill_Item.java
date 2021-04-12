@@ -1,9 +1,9 @@
-package resource.inventory;
+package main.java.inventory;
 
 import java.util.List;
 
-import resource.element.*;
-import resource.skill.*;
+import main.java.element.*;
+import main.java.skill.*;
 
 public class Skill_Item {
     /*** FIELDS ***/
