@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import main.java.element.Element;
 
-public class Skill implements Cloneable {
+public class Skill {
     /*** FIELDS ***/
     private String name;                    // Nama Skill
     private String desc;                    // Deskripsi Skill
@@ -73,8 +73,8 @@ public class Skill implements Cloneable {
         if (masteryLevel < 3) {
             masteryLevel++;
         } else {
-            // Throw Exception
-            System.out.println("Skill telah melebihi batas mastery level");
+            // Do Nothing
+            // System.out.println("Skill telah berada batas mastery level");
         }
     }
 
@@ -150,11 +150,5 @@ public class Skill implements Cloneable {
         }
         System.out.println("");
     }
-
-    /** Clone Skill **/
-    public Skill clone() {
-        return new Skill(this);
-    }
-
 
 }

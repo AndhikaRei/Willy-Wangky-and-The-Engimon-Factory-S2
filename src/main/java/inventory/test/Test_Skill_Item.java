@@ -18,9 +18,7 @@ public class Test_Skill_Item {
         s2.levelUp();
         it1.showSimpleItem();
         
-        Skill s3 = s2.clone();
         System.out.println(s2);
-        System.out.println(s3);
 
         List<Skill> ls = new ArrayList<>();
         System.out.println(s1);

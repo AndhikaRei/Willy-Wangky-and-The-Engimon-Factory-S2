@@ -46,6 +46,20 @@ public enum Element {
     }
 
     /**
+     * Mengembalikan Element Advantage el1 terhadap list el2 */
+    public static double advantage(Element el1, List<Element> list_el2) {
+        double elAdv = 0;
+        double curAdv;
+        for (Element el2: list_el2) {
+            curAdv = advantage(el1,el2);
+            if (elAdv < curAdv) {
+                elAdv = curAdv;
+            }
+        }
+        return elAdv;
+    }
+
+    /**
      * Mengembalikan Element Advantage list el1 terhadap list el2 */
     public static double advantage(List<Element> list_el1, List<Element> list_el2) {
         double elAdv = 0;
