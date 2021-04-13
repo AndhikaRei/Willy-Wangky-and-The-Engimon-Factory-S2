@@ -83,17 +83,30 @@ public abstract class Engimon {
         this.exp %= 100;
     }
     // cek jika engimon 1 elemen
-    public boolean isOneElement() { return this.element.size() == 1; }
+    public boolean isOneElement() { 
+        return this.element.size() == 1; 
+    }
+
     // interact
-    public void interact() { System.out.printf("%s : %s\n",this.name, this.slogan); }
+    public String interact() { 
+        return "%s : %s\n" + this.name + this.slogan; 
+    }
+
     // print engimon di cli
     public void printEngimon() {
         System.out.printf("%s - %s - %d lives\n", this.name, this.species, this.lives);
-        System.out.printf("%d, %d, %d\n", this.level, this.exp, this.cumul_exp);
+        System.out.printf("Level : %d \nCurrent Exp : %d \nTotal Exp : %d\n", this.level, this.exp, this.cumul_exp);
         System.out.printf("[%s]", this.element.get(0).name());
-        if (this.isOneElement()) { System.out.println(); }
-        else { System.out.printf("[%s]\n",this.element.get(1).name()); }
-        this.parent.printParent();
+        if (this.isOneElement()) { 
+            System.out.println(); 
+        }
+        else { 
+            System.out.printf("[%s]\n",this.element.get(1).name()); 
+        }
+
+        if(!this.parent.isEmpty()){
+            this.parent.printParent();
+        }
         this.interact();
     }
 }
