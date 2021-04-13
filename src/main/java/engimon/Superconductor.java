@@ -1,12 +1,26 @@
 package main.java.engimon;
 
-public class Superconductor extends Engimon {
-    Superconductor( String name ){
-        this.name = name;
-    }
+import main.java.element.*;
+import main.java.skill.*;
 
-    Superconductor( String name, Parent parent ){
-        this.name = name;
-        this.parent = parent;
+public class Superconductor extends Engimon {
+    /* CONSTRUCTORS */
+    // ctor tanpa parent
+    public Superconductor(String name, int lives) {
+        super(name, lives);
+        this.species = "Superconductor";
+        this.element.add(Element.Electric);
+        this.element.add(Element.Ice);
+        this.skill.add(new Skill("Species-self-explanatory.", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
+        this.slogan = "Meguriaeta koto ga~";
+    }
+    // ctor dengan parent
+    public Superconductor(String name, int lives, Parent parent) {
+        super(name, lives, parent);
+        this.species = "Superconductor";
+        this.element.add(Element.Electric);
+        this.element.add(Element.Ice);
+        this.skill.add(new Skill("Species-self-explanatory.", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
+        this.slogan = "Meguriaeta koto ga~";
     }
 }
