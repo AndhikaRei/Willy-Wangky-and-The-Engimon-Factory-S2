@@ -1,6 +1,7 @@
 package main.java.inventory;
 
 import java.util.List;
+import java.util.Objects;
 
 import main.java.element.*;
 import main.java.skill.*;
@@ -102,4 +103,23 @@ public class Skill_Item {
         contSkill.showSimpleSkill();
         System.err.println("N     : " + amount);
     }
+
+    /** Equals apakah skill yang disimpan sama */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Skill_Item)) {
+            return false;
+        }
+        Skill_Item skill_Item = (Skill_Item) o;
+        return Objects.equals(contSkill, skill_Item.contSkill);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contSkill, amount);
+    }
+    
+
 }

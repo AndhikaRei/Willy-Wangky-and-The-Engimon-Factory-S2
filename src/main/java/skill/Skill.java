@@ -2,6 +2,8 @@ package main.java.skill;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import main.java.element.Element;
 
 public class Skill {
@@ -57,15 +59,7 @@ public class Skill {
         this.masteryLevel = other.masteryLevel;
         this.listElements = new ArrayList<Element>(other.listElements);
     }
-
-    /** Cek apakah nama skill sama */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Skill other = (Skill) obj;
-        return this.name.equals(other.name);
-        }
+  
 
     /** SERVICE **/
     /** Menaikan mastery level skill sebanyak 1 */
@@ -149,6 +143,23 @@ public class Skill {
             }
         }
         System.out.println("");
+    }
+
+    /** Cek apakah nama skill sama */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Skill)) {
+            return false;
+        }
+        Skill skill = (Skill) o;
+        return Objects.equals(name, skill.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, desc, basePower, masteryLevel, listElements);
     }
 
 }

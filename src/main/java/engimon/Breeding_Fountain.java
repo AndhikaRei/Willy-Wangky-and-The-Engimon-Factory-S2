@@ -14,6 +14,58 @@ import java.util.stream.Collectors;
 
 public class Breeding_Fountain {
     /**
+     * Melakukan perkawinan antar Engimon
+     * @param parentA
+     * @param parentB
+     * @return Engimon hasil perkawinan
+     * @exception invalidEngimonLevel 
+     */
+    public static Engimon startBreeding(Engimon parentA, Engimon parentB) {
+        if (parentA.getLevel() < 4 || parentB.getLevel() < 4) {
+            // Throw Exception
+            System.out.println("Exception");
+        }
+
+        // Create Parent Object
+        
+
+        // Cari skill yang mungkin bisa diwariskan
+        List<Skill> calonSkill = sortingSkills(parentA, parentB);
+
+        
+        if (isElementSimilar(parentA, parentB)) {
+        /* Jika elemen kedua parent sama, anak akan memiliki elemen yang sama dengan kedua parent. 
+            Spesies anak dipilih dari parent A atau parent B secara bebas (boleh random atau aturan 
+            spesifik tertentu). */   
+
+
+        } else {
+        /* Jika elemen kedua parent berbeda maka anak akan memiliki elemen dan spesies dari elemen 
+            yang memiliki element advantage yang lebih tinggi. */
+            double elAdvA = Element.advantage(parentA.getElement(), parentB.getElement());
+            double elAdvB = Element.advantage(parentB.getElement(), parentA.getElement());
+            if (elAdvA > elAdvB) {
+                
+            } else if (elAdvA < elAdvB) {
+
+            } else {
+            /* eleAdv_a == eleAdv_b */
+            /* Jika elemen kedua parent berbeda dan kedua elemen memiliki element advantage yang sama, 
+                maka anak akan memiliki spesies berbeda dari kedua parent yang memiliki kedua elemen parent 
+                (boleh dipilih random atau hardcoded). */
+                List<Element> listEl = sortElementAdv(parentA, parentB);
+
+
+            }
+
+        }
+
+        parentA.setLevel(parentA.getLevel() - 3);
+        parentB.setLevel(parentA.getLevel() - 3);
+    }
+
+
+    /**
      * Menyusun skill yang dapat diwariskan kepada pokemon hasil breeding
      * @param parentA
      * @param parentB
@@ -45,11 +97,17 @@ public class Breeding_Fountain {
         }
 
         // Urutkan berdasarkan mastery level
-        Comparator<Skill> compareByMasteryLvl = (Skill sk1, Skill sk2) -> {
-            Integer sk1Level = sk1.getMasteryLevel();
-            Integer sk2Level = sk2.getMasteryLevel();
-            return sk1Level.compareTo(sk2Level);
-        };
+        // Comparator<Skill> compareByMasteryLvl = (Skill sk1, Skill sk2) -> {
+        //     Integer sk1Level = sk1.getMasteryLevel();
+        //     Integer sk2Level = sk2.getMasteryLevel();
+        //     return sk1Level.compareTo(sk2Level);
+        // };
+
+        // Comparator<Skill> compareByMasteryLvl = (Skill sk1, Skill sk2) -> {
+        //     Integer sk1Level = sk1.getMasteryLevel();
+        //     Integer sk2Level = sk2.getMasteryLevel();
+        //     return Comparator.comparingInt(Skill::getMasteryLevel);
+        // };
 
         // Comparator<Skill> compareByMasteryLvl = new Comparator<Skill>() {
         //     @Override
@@ -60,7 +118,8 @@ public class Breeding_Fountain {
         //     }
         // };
 
-        Collections.sort(skillChild, compareByMasteryLvl);
+        Collections.sort(skillChild, Comparator.comparingInt(Skill::getMasteryLevel));
+        return skillChild;
     }
 
     /**
@@ -70,8 +129,8 @@ public class Breeding_Fountain {
      * @return True jika ada element yang sama
      */
     private static boolean isElementSimilar(Engimon parentA, Engimon parentB) {
-        List<Element> elParentA = parentA.getElements();
-        List<Element> elParentB = parentB.getElements();
+        List<Element> elParentA = parentA.getElement();
+        List<Element> elParentB = parentB.getElement();
 
         for (Element el : elParentA) {
             if (elParentB.contains(el)) {
@@ -89,8 +148,8 @@ public class Breeding_Fountain {
      * @return list of Element yang sudah diurut
      */
     private static List<Element> sortElementAdv(Engimon parentA, Engimon parentB) {
-        List<Element> elParentA = parentA.getElements();
-        List<Element> elParentB = parentB.getElements();
+        List<Element> elParentA = parentA.getElement();
+        List<Element> elParentB = parentB.getElement();
         Map<Element,Double> elChild = new HashMap<>();
 
         double elAdv;
@@ -119,56 +178,7 @@ public class Breeding_Fountain {
     }
 
 
-    /**
-     * Melakukan perkawinan antar Engimon
-     * @param parentA
-     * @param parentB
-     * @return Engimon hasil perkawinan
-     * @exception invalidEngimonLevel 
-     */
-    public static Engimon startBreeding(Engimon parentA, Engimon parentB) {
-        if (parentA.getLevel() < 4 || parentB.getLevel() < 4) {
-            // Throw Exception
-            System.out.println("Exception");
-        }
 
-        // Create Parent Object
-        
-
-        // Cari skill yang mungkin bisa diwariskan
-        List<Skill> calonSkill = sortingSkills(parentA, parentB);
-
-        
-        if (isElementSimilar(parentA, parentB)) {
-        /* Jika elemen kedua parent sama, anak akan memiliki elemen yang sama dengan kedua parent. 
-            Spesies anak dipilih dari parent A atau parent B secara bebas (boleh random atau aturan 
-            spesifik tertentu). */   
-
-
-        } else {
-        /* Jika elemen kedua parent berbeda maka anak akan memiliki elemen dan spesies dari elemen 
-            yang memiliki element advantage yang lebih tinggi. */
-            double elAdvA = Element.advantage(parentA.getElements(), parentB.getElements());
-            double elAdvB = Element.advantage(parentB.getElements(), parentA.getElements());
-            if (elAdvA > elAdvB) {
-                
-            } else if (elAdvA < elAdvB) {
-
-            } else {
-            /* eleAdv_a == eleAdv_b */
-            /* Jika elemen kedua parent berbeda dan kedua elemen memiliki element advantage yang sama, 
-                maka anak akan memiliki spesies berbeda dari kedua parent yang memiliki kedua elemen parent 
-                (boleh dipilih random atau hardcoded). */
-                List<Element> listEl = sortElementAdv(parentA, parentB);
-
-
-            }
-
-        }
-
-        parentA.levelUp(-3);
-        parentB.levelUp(-3);
-    }
 
 
 }
