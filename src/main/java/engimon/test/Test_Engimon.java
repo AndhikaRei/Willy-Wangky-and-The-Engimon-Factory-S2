@@ -36,20 +36,20 @@ public class Test_Engimon {
         
         // Engidex is initialized 
         Engidex.initEngidex();
-
-        // Check Engimon with multiple element from Engidex
+        
         try {
+            // Check Engimon with multiple element from Engidex
             Engimon e3 = Engidex.getEngimonByElement(Element.Fire, Element.Ground);
             e3.printEngimon();
-        } catch (Exception e){
-            System.out.println(e);
-        }
 
-        // Check list of Engimon from Engidex
-        try {
+            // Check list of Engimon from Engidex
+            List<Engimon> e4 = Engidex.getEngimonByElement(Element.Fire);
+            e4.forEach(e -> e.printEngimon());
+
+            // Clone an engimon 
+            Engimon e5 = e3.cloneEngimon();
+            e5.printEngimon();
             
-            List<Engimon> e3 = Engidex.getEngimonByElement(Element.Fire);
-            e3.forEach(e -> e.printEngimon());
         } catch (Exception e){
             System.out.println(e);
         }

@@ -5,7 +5,7 @@ import java.util.*;
 import main.java.element.*;
 import main.java.skill.*;
 
-public abstract class Engimon {
+public abstract class Engimon implements Cloneable {
     /* FIELDS */
     protected String name;
     protected int lives;
@@ -54,6 +54,10 @@ public abstract class Engimon {
         this.exp = engimon.exp;
         this.cumul_exp = engimon.cumul_exp;
         this.slogan = engimon.slogan;
+    }
+
+    public Engimon cloneEngimon() throws CloneNotSupportedException {
+        return (Engimon) this.clone();
     }
 
     /* GETTER */
