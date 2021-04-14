@@ -17,10 +17,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+<<<<<<< HEAD
 
         primaryStage.setTitle("Hello World");
         Button but = new Button();
         primaryStage.setScene(new Scene(root, 600, 400));
+=======
+        primaryStage.setTitle("Testing");
+        primaryStage.setScene(new Scene(root));
+>>>>>>> aa048184d3a8b77a07114fbfea1542b0dd17864e
         primaryStage.show();
 //            window = primaryStage;
 //            window.setTitle("thenewboston - JavaFX");
