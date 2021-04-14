@@ -49,6 +49,16 @@ public class Test_Engimon {
             // Clone an engimon 
             Engimon e5 = e3.cloneEngimon();
             e5.printEngimon();
+
+            Engimon e6 = e3;
+            e6.printEngimon();
+
+            Parent par = new Parent("papa", "laki-laki", "mama", "perempuan");
+            Engimon awewe = new Melt("andru", 135, par);
+            awewe.printEngimon();
+            Engimon e7 = awewe;
+            e7.printEngimon();
+
             
         } catch (Exception e){
             System.out.println(e);
