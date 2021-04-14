@@ -7,8 +7,11 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import main.java.element.Element;
+import main.java.engimon.species.*;
 
 class EngidexNotInitalized extends Exception {
+    static final long serialVersionUID = 1L; // Idk if this is nescessary 
+
     public EngidexNotInitalized(){
         super("Engidex has not been initialized");
     }
@@ -20,7 +23,7 @@ class EngidexNotInitalized extends Exception {
 public class Engidex { 
     private static Map<String, Engimon> Engidex  = new HashMap<String, Engimon>();
     public static void initEngidex(){
-        Engimon e1 = new Cryo("Cryo sp.", 1);
+        Engimon e1 = new Cryo("Cryo sp.", true);
         Engimon e2 = new CryoCrystallize("CyroCrystallize sp.", 1);
         Engimon e3 = new Electro("Electro sp.", 1);
         Engimon e4 = new ElectroCharged("ElectroCharged sp.", 1);
@@ -67,7 +70,7 @@ public class Engidex {
     }
 
     // Untuk mengambil engimon dengan hanya 1 element 
-    public static Engimon getBaseEngimon(Element element) throws EngidexNotInitalized{
+    public static Engimon getBaseEngimon(Element element) throws EngidexNotInitalized, CloneNotSupportedException{
         if(Engidex.size() == 0){
             throw new EngidexNotInitalized();
         }
@@ -78,7 +81,7 @@ public class Engidex {
             }
             for( Element el : e.getElement()){
                 if(el == element){
-                    return e;
+                    return e.cloneEngimon();
                 }
             }
         }
@@ -88,12 +91,12 @@ public class Engidex {
     }
 
     // Untuk mengambil nama species engimon dengan hanya satu element
-    public static String getBaseEngimonSpecies(Element element) throws EngidexNotInitalized{
+    public static String getBaseEngimonSpecies(Element element) throws EngidexNotInitalized, CloneNotSupportedException {
         return getBaseEngimon(element).getSpecies();
     }
 
     // Untuk mengambil semua engimon bertipe element
-    public static List<Engimon> getEngimonByElement(Element element) throws EngidexNotInitalized{
+    public static List<Engimon> getEngimonByElement(Element element) throws EngidexNotInitalized, CloneNotSupportedException{
         if(Engidex.size() == 0){
             throw new EngidexNotInitalized();
         }
@@ -102,7 +105,7 @@ public class Engidex {
         for( Engimon e : Engidex.values()){
             for( Element el : e.getElement()){
                 if(el == element){
-                    EngimonList.add(e);
+                    EngimonList.add(e.cloneEngimon());
                 }
             }
         }
@@ -127,7 +130,7 @@ public class Engidex {
     }
     
     // Get the species name
-    public static List<String> getEngimonSpeciesByElement(Element e) throws EngidexNotInitalized {
+    public static List<String> getEngimonSpeciesByElement(Element e) throws EngidexNotInitalized, CloneNotSupportedException {
         return getEngimonByElement(e).stream().map( engimon -> engimon.getSpecies()).collect(Collectors.toList());
     }
 

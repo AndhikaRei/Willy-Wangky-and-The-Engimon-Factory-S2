@@ -6,6 +6,10 @@ import main.java.element.*;
 import main.java.skill.*;
 
 public abstract class Engimon implements Cloneable {
+    /* FINAL ATTRIBUTES */
+    private final int DEFAULT_LIVES = 3;
+    private final int DEFAULT_WILD_LIVES = 1;
+
     /* FIELDS */
     protected String name;
     protected int lives;
@@ -19,6 +23,25 @@ public abstract class Engimon implements Cloneable {
     protected String slogan;
 
     /* CONSTRUCTORS */
+    // Using Wild Flag
+    public Engimon ( String name, boolean isWild ){
+        this.name = name;
+        this.lives = isWild ? DEFAULT_WILD_LIVES : DEFAULT_LIVES;
+        this.parent = new Parent();
+        this.level = 0;
+        this.exp = 0;
+        this.cumul_exp = 0;
+    }
+
+    public Engimon(String name, boolean isWild, Parent parent ){
+        this.name = name;
+        this.lives = isWild ? DEFAULT_WILD_LIVES : DEFAULT_LIVES;
+        this.parent = new Parent();
+        this.level = 0;
+        this.exp = 0;
+        this.cumul_exp = 0;
+    }
+
     // ctor tanpa parent, lives 3 untuk player engimon, 1 untuk wild engimon
     public Engimon(String name, int lives) {
         this.name = name;
@@ -78,6 +101,7 @@ public abstract class Engimon implements Cloneable {
     public void setLevel(int level) { this.level = level; }
     public void setExp(int exp) { this.exp = exp; }
     public void setCumulExp(int cumul_exp) { this.cumul_exp = cumul_exp; }
+    public void setParent(Parent parent) { this.parent = parent; }
     // setter sisanya terlihat tidak lazim digunakan
 
     /* METHODS */
@@ -114,6 +138,5 @@ public abstract class Engimon implements Cloneable {
         this.interact();
     }
 }
-
 
 

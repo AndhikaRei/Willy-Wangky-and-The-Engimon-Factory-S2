@@ -1,10 +1,29 @@
-package main.java.engimon;
+package main.java.engimon.species;
 
+import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
 
 public class Melt extends Engimon {
     /* CONSTRUCTORS */
+    // ctor tanpa parent
+    public Melt(String name, boolean isWild) {
+        super(name, isWild);
+        this.species = "Melt";
+        this.element.add(Element.Fire);
+        this.element.add(Element.Ice);
+        this.skill.add(new Skill("Half-Cold Half-Hot", "Todoroki not approve.", 20, Element.Fire, Element.Ice));
+        this.slogan = "Fuwafuwaru fuwafuwari~";
+    }
+    // ctor dengan parent
+    public Melt(String name, boolean isWild, Parent parent) {
+        super(name, isWild, parent);
+        this.species = "Melt";
+        this.element.add(Element.Fire);
+        this.element.add(Element.Ice);
+        this.skill.add(new Skill("Half-Cold Half-Hot", "Todoroki not approve.", 20, Element.Fire, Element.Ice));
+        this.slogan = "Fuwafuwaru fuwafuwari~";
+    }
     // ctor tanpa parent
     public Melt(String name, int lives) {
         super(name, lives);

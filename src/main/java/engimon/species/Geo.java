@@ -1,10 +1,27 @@
-package main.java.engimon;
+package main.java.engimon.species;
 
+import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
 
 public class Geo extends Engimon {
     /* CONSTRUCTORS */
+    // ctor tanpa parent
+    public Geo(String name, boolean isWild) {
+        super(name, isWild);
+        this.species = "Geo";
+        this.element.add(Element.Ground);
+        this.skill.add(new Skill("Tanah tinggi!", "Ez cover.", 20, Element.Ground));
+        this.slogan = "Kokoro wa shinka suru yo~";
+    }
+    // ctor dengan parent
+    public Geo(String name, boolean isWild, Parent parent) {
+        super(name, isWild, parent);
+        this.species = "Geo";
+        this.element.add(Element.Ground);
+        this.skill.add(new Skill("Tanah tinggi!", "Ez cover.", 20, Element.Ground));
+        this.slogan = "Kokoro wa shinka suru yo~";
+    }
     // ctor tanpa parent
     public Geo(String name, int lives) {
         super(name, lives);
