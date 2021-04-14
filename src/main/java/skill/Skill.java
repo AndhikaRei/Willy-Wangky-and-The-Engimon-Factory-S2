@@ -10,8 +10,8 @@ public class Skill {
     /*** FIELDS ***/
     private String name;                    // Nama Skill
     private String desc;                    // Deskripsi Skill
-    private int basePower;                  // Base Power
-    private int masteryLevel;               // Mastery level, maksimal level 3
+    private Integer basePower;              // Base Power
+    private Integer masteryLevel;           // Mastery level, maksimal level 3
     private List<Element> listElements;     // Element yang bisa mempelajari skill
 
     /*** METHODS ***/
@@ -106,10 +106,10 @@ public class Skill {
     public String getDesc() {
         return desc;
     }
-    public int getBasePower() {
+    public Integer getBasePower() {
         return basePower;
     }
-    public int getMasteryLevel() {
+    public Integer getMasteryLevel() {
         return masteryLevel;
     }
     public List<Element> getListElement() {

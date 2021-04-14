@@ -134,6 +134,7 @@ public class Engidex {
     public static String getEngimonSpeciesByElement(Element e1, Element e2) throws EngidexNotInitalized {
         return getEngimonByElement(e1, e2).getSpecies();
     }
+
     
 
 }

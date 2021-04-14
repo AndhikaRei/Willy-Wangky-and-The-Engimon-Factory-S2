@@ -46,12 +46,12 @@ public class Breeding_Fountain {
     //         spesifik tertentu). */
     //         int choice = rand.nextInt(2);
     //         if (choice == 0) {
-    //             Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).clone();
+    //             Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).cloneEngimon();
     //             anak.setParent(ortu);
     //             addSkillAnak(anak, calonSkill);
     //             return anak;
     //         } else {
-    //             Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).clone();
+    //             Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).cloneEngimon();
     //             anak.setParent(ortu);
     //             addSkillAnak(anak, calonSkill);
     //             return anak;
@@ -62,12 +62,12 @@ public class Breeding_Fountain {
     //         double elAdvA = Element.advantage(parentA.getElement(), parentB.getElement());
     //         double elAdvB = Element.advantage(parentB.getElement(), parentA.getElement());
     //         if (elAdvA > elAdvB) {
-    //             Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).clone();
+    //             Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).cloneEngimon();
     //             anak.setParent(ortu);
     //             addSkillAnak(anak, calonSkill);
     //             return anak;
     //         } else if (elAdvA < elAdvB) {
-    //             Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).clone();
+    //             Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).cloneEngimon();
     //             anak.setParent(ortu);
     //             addSkillAnak(anak, calonSkill);
     //             return anak;
@@ -78,7 +78,7 @@ public class Breeding_Fountain {
     //             (boleh dipilih random atau hardcoded). */
     //             List<Element> listEl = sortElementAdv(parentA, parentB);
 
-    //             Engimon anak = Engidex.getEngimonByElement(listEl.get(0), listEl.get(1)).clone();
+    //             Engimon anak = Engidex.getEngimonByElement(listEl.get(0), listEl.get(1)).cloneEngimon();
     //             anak.setParent(ortu);
     //             addSkillAnak(anak, calonSkill);
     //             return anak;
@@ -95,7 +95,7 @@ public class Breeding_Fountain {
      * @param parentB
      * @return List skill yang sudah disusuh berdasarkan ketentuan
      */
-    private static List<Skill> sortingSkills(Engimon parentA, Engimon parentB) {
+    public static List<Skill> sortingSkills(Engimon parentA, Engimon parentB) {
         List<Skill> skillParentA = parentA.getSkill();
         List<Skill> skillParentB = parentB.getSkill();
         List<Skill> skillChild = new ArrayList<>();
@@ -120,30 +120,9 @@ public class Breeding_Fountain {
 
         }
 
-        // Urutkan berdasarkan mastery level
-        // Comparator<Skill> compareByMasteryLvl = (Skill sk1, Skill sk2) -> {
-        //     Integer sk1Level = sk1.getMasteryLevel();
-        //     Integer sk2Level = sk2.getMasteryLevel();
-        //     return sk1Level.compareTo(sk2Level);
-        // };
-
-        // Comparator<Skill> compareByMasteryLvl = (Skill sk1, Skill sk2) -> {
-        //     Integer sk1Level = sk1.getMasteryLevel();
-        //     Integer sk2Level = sk2.getMasteryLevel();
-        //     return Comparator.comparingInt(Skill::getMasteryLevel);
-        // };
-
-        // Comparator<Skill> compareByMasteryLvl = new Comparator<Skill>() {
-        //     @Override
-        //     public int compare(Skill sk1, Skill sk2) {
-        //         Integer sk1Level = sk1.getMasteryLevel();
-        //         Integer sk2Level = sk2.getMasteryLevel();
-        //         return sk1Level.compareTo(sk2Level);
-        //     }
-        // };
-
-        Collections.sort(skillChild, Comparator.comparingInt(Skill::getMasteryLevel));
-        return skillChild;
+        return skillChild.stream()
+            .sorted((s1,s2) -> s2.getMasteryLevel().compareTo(s1.getMasteryLevel()))
+            .collect(Collectors.toList());
     }
 
 
@@ -179,7 +158,7 @@ public class Breeding_Fountain {
      * @param parentB
      * @return True jika ada element yang sama
      */
-    private static boolean isElementSimilar(Engimon parentA, Engimon parentB) {
+    public static boolean isElementSimilar(Engimon parentA, Engimon parentB) {
         List<Element> elParentA = parentA.getElement();
         List<Element> elParentB = parentB.getElement();
 
@@ -198,7 +177,7 @@ public class Breeding_Fountain {
      * @param parentB
      * @return list of Element yang sudah diurut
      */
-    private static List<Element> sortElementAdv(Engimon parentA, Engimon parentB) {
+    public static List<Element> sortElementAdv(Engimon parentA, Engimon parentB) {
         List<Element> elParentA = parentA.getElement();
         List<Element> elParentB = parentB.getElement();
         Map<Element,Double> elChild = new HashMap<>();
@@ -215,16 +194,19 @@ public class Breeding_Fountain {
             elAdv = Element.advantage(elB, elParentA);
             if (elChild.containsKey(elB) && elAdv > elChild.get(elB)) {
                 elChild.replace(elB, elAdv);
+            } else {
+                elChild.put(elB, elAdv);
             }
-            
         }
 
-        // Urutkan berdasarkan value dan ubah ke List Entry
+        // Ubah ke List Entry
         List<Entry<Element, Double>> listEl = new ArrayList<>(elChild.entrySet());
-        listEl.sort(Entry.comparingByValue());
 
         // Return list key
-        return listEl.stream().map(Entry::getKey).collect(Collectors.toList());
+        return listEl.stream()
+            .sorted((s1,s2) -> s2.getValue().compareTo(s1.getValue()))
+            .map(Entry::getKey)
+            .collect(Collectors.toList());
 
     }
 
