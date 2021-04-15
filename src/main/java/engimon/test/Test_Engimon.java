@@ -5,6 +5,9 @@ import main.java.engimon.species.*;
 import main.java.element.Element;
 import java.util.List;
 
+// For testing Engidex 
+import java.util.Map;
+
 /** langkah compile dan run:
  * javac main/java/engimon/test/Test_Engimon.java
  * java main.java.engimon.test.Test_Engimon
@@ -39,6 +42,20 @@ public class Test_Engimon {
         Engidex.initEngidex();
         
         try {
+            // Check Engimon by Species
+            System.out.println("--- CHECK ENGIDEX BY SPECIES ---");
+            Engimon e1 = Engidex.getEngimonBySpecies("Electro");
+            e1.printEngimon();
+            System.out.println("--- CHECK ENGIDEX ---");
+            Map<String, Engimon> EngidexList = Engidex.getEngidex();
+            for (Map.Entry<String,Engimon> entry : EngidexList.entrySet()){
+                System.out.println("Key = " + entry.getKey()  + ", Value = ");
+                entry.getValue().printEngimon();
+            }
+            System.out.println("--- CHECK ENGIDEX ENDS ---");
+            Engimon e2 = Engidex.getEngimonBySpecies(e1.getSpecies());
+            e2.printEngimon();
+
             // Check Engimon with multiple element from Engidex
             System.out.println("--- CHECK ENGIMON WITH FIRE AND GROUND ELEMENT ---");
             Engimon e3 = Engidex.getEngimonByElement(Element.Fire, Element.Ground);

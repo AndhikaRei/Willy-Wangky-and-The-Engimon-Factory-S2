@@ -11,8 +11,8 @@ public class Test_Breeding {
         Engidex.initEngidex();
         
         try {
-            Engimon parentA = Engidex.getEngimonBySpecies("e1").cloneEngimon();
-            Engimon parentB = Engidex.getEngimonBySpecies("e3").cloneEngimon();
+            Engimon parentA = Engidex.getEngimonBySpecies("Cryo");
+            Engimon parentB = Engidex.getEngimonBySpecies("Electro");
 
             parentA.getSkill().get(0).levelUp();
             parentA.getSkill().get(0).levelUp();

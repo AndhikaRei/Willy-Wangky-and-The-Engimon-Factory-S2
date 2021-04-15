@@ -39,22 +39,26 @@ public class Engidex {
         Engimon e14 = new Superconductor("Superconductor sp.", 1);
         Engimon e15 = new Vaporize("Vaporize sp.", 1);
 
-        Engidex.put("Cryo sp.", e1);
-        Engidex.put("CyroCrystallize sp.", e2);
-        Engidex.put("Electro sp.", e3);
-        Engidex.put("ElectroCharged sp.", e4);
-        Engidex.put("ElectroCrystallize sp.", e5);
-        Engidex.put("Frozen sp.", e6);
-        Engidex.put("Geo sp.", e7);
-        Engidex.put("Hydro sp.", e8);
-        Engidex.put("HydroCrystallize sp.", e9);
-        Engidex.put("Melt sp.", e10);
-        Engidex.put("Overload sp.", e11);
-        Engidex.put("Pyro sp.", e12);
-        Engidex.put("PyroCrystallize sp.", e13);
-        Engidex.put("Superconductor sp.", e14);
-        Engidex.put("Vaporize sp.", e15);
+        Engidex.put("Cryo", e1);
+        Engidex.put("CyroCrystallize", e2);
+        Engidex.put("Electro", e3);
+        Engidex.put("ElectroCharged", e4);
+        Engidex.put("ElectroCrystallize", e5);
+        Engidex.put("Frozen", e6);
+        Engidex.put("Geo", e7);
+        Engidex.put("Hydro", e8);
+        Engidex.put("HydroCrystallize", e9);
+        Engidex.put("Melt", e10);
+        Engidex.put("Overload", e11);
+        Engidex.put("Pyro", e12);
+        Engidex.put("PyroCrystallize", e13);
+        Engidex.put("Superconductor", e14);
+        Engidex.put("Vaporize", e15);
 
+    }
+
+    public static Map<String, Engimon> getEngidex(){
+        return Engidex;
     }
 
     // Basic Methods
@@ -65,7 +69,7 @@ public class Engidex {
         if(Engidex.get(species) == null){
             throw new Exception("Species doesn't exist");
         } else {
-            return Engidex.get(species);
+            return Engidex.get(species).cloneEngimon();
         }
     }
 
@@ -119,6 +123,9 @@ public class Engidex {
             throw new EngidexNotInitalized();
         }
         for( Engimon e : Engidex.values()){
+            if(e.isOneElement()){
+                continue;
+            }
             List<Element> elements = e.getElement();
             if(elements.get(0) == e1 && elements.get(1) == e2 ){
                 return e;
