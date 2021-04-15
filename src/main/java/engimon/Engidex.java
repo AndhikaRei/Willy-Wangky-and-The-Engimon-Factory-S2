@@ -127,7 +127,7 @@ public class Engidex {
                 continue;
             }
             List<Element> elements = e.getElement();
-            if(elements.get(0) == e1 && elements.get(1) == e2 ){
+            if(elements.contains(e1) && elements.contains(e2) ){
                 return e;
             }
         }
