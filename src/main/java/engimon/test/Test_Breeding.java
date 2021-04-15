@@ -12,15 +12,24 @@ public class Test_Breeding {
         
         try {
             Engimon parentA = Engidex.getEngimonBySpecies("e1").cloneEngimon();
-            parentA.getSkill().get(0).levelUp();
-            parentA.getSkill().get(0).levelUp();
             Engimon parentB = Engidex.getEngimonBySpecies("e3").cloneEngimon();
+
+            parentA.getSkill().get(0).levelUp();
+            parentA.getSkill().get(0).levelUp();
             parentB.getSkill().get(0).levelUp();
 
             // Aman
-            List<Skill> listSk = Breeding_Fountain.sortingSkills(parentA, parentB);
-            for (Skill sk : listSk) {
-                sk.showSimpleSkill();
+            // List<Skill> listSk = Breeding_Fountain.sortingSkills(parentA, parentB);
+            // for (Skill sk : listSk) {
+            //     sk.showSimpleSkill();
+            // }
+
+            Engimon child = Breeding_Fountain.startBreeding(parentA, parentB);
+            // Breeding_Fountain.addSkillAnak(child,listSk);
+
+            List<Skill> skillAnak = child.getSkill();
+            for (Skill skill : skillAnak) {
+                skill.showSimpleSkill();
             }
 
             // Aman

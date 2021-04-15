@@ -120,6 +120,14 @@ public abstract class Engimon implements Cloneable {
         return "%s : %s\n" + this.name + this.slogan; 
     }
 
+    // addSkill
+    public void addSkill(Skill sk) {
+        this.skill.add(sk);
+
+        // Susun dari mastery level tertinggi
+        this.skill.sort((s1,s2) -> s2.getMasteryLevel().compareTo(s1.getMasteryLevel()));
+    }
+
     // print engimon di cli
     public void printEngimon() {
         System.out.printf("%s - %s - %d lives\n", this.name, this.species, this.lives);

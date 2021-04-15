@@ -15,78 +15,80 @@ import java.util.stream.Collectors;
 
 public class Breeding_Fountain {
 
-    // /**
-    //  * Melakukan perkawinan antar Engimon
-    //  * @param parentA
-    //  * @param parentB
-    //  * @return Engimon hasil perkawinan
-    //  * @exception invalidEngimonLevel 
-    //  */
-    // public static Engimon startBreeding(Engimon parentA, Engimon parentB) {
-    //     if (parentA.getLevel() < 4 || parentB.getLevel() < 4) {
-    //         // Throw Exception
-    //         System.out.println("Exception");
-    //     }
-    //     // Kurangi level Parent
-    //     parentA.setLevel(parentA.getLevel() - 3);
-    //     parentB.setLevel(parentB.getLevel() - 3);
+    /**
+     * Melakukan perkawinan antar Engimon
+     * @param parentA
+     * @param parentB
+     * @return Engimon hasil perkawinan
+     * @throws Exception
+     * @throws CloneNotSupportedException
+     * @exception invalidEngimonLevel 
+     */
+    public static Engimon startBreeding(Engimon parentA, Engimon parentB) throws CloneNotSupportedException, Exception {
+        if (parentA.getLevel() < 4 || parentB.getLevel() < 4) {
+            // Throw Exception
+            System.out.println("Exception");
+        }
+        // Kurangi level Parent
+        parentA.setLevel(parentA.getLevel() - 3);
+        parentB.setLevel(parentB.getLevel() - 3);
 
-    //     // Create Parent Object
-    //     Parent ortu = new Parent(parentA.getName(), parentA.getSpecies(), parentB.getName(), parentB.getSpecies());
+        // Create Parent Object
+        Parent ortu = new Parent(parentA.getName(), parentA.getSpecies(), parentB.getName(), parentB.getSpecies());
         
-    //     // Cari skill yang mungkin bisa diwariskan
-    //     List<Skill> calonSkill = sortingSkills(parentA, parentB);
+        // Cari skill yang mungkin bisa diwariskan
+        List<Skill> calonSkill = sortingSkills(parentA, parentB);
 
-    //     // Random module
-    //     Random rand = new Random();
+        // Random module
+        Random rand = new Random();
 
-    //     if (isElementSimilar(parentA, parentB)) {
-    //     /* Jika elemen kedua parent sama, anak akan memiliki elemen yang sama dengan kedua parent. 
-    //         Spesies anak dipilih dari parent A atau parent B secara bebas (boleh random atau aturan 
-    //         spesifik tertentu). */
-    //         int choice = rand.nextInt(2);
-    //         if (choice == 0) {
-    //             Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).cloneEngimon();
-    //             anak.setParent(ortu);
-    //             addSkillAnak(anak, calonSkill);
-    //             return anak;
-    //         } else {
-    //             Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).cloneEngimon();
-    //             anak.setParent(ortu);
-    //             addSkillAnak(anak, calonSkill);
-    //             return anak;
-    //         }
-    //     } else {
-    //     /* Jika elemen kedua parent berbeda maka anak akan memiliki elemen dan spesies dari elemen 
-    //         yang memiliki element advantage yang lebih tinggi. */
-    //         double elAdvA = Element.advantage(parentA.getElement(), parentB.getElement());
-    //         double elAdvB = Element.advantage(parentB.getElement(), parentA.getElement());
-    //         if (elAdvA > elAdvB) {
-    //             Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).cloneEngimon();
-    //             anak.setParent(ortu);
-    //             addSkillAnak(anak, calonSkill);
-    //             return anak;
-    //         } else if (elAdvA < elAdvB) {
-    //             Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).cloneEngimon();
-    //             anak.setParent(ortu);
-    //             addSkillAnak(anak, calonSkill);
-    //             return anak;
-    //         } else {
-    //         /* eleAdv_a == eleAdv_b */
-    //         /* Jika elemen kedua parent berbeda dan kedua elemen memiliki element advantage yang sama, 
-    //             maka anak akan memiliki spesies berbeda dari kedua parent yang memiliki kedua elemen parent 
-    //             (boleh dipilih random atau hardcoded). */
-    //             List<Element> listEl = sortElementAdv(parentA, parentB);
+        if (isElementSimilar(parentA, parentB)) {
+        /* Jika elemen kedua parent sama, anak akan memiliki elemen yang sama dengan kedua parent. 
+            Spesies anak dipilih dari parent A atau parent B secara bebas (boleh random atau aturan 
+            spesifik tertentu). */
+            int choice = rand.nextInt(2);
+            if (choice == 0) {
+                Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).cloneEngimon();
+                anak.setParent(ortu);
+                addSkillAnak(anak, calonSkill);
+                return anak;
+            } else {
+                Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).cloneEngimon();
+                anak.setParent(ortu);
+                addSkillAnak(anak, calonSkill);
+                return anak;
+            }
+        } else {
+        /* Jika elemen kedua parent berbeda maka anak akan memiliki elemen dan spesies dari elemen 
+            yang memiliki element advantage yang lebih tinggi. */
+            double elAdvA = Element.advantage(parentA.getElement(), parentB.getElement());
+            double elAdvB = Element.advantage(parentB.getElement(), parentA.getElement());
+            if (elAdvA > elAdvB) {
+                Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).cloneEngimon();
+                anak.setParent(ortu);
+                addSkillAnak(anak, calonSkill);
+                return anak;
+            } else if (elAdvA < elAdvB) {
+                Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).cloneEngimon();
+                anak.setParent(ortu);
+                addSkillAnak(anak, calonSkill);
+                return anak;
+            } else {
+            /* eleAdv_a == eleAdv_b */
+            /* Jika elemen kedua parent berbeda dan kedua elemen memiliki element advantage yang sama, 
+                maka anak akan memiliki spesies berbeda dari kedua parent yang memiliki kedua elemen parent 
+                (boleh dipilih random atau hardcoded). */
+                List<Element> listEl = sortElementAdv(parentA, parentB);
 
-    //             Engimon anak = Engidex.getEngimonByElement(listEl.get(0), listEl.get(1)).cloneEngimon();
-    //             anak.setParent(ortu);
-    //             addSkillAnak(anak, calonSkill);
-    //             return anak;
+                Engimon anak = Engidex.getEngimonByElement(listEl.get(0), listEl.get(1)).cloneEngimon();
+                anak.setParent(ortu);
+                addSkillAnak(anak, calonSkill);
+                return anak;
 
-    //         }
+            }
 
-    //     }
-    // }
+        }
+    }
 
 
     /**
@@ -126,31 +128,31 @@ public class Breeding_Fountain {
     }
 
 
-    // /**
-    //  * Menambah calonSkill ke child
-    //  * @param child
-    //  * @param calonSkill
-    //  */
-    // private static void addSkillAnak(Engimon child, List<Skill> calonSkill) {
-    //     int i = 0;
-    //     List<Skill> childSkill = child.getSkill();
+    /**
+     * Menambah calonSkill ke child
+     * @param child
+     * @param calonSkill
+     */
+    public static void addSkillAnak(Engimon child, List<Skill> calonSkill) {
+        int i = 0;
+        List<Skill> childSkill = child.getSkill();
 
-    //     // Selama skill anak belum 4 dan masih ada skill yang tersedia
-    //     while (child.getSkill().size() <= 4 && i < calonSkill.size()) {
-    //         Skill sk = calonSkill.get(i);
-    //         int idx = childSkill.indexOf(sk);
-    //         if (idx == -1) {
-    //             // Belum ada skill
-    //             child.addSkill(new Skill(sk));
-    //         } else {
-    //             // Tambah Level
-    //             while (child.getSkill().get(idx).getMasteryLevel() < sk.getMasteryLevel()) {
-    //                 child.getSkill().get(idx).levelUp();
-    //             }  
-    //         }
-    //         i++;
-    //     }
-    // }
+        // Selama skill anak belum 4 dan masih ada skill yang tersedia
+        while (child.getSkill().size() <= 4 && i < calonSkill.size()) {
+            Skill sk = calonSkill.get(i);
+            int idx = childSkill.indexOf(sk);
+            if (idx == -1) {
+                // Belum ada skill
+                child.addSkill(new Skill(sk));
+            } else {
+                // Tambah Level
+                while (child.getSkill().get(idx).getMasteryLevel() < sk.getMasteryLevel()) {
+                    child.getSkill().get(idx).levelUp();
+                }  
+            }
+            i++;
+        }
+    }
 
     /**
      * Mengecek apakah ada element antar parent yang sama
