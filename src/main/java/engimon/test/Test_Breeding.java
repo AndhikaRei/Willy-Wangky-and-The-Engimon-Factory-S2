@@ -11,12 +11,17 @@ public class Test_Breeding {
         Engidex.initEngidex();
         
         try {
-            Engimon parentA = Engidex.getEngimonBySpecies("Cryo");
-            Engimon parentB = Engidex.getEngimonBySpecies("Electro");
+            Engimon parentA = Engidex.getEngimonBySpecies("Geo");
+            Engimon parentB = Engidex.getEngimonBySpecies("Hydro");
 
-            parentA.getSkill().get(0).levelUp();
-            parentA.getSkill().get(0).levelUp();
-            parentB.getSkill().get(0).levelUp();
+            parentA.setLevel(5);
+            parentB.setLevel(5);
+            
+            
+
+            // parentA.getSkill().get(0).levelUp();
+            // parentA.getSkill().get(0).levelUp();
+            // parentB.getSkill().get(0).levelUp();
 
             // Aman
             // List<Skill> listSk = Breeding_Fountain.sortingSkills(parentA, parentB);
@@ -25,25 +30,31 @@ public class Test_Breeding {
             // }
 
             Engimon child = Breeding_Fountain.startBreeding(parentA, parentB);
-            // Breeding_Fountain.addSkillAnak(child,listSk);
 
+            child.printEngimon();
             List<Skill> skillAnak = child.getSkill();
             for (Skill skill : skillAnak) {
                 skill.showSimpleSkill();
             }
 
-            // Aman
-            if (Breeding_Fountain.isElementSimilar(parentA, parentB)) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
-            }
+            
+
+            // Breeding_Fountain.addSkillAnak(child,listSk);
+
+            
 
             // Aman
-            List<Element> listEl = Breeding_Fountain.sortElementAdv(parentA, parentB);
-            for (Element element : listEl) {
-                System.out.println(element);
-            }
+            // if (Breeding_Fountain.isElementSimilar(parentA, parentB)) {
+            //     System.out.println("Yes");
+            // } else {
+            //     System.out.println("No");
+            // }
+
+            // // Aman
+            // List<Element> listEl = Breeding_Fountain.sortElementAdv(parentA, parentB);
+            // for (Element element : listEl) {
+            //     System.out.println(element);
+            // }
 
 
 
@@ -51,7 +62,11 @@ public class Test_Breeding {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         } catch (Exception e) {
+            // e.getCause();
+            // System.err.println(e.getMessage());
+            
             e.printStackTrace();
+            
         }
 
 

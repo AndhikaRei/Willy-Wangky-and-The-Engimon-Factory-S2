@@ -27,7 +27,8 @@ public class Breeding_Fountain {
     public static Engimon startBreeding(Engimon parentA, Engimon parentB) throws CloneNotSupportedException, Exception {
         if (parentA.getLevel() < 4 || parentB.getLevel() < 4) {
             // Throw Exception
-            System.out.println("Exception");
+            System.out.println("Breeding level not valid");
+            // System.out.println("Exception");
         }
         // Kurangi level Parent
         parentA.setLevel(parentA.getLevel() - 3);
@@ -97,7 +98,7 @@ public class Breeding_Fountain {
      * @param parentB
      * @return List skill yang sudah disusuh berdasarkan ketentuan
      */
-    public static List<Skill> sortingSkills(Engimon parentA, Engimon parentB) {
+    private static List<Skill> sortingSkills(Engimon parentA, Engimon parentB) {
         List<Skill> skillParentA = parentA.getSkill();
         List<Skill> skillParentB = parentB.getSkill();
         List<Skill> skillChild = new ArrayList<>();
@@ -133,7 +134,7 @@ public class Breeding_Fountain {
      * @param child
      * @param calonSkill
      */
-    public static void addSkillAnak(Engimon child, List<Skill> calonSkill) {
+    private static void addSkillAnak(Engimon child, List<Skill> calonSkill) {
         int i = 0;
         List<Skill> childSkill = child.getSkill();
 
@@ -160,7 +161,7 @@ public class Breeding_Fountain {
      * @param parentB
      * @return True jika ada element yang sama
      */
-    public static boolean isElementSimilar(Engimon parentA, Engimon parentB) {
+    private static boolean isElementSimilar(Engimon parentA, Engimon parentB) {
         List<Element> elParentA = parentA.getElement();
         List<Element> elParentB = parentB.getElement();
 
@@ -179,7 +180,7 @@ public class Breeding_Fountain {
      * @param parentB
      * @return list of Element yang sudah diurut
      */
-    public static List<Element> sortElementAdv(Engimon parentA, Engimon parentB) {
+    private static List<Element> sortElementAdv(Engimon parentA, Engimon parentB) {
         List<Element> elParentA = parentA.getElement();
         List<Element> elParentB = parentB.getElement();
         Map<Element,Double> elChild = new HashMap<>();
