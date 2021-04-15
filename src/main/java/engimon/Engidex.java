@@ -39,21 +39,21 @@ public class Engidex {
         Engimon e14 = new Superconductor("Superconductor sp.", 1);
         Engimon e15 = new Vaporize("Vaporize sp.", 1);
 
-        Engidex.put("e1", e1);
-        Engidex.put("e2", e2);
-        Engidex.put("e3", e3);
-        Engidex.put("e4", e4);
-        Engidex.put("e5", e5);
-        Engidex.put("e6", e6);
-        Engidex.put("e7", e7);
-        Engidex.put("e8", e8);
-        Engidex.put("e9", e9);
-        Engidex.put("e10", e10);
-        Engidex.put("e11", e11);
-        Engidex.put("e12", e12);
-        Engidex.put("e13", e13);
-        Engidex.put("e14", e14);
-        Engidex.put("e15", e15);
+        Engidex.put("Cryo sp.", e1);
+        Engidex.put("CyroCrystallize sp.", e2);
+        Engidex.put("Electro sp.", e3);
+        Engidex.put("ElectroCharged sp.", e4);
+        Engidex.put("ElectroCrystallize sp.", e5);
+        Engidex.put("Frozen sp.", e6);
+        Engidex.put("Geo sp.", e7);
+        Engidex.put("Hydro sp.", e8);
+        Engidex.put("HydroCrystallize sp.", e9);
+        Engidex.put("Melt sp.", e10);
+        Engidex.put("Overload sp.", e11);
+        Engidex.put("Pyro sp.", e12);
+        Engidex.put("PyroCrystallize sp.", e13);
+        Engidex.put("Superconductor sp.", e14);
+        Engidex.put("Vaporize sp.", e15);
 
     }
 

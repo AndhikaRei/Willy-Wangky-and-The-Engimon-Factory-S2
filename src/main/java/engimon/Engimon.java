@@ -102,6 +102,7 @@ public abstract class Engimon implements Cloneable {
     public void setExp(int exp) { this.exp = exp; }
     public void setCumulExp(int cumul_exp) { this.cumul_exp = cumul_exp; }
     public void setParent(Parent parent) { this.parent = parent; }
+    public void setLivesIsWild( boolean isWild ) { this.lives = isWild ? DEFAULT_WILD_LIVES : DEFAULT_LIVES; }
     // setter sisanya terlihat tidak lazim digunakan
 
     /* METHODS */
