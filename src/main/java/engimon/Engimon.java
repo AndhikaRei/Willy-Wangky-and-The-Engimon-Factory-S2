@@ -97,10 +97,30 @@ public abstract class Engimon implements Cloneable {
 
     /* SETTER */
     public void setName(String name) { this.name = name; }
-    public void setLives(int lives) { this.lives = lives; }
-    public void setLevel(int level) { this.level = level; }
-    public void setExp(int exp) { this.exp = exp; }
-    public void setCumulExp(int cumul_exp) { this.cumul_exp = cumul_exp; }
+    public void setLives(int lives) throws IllegalArgumentException { 
+        if( lives < 0 ){
+            throw new IllegalArgumentException("Illegal lives value; lives value must not be negative");
+        }
+        this.lives = lives; 
+    }
+    public void setLevel(int level) { 
+        if( level < 0 ){
+            throw new IllegalArgumentException("Illegal level value; level value must not be negative");
+        }
+        this.level = level; 
+    }
+    public void setExp(int exp) { 
+        if( exp < 0 ){
+            throw new IllegalArgumentException("Illegal exp value; exp value must not be negative");
+        }
+        this.exp = exp; 
+    }
+    public void setCumulExp(int cumul_exp) { 
+        if( cumul_exp < 0 ){
+            throw new IllegalArgumentException("Illegal cumul_exp value; lives vcumul_exp  must not be negative");
+        }
+        this.cumul_exp = cumul_exp; 
+    }
     public void setParent(Parent parent) { this.parent = parent; }
     public void setLivesIsWild( boolean isWild ) { this.lives = isWild ? DEFAULT_WILD_LIVES : DEFAULT_LIVES; }
     // setter sisanya terlihat tidak lazim digunakan

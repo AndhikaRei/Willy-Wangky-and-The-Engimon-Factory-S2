@@ -39,6 +39,23 @@ public class Engidex {
         Engimon e14 = new Superconductor("Superconductor sp.", 1);
         Engimon e15 = new Vaporize("Vaporize sp.", 1);
 
+        e1.setLevel(1);
+        e2.setLevel(1);
+        e3.setLevel(1);
+        e4.setLevel(1);
+        e5.setLevel(1);
+        e6.setLevel(1);
+        e7.setLevel(1);
+        e8.setLevel(1);
+        e9.setLevel(1);
+        e9.setLevel(1);
+        e10.setLevel(1);
+        e11.setLevel(1);
+        e12.setLevel(1);
+        e13.setLevel(1);
+        e14.setLevel(1);
+        e15.setLevel(1);
+
         Engidex.put("Cryo", e1);
         Engidex.put("CyroCrystallize", e2);
         Engidex.put("Electro", e3);
