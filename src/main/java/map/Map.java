@@ -19,6 +19,9 @@ public class Map {
         this.width = 0;
         this.total_engimon = 0;
     };
+    public ArrayList<ArrayList<Mapelem>> getMapElem(){
+        return this.mapelem;
+    }
 
     // ctor
     public Map(int m, int n, String txt) throws Exception{

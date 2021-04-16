@@ -16,20 +16,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Testing");
+        Parent root = FXMLLoader.load(getClass().getResource("Map.fxml"));
+
+        primaryStage.setTitle("Map");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-//            window = primaryStage;
-//            window.setTitle("thenewboston - JavaFX");
-//            button = new Button("Click me");
-//
-//            StackPane layout = new StackPane();
-//            layout.getChildren().add(button);
-//            Scene scene = new Scene(layout, 300, 250);
-//            layout.getChildren();
-//            window.setScene(scene);
-//            window.show();
     }
 
 
