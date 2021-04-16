@@ -1,11 +1,10 @@
 package main.java.engimon;
 
 import main.java.element.Element;
+import main.java.exception.*;
 import main.java.skill.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,15 +19,13 @@ public class Breeding_Fountain {
      * @param parentA
      * @param parentB
      * @return Engimon hasil perkawinan
-     * @throws Exception
-     * @throws CloneNotSupportedException
-     * @exception invalidEngimonLevel 
+     * @throws Exception Unexpected Error, gagal breeding
+     * @throws InvalidEngimonLevelException Level Engimon tidak cukup
      */
-    public static Engimon startBreeding(Engimon parentA, Engimon parentB) throws CloneNotSupportedException, Exception {
+    public static Engimon startBreeding(Engimon parentA, Engimon parentB) throws InvalidEngimonLevelException, Exception {
         if (parentA.getLevel() < 4 || parentB.getLevel() < 4) {
             // Throw Exception
-            System.out.println("Breeding level not valid");
-            // System.out.println("Exception");
+            throw new InvalidEngimonLevelException();
         }
         // Kurangi level Parent
         parentA.setLevel(parentA.getLevel() - 3);
@@ -43,54 +40,70 @@ public class Breeding_Fountain {
         // Random module
         Random rand = new Random();
 
-        if (isElementSimilar(parentA, parentB)) {
-        /* Jika elemen kedua parent sama, anak akan memiliki elemen yang sama dengan kedua parent. 
-            Spesies anak dipilih dari parent A atau parent B secara bebas (boleh random atau aturan 
-            spesifik tertentu). */
-            int choice = rand.nextInt(2);
-            if (choice == 0) {
-                Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).cloneEngimon();
-                anak.setParent(ortu);
-                addSkillAnak(anak, calonSkill);
-                return anak;
+        try {
+            if (isElementSimilar(parentA, parentB)) {
+            /* Jika elemen kedua parent sama, anak akan memiliki elemen yang sama dengan kedua parent. 
+                Spesies anak dipilih dari parent A atau parent B secara bebas (boleh random atau aturan 
+                spesifik tertentu). */
+                int choice = rand.nextInt(2);
+                if (choice == 0) {
+                    Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).cloneEngimon();
+                    initAnak(anak, ortu, calonSkill);
+                    return anak;
+                } else {
+                    Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).cloneEngimon();
+                    initAnak(anak, ortu, calonSkill);
+                    return anak;
+                }
             } else {
-                Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).cloneEngimon();
-                anak.setParent(ortu);
-                addSkillAnak(anak, calonSkill);
-                return anak;
-            }
-        } else {
-        /* Jika elemen kedua parent berbeda maka anak akan memiliki elemen dan spesies dari elemen 
-            yang memiliki element advantage yang lebih tinggi. */
-            double elAdvA = Element.advantage(parentA.getElement(), parentB.getElement());
-            double elAdvB = Element.advantage(parentB.getElement(), parentA.getElement());
-            if (elAdvA > elAdvB) {
-                Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).cloneEngimon();
-                anak.setParent(ortu);
-                addSkillAnak(anak, calonSkill);
-                return anak;
-            } else if (elAdvA < elAdvB) {
-                Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).cloneEngimon();
-                anak.setParent(ortu);
-                addSkillAnak(anak, calonSkill);
-                return anak;
-            } else {
-            /* eleAdv_a == eleAdv_b */
-            /* Jika elemen kedua parent berbeda dan kedua elemen memiliki element advantage yang sama, 
-                maka anak akan memiliki spesies berbeda dari kedua parent yang memiliki kedua elemen parent 
-                (boleh dipilih random atau hardcoded). */
-                List<Element> listEl = sortElementAdv(parentA, parentB);
+            /* Jika elemen kedua parent berbeda maka anak akan memiliki elemen dan spesies dari elemen 
+                yang memiliki element advantage yang lebih tinggi. */
+                double elAdvA = Element.advantage(parentA.getElement(), parentB.getElement());
+                double elAdvB = Element.advantage(parentB.getElement(), parentA.getElement());
+                if (elAdvA > elAdvB) {
+                    Engimon anak = Engidex.getEngimonBySpecies(parentA.getSpecies()).cloneEngimon();
+                    initAnak(anak, ortu, calonSkill);
+                    return anak;
+                } else if (elAdvA < elAdvB) {
+                    Engimon anak = Engidex.getEngimonBySpecies(parentB.getSpecies()).cloneEngimon();
+                    initAnak(anak, ortu, calonSkill);
+                    return anak;
+                } else {
+                /* eleAdv_a == eleAdv_b */
+                /* Jika elemen kedua parent berbeda dan kedua elemen memiliki element advantage yang sama, 
+                    maka anak akan memiliki spesies berbeda dari kedua parent yang memiliki kedua elemen parent 
+                    (boleh dipilih random atau hardcoded). */
+                    List<Element> listEl = sortElementAdv(parentA, parentB);
+    
+                    Engimon anak = Engidex.getEngimonByElement(listEl.get(0), listEl.get(1)).cloneEngimon();
+                    initAnak(anak, ortu, calonSkill);
+                    return anak;
+    
+                }
+    
+            } 
+        } catch (Exception e) {
+            // Unexpected Error
+            parentA.setLevel(parentA.getLevel() + 3);
+            parentB.setLevel(parentB.getLevel() + 3);
 
-                Engimon anak = Engidex.getEngimonByElement(listEl.get(0), listEl.get(1)).cloneEngimon();
-                anak.setParent(ortu);
-                addSkillAnak(anak, calonSkill);
-                return anak;
-
-            }
-
+            System.out.println(e.getMessage());
+            throw e;
         }
+
     }
 
+    /**
+     * Inisialisasi parameter anak
+     * @param anak
+     * @param ortu
+     * @param calonSkill
+     */
+    private static void initAnak(Engimon anak, Parent ortu, List<Skill> calonSkill) {
+        anak.setParent(ortu);
+        anak.setLivesIsWild(false);
+        addSkillAnak(anak, calonSkill);
+    }
 
     /**
      * Menyusun skill yang dapat diwariskan kepada pokemon hasil breeding

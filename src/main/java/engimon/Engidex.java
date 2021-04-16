@@ -8,17 +8,8 @@ import java.util.stream.Collectors;
 
 import main.java.element.Element;
 import main.java.engimon.species.*;
+import main.java.exception.*;
 
-class EngidexNotInitalized extends Exception {
-    static final long serialVersionUID = 1L; // Idk if this is nescessary 
-
-    public EngidexNotInitalized(){
-        super("Engidex has not been initialized");
-    }
-    public EngidexNotInitalized(String errorMessage){
-        super(errorMessage);
-    }
-}
 
 public class Engidex { 
     private static Map<String, Engimon> Engidex  = new HashMap<String, Engimon>();
