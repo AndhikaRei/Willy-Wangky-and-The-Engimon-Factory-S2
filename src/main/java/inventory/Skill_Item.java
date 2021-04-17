@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import main.java.element.*;
+import main.java.exception.*;
 import main.java.skill.*;
 
 public class Skill_Item {
@@ -40,35 +41,37 @@ public class Skill_Item {
     }
 
     /** SERVICE **/
-    /** Mempelajari sebuah skill yang compatible */
-    public Skill learn(Element el) {
+    /** Mempelajari sebuah skill yang compatible 
+     * @throws SkillElementNotCompatibleException
+     * @throws ItemNotEnoughAmountException
+     */
+    public Skill learn(Element el) throws SkillElementNotCompatibleException, ItemNotEnoughAmountException {
         if (contSkill.isElementCompatible(el)) {
             if (amount > 0) {
                 amount--;
                 return new Skill(contSkill);
             } else {
-                return null;
-                // throw InvalidNotEnoughItemAmount();
+                throw new ItemNotEnoughAmountException();
             }
         } else {    // Kasus elemen tidak sesuai
-            return null;
-            // throw InvalidElementNotCompatible();
+            throw new SkillElementNotCompatibleException();
         } 
     }
 
-    /** Mempelajari sebuah skill yang compatible */
-    public Skill learn(List<Element> listEl) {
+    /** Mempelajari sebuah skill yang compatible 
+     * @throws ItemNotEnoughAmountException
+     * @throws SkillElementNotCompatibleException
+     * */
+    public Skill learn(List<Element> listEl) throws ItemNotEnoughAmountException, SkillElementNotCompatibleException {
         if (contSkill.isElementCompatible(listEl)) {
             if (amount > 0) {
                 amount--;
                 return new Skill(contSkill);
             } else {
-                return null;
-                // throw InvalidNotEnoughItemAmount();
+                throw new ItemNotEnoughAmountException();
             }
         } else {    // Kasus elemen tidak sesuai
-            return null;
-            // throw InvalidElementNotCompatible();
+            throw new SkillElementNotCompatibleException();
         } 
     }
 

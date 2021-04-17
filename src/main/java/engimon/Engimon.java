@@ -3,7 +3,9 @@ package main.java.engimon;
 // import statements
 import java.util.*;
 import main.java.element.*;
+import main.java.exception.*;
 import main.java.skill.*;
+import main.java.inventory.*;
 
 public abstract class Engimon implements Cloneable {
     /* FINAL ATTRIBUTES */
@@ -93,6 +95,69 @@ public abstract class Engimon implements Cloneable {
     public int getLevel() { return this.level; }
     public int getExp() { return this.exp; }
     public int getCumulExp() { return this.cumul_exp; }
+    public char getEngimonSymbol(){
+        if (this.species.equals("Pyro")) /*--- Fire ---*/
+        {
+            return this.level > 10 ? 'F' : 'f';
+        }
+        else if (this.species.equals("Hydro")) /*--- Water ---*/
+        {
+            return this.level > 10 ? 'W' : 'w';
+        }
+        else if (this.species.equals("Electro")) /*--- Electric ---*/
+        {
+            return this.level > 10 ? 'E' : 'e';
+        }
+        else if (this.species.equals("Geo")) /*--- Ground ---*/
+        {
+            return this.level > 10 ? 'G' : 'g';
+        }
+        else if (this.species.equals("Cryo")) /*--- Ice ---*/
+        {
+            return this.level > 10 ? 'I' : 'i'; 
+        }
+        else if (this.species.equals("Vaporize")) /*--- Fire/Water ---*/
+        {
+            return this.level > 10 ? 'A' : 'a';
+        }
+        else if (this.species.equals("Overload")) /*--- Fire/Electric ---*/
+        {
+            return this.level > 10 ? 'L' : 'l';
+        }
+        else if (this.species.equals("PyroCrystallize")) /*--- Fire/Ground ---*/
+        {
+            return this.level > 10 ? 'B' : 'b';
+        }
+        else if (this.species.equals("Melt")) /*--- Fire/Ice ---*/
+        {
+            return this.level > 10 ? 'C' : 'c';
+        }
+        else if (this.species.equals("ElectroCharged")) /*--- Water/Electric ---*/
+        {
+            return this.level > 10 ? 'D' : 'd';
+        }
+        else if (this.species.equals("HydroCrystallize")) /*--- Water/Ground ---*/
+        {
+            return this.level > 10 ? 'N' : 'n';
+        }
+        else if (this.species.equals("Frozen")) /*--- Water/Ice ---*/
+        {
+            return this.level > 10 ? 'S' : 's';
+        }
+        else if (this.species.equals("ElectroCrystallize")) /*--- Electric/Ground ---*/
+        {
+            return this.level > 10 ? 'H' : 'h';
+        }
+        else if (this.species.equals("Superconductor")) /*--- Electric/Ice ---*/
+        {
+            return this.level > 10 ? 'J' : 'j';
+        }
+        else
+        {
+            //this.species=="CryoCrystallize" /*--- Ground/Ice ---*/
+            return this.level > 10 ? 'K' : 'k';
+        }
+    };
     // getter slogan tidak perlu
 
     /* SETTER */
@@ -141,12 +206,48 @@ public abstract class Engimon implements Cloneable {
         return "%s : %s\n" + this.name + this.slogan; 
     }
 
-    // addSkill
-    public void addSkill(Skill sk) {
-        this.skill.add(sk);
-
-        // Susun dari mastery level tertinggi
+    // add skill asumsikan semua valid
+    public void addSkill(Skill sk) throws SkillAlreadyLearnedException, SkillFullException {
+        // skill sudah ada
+        if (this.skill.contains(sk)) {
+            throw new SkillAlreadyLearnedException();
+        } else {
+            if (this.skill.size() == 4) {
+                throw new SkillFullException();
+            }
+            this.skill.add(sk);
+        }
+        // susun dari mastery level tertinggi
         this.skill.sort((s1,s2) -> s2.getMasteryLevel().compareTo(s1.getMasteryLevel()));
+    }
+    
+    /**
+     * Add skill from skill item
+     * @param skit Skill item yang akan ditambahkan
+     * @throws SkillAlreadyLearnedException
+     * @throws SkillFullException
+     * @throws ItemNotEnoughAmountException
+     * @throws SkillElementNotCompatibleException
+     * @throws Exception
+     */
+    public void addSkill(Skill_Item skit) throws Exception {
+        Skill temp = skit.getSkill();
+        try {
+            // skill sudah ada
+            if (this.skill.contains(temp)) {
+                throw new SkillAlreadyLearnedException();
+            } else {
+                if (this.skill.size() == 4) {
+                    throw new SkillFullException();
+                }
+                // Pelajari skill baru
+                temp = skit.learn(this.element);
+                this.skill.add(new Skill(temp));
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        
     }
 
     // print engimon di cli

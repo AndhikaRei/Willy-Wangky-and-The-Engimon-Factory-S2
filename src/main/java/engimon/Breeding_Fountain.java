@@ -157,7 +157,12 @@ public class Breeding_Fountain {
             int idx = childSkill.indexOf(sk);
             if (idx == -1) {
                 // Belum ada skill
-                child.addSkill(new Skill(sk));
+                try {
+                    child.addSkill(new Skill(sk));
+                } catch (Exception e) {
+                    System.err.println("Something Error di breeding");
+                    e.printStackTrace();
+                }
             } else {
                 // Tambah Level
                 while (child.getSkill().get(idx).getMasteryLevel() < sk.getMasteryLevel()) {

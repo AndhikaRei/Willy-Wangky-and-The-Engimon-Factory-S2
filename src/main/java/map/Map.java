@@ -1,8 +1,13 @@
 package main.java.map;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.io.File;
 import java.util.Scanner;
+import java.util.Random;
+import main.java.exception.*;
+import main.java.engimon.*;
+import main.java.engimon.species.*;
 
 public class Map {
     private int length; // Map Length
@@ -13,6 +18,8 @@ public class Map {
     private String active_engimon_species;  // Current Active Engimon Species
     private int total_engimon; // Total Wild Engimon that exist on Map
     private final int max_engimon = 20; // Maximum Engimon Exist on Map
+    // Panggil modul srand untuk mereset angka yang dirandom
+    private Random rand;
 
     public Map(){
         this.length = 0;
@@ -34,7 +41,7 @@ public class Map {
         for(i = 0; i<width; i++){
             mapelem.add(new ArrayList<Mapelem>(this.length));
         }
-
+        Engidex.initEngidex();
         // Read file txt per character
         // File txt only contains basic map symbol 'o' for sea and '-' for grassland
         // ifstream infile(txt);
@@ -49,13 +56,13 @@ public class Map {
             for(j=0; j<currLine.length(); j++){
                 if(currLine.charAt(j) != '\n'){
                     if(currLine.charAt(j) == '^'){
-                        mapelem.get(i).add(new Mapelem(i, j, '^', false, "undefined", "mountains"));
+                        mapelem.get(i).add(new Mapelem(i, j, '^', false, new Pyro("Default", true), "mountains"));
                     }else if(currLine.charAt(j) == 'o'){
-                        mapelem.get(i).add(new Mapelem(i, j, 'o', false, "undefined", "sea"));
+                        mapelem.get(i).add(new Mapelem(i, j, 'o', false, new Pyro("Default", true), "sea"));
                     }else if(currLine.charAt(j) == '*'){
-                        mapelem.get(i).add(new Mapelem(i, j, '*', false, "undefined", "tundra"));
+                        mapelem.get(i).add(new Mapelem(i, j, '*', false, new Pyro("Default", true), "tundra"));
                     }else{
-                        mapelem.get(i).add(new Mapelem(i, j, '-', false, "undefined", "grassland"));
+                        mapelem.get(i).add(new Mapelem(i, j, '-', false, new Pyro("Default", true), "grassland"));
                     }
                 }
             }
@@ -74,6 +81,7 @@ public class Map {
         this.mapelem.get(player_pos.get(0)).get(player_pos.get(1)).set_symbol('P');
         // set total wild engimon on map = 0 at the beginning
         this.total_engimon = 0;
+        this.rand = new Random();
     };
 
     // Checking if a position is valid for a pokemon based on the world boundaries and current symbol on the map
@@ -164,7 +172,7 @@ public class Map {
             for(int j= 0; j<length ; j++){
                 if(this.mapelem.get(i).get(j).isEngimonExist() && !(this.player_pos.get(0) == i && this.player_pos.get(1) ==j)){
                     // this.mapelem.get(i).get(j).set_symbol(this.mapelem.get(i).get(j).get_engimon().getEngimonSymbol());
-                    this.mapelem.get(i).get(j).set_symbol(this.mapelem.get(i).get(j).get_engimon().charAt(0));
+                    this.mapelem.get(i).get(j).set_symbol(this.mapelem.get(i).get(j).get_engimon().getEngimonSymbol());
                 }
             }
         }
@@ -177,27 +185,32 @@ public class Map {
     };
 
     // // Engimon Handlers
-    // map<string, vector<int>> Map::getEngimonPosition(){
-    //     // I.S. Map terdefinisi dan keberadaan engimon liar di Map juga terdefinisi
-    //     // F.S. Mengembalikan sebuah tipe data map dengan key species dan value nya adalah 
-    //     // array of interger yang merepresentasikan posisi engimon liar pada map
+    public HashMap<Integer, ArrayList<Integer>> getWildEngimonPosition(){
+        // I.S. Map terdefinisi dan keberadaan engimon liar di Map juga terdefinisi
+        // F.S. Mengembalikan sebuah tipe data map dengan key species dan value nya adalah 
+        // array of interger yang merepresentasikan posisi engimon liar pada map
         
-    //     // Inisialisasi map untuk hasil
-    //     map<string, vector<int>> result;
-    //     // Untuk setiap tiles cek keberadaan engimon
-    //     for(int i = 0; i<width; i++){
-    //         for(int j= 0; j<length ; j++){    
-    //             // Jika terdapat engimon liar pada tiles x,y
-    //             if(this.mapelem[i][j].isEngimonExist()){
-    //                 // Tambahkan species engimon beserta posisinya ke map hasil
-    //                 result.insert(pair<string, vector<int>>(this.mapelem[i][j].get_engimon().getSpecies(), {i, j}));
-    //             }
-    //     }
-    //     }
-    //     return result;
-    // };
+        // Inisialisasi map untuk hasil
+        HashMap<Integer, ArrayList<Integer>> result = new HashMap<Integer, ArrayList<Integer>>() ;
+        // Untuk setiap tiles cek keberadaan engimon
+        int id = 0;
+        for(int i = 0; i<width; i++){
+            for(int j= 0; j<length ; j++){    
+                // Jika terdapat engimon liar pada tiles x,y
+                if(this.mapelem.get(i).get(j).isEngimonExist()){
+                    // Tambahkan species engimon beserta posisinya ke map hasil
+                    ArrayList<Integer> position = new ArrayList<Integer>();
+                    position.add(i);
+                    position.add(j);
+                    result.put(id, position);
+                    id++;
+                }
+            }
+        }
+        return result;
+    };
 
-   public void addEngimon(int x, int y, String species){
+   public void addEngimon(int x, int y, Engimon engi) throws EngimonExist{
         // I.S. x, y, dan species engimon terdefinisi
         // F.S. Jika total engimon < max engimon dan di tiles x, y belum ada engimon maka engimon species di tambahkan ke tiles
         // Jumlah total engimon di map ditambah jika penambahan engimon berhasil
@@ -207,23 +220,25 @@ public class Map {
         if(total_engimon < max_engimon){
             // Cek apakah terdapat engimon liar pada tiles x, y
             if(this.mapelem.get(x).get(y).isEngimonExist()){
-                // throw(EngimonExist());
+                throw new EngimonExist();
             } 
             // Cek apakah  species yang ingin ditambahkan cocok dengan type tiles x, y 
-            else if(!isValidEngimonPosition(x, y, species, false)){
+            else if(!isValidEngimonPosition(x, y, engi.getSpecies(), false)){
                 // do nothing
             } 
             // Jika melewati kedua cek diatas maka tambahkan engimon ke tiles x, y
             else { 
-                // Engimon* newEngimon = EngimonFinder(species).front().clone();
-                this.mapelem.get(x).get(y).set_engimon_exist(true);
-                this.mapelem.get(x).get(y).set_engimon(species);
-
-                // this.mapelem[x][y].set_symbol(species.getEngimonSymbol());
-                this.mapelem.get(x).get(y).set_symbol(species.charAt(0));
-                this.total_engimon++; 
+                try{
+                    Engimon newEngimon = engi.cloneEngimon();
+                    this.mapelem.get(x).get(y).set_engimon_exist(true);
+                    this.mapelem.get(x).get(y).set_engimon(newEngimon);
+                    this.mapelem.get(x).get(y).set_symbol(newEngimon.getEngimonSymbol());
+                    this.total_engimon++; 
+                } catch (Exception e){
+                    System.out.println(e);
+                }
             }
-        } 
+        }
 
     };
 
@@ -242,176 +257,281 @@ public class Map {
                 this.mapelem.get(x).get(y).set_symbol('o');
             } else{
                 this.mapelem.get(x).get(y).set_symbol('*');
-            }    
+            }
             this.total_engimon--; 
+        }else{
         }
     };
 
-    public void moveEngimon(int x1, int y1, int x2, int y2, String species){
+    public void moveEngimon(int x1, int y1, int x2, int y2, Engimon engi){
         // I.S. x1, y1 merupakan posisi awal engimon liar. x2, y2 merupakan posisi akhir engimon liar. 
         // F.S. Jika x2, y2 merupakan tiles yang valid untuk engimon species maka pindahkan engimon tersebut ke tiles itu
-        
         // Cek kevalidan posisi x2, y2 untuk engimon
-        if(this.isValidEngimonPosition(x2, y2, species, false)){
+        if(this.isValidEngimonPosition(x2, y2, engi.getSpecies(), false)){
                 removeEngimon(x1, y1);
-                addEngimon(x2, y2, species);
+                try{
+                    addEngimon(x2, y2, engi);
+                } catch (Exception e){
+                    System.out.println(e);
+                }
         }
     };
 
-    // public void randomMoveAllEngimon(){
-    //     // I.S. Engimon liar terdefinisi di map
-    //     // F.S. Engimon bergerak random dengan jarak maksimal 1 dari posisi awal (ke atas, ke bawah, ke kanan, ke kiri, atau diam)
-    //     // Jika tiles yang dituju valid maka engimon bergerak ke tiles itu, jika engimon bergerak ke tiles player maka throw exception InvalidEngimonMoveToPlayer
+    public void randomMoveAllEngimon() throws InvalidEngimonMoveToPlayer{
+        // I.S. Engimon liar terdefinisi di map
+        // F.S. Engimon bergerak random dengan jarak maksimal 1 dari posisi awal (ke atas, ke bawah, ke kanan, ke kiri, atau diam)
+        // Jika tiles yang dituju valid maka engimon bergerak ke tiles itu, jika engimon bergerak ke tiles player maka throw exception InvalidEngimonMoveToPlayer
         
-    //     // Ambil semua posisi pengimon beserta speciesnya dari map
-    //     map<string, vector<int>> EngimonPos = this.getEngimonPosition();
-
-    //     // Panggil modul srand untuk mereset angka yang dirandom
-    //     srand (time(NULL));
-
-    //     // Move setiap engimon di map
-    //     for (map<string, vector<int>>::iterator it=EngimonPos.begin(); it!=EngimonPos.end(); ++it){
-    //         int number =rand() % 5;
-    //         int i = it.second[0];
-    //         int j = it.second[1];
-            
-    //         if(number==1){
-    //             // Engimon bergerak ke atas
-    //             // Cek apakah tiles valid atau tiles yang dituju adalah tiles player
-    //             if(isValidPosition(i-1, j, false)){
-    //                 this.moveEngimon(i, j, i-1, j, this.mapelem[i][j].get_engimon().getSpecies());
-    //             } else if(this.isPlayerPosition(i-1, j)){
-    //                 throw(InvalidEngimonMoveToPlayer());
-    //             }
-    //         }else if(number==2){
-    //             // Engimon bergerak ke kiri
-    //             // Cek apakah tiles valid atau tiles yang dituju adalah tiles player
-    //             if(isValidPosition(i, j-1, false)){
-    //                 this.moveEngimon(i, j, i, j-1, this.mapelem[i][j].get_engimon().getSpecies());
-    //             }else if(this.isPlayerPosition(i, j-1)){
-    //                 throw(InvalidEngimonMoveToPlayer());
-    //             }
-    //         }else if(number==3){
-    //             // Engimon bergerak ke bawah
-    //             // Cek apakah tiles valid atau tiles yang dituju adalah tiles player
-    //             if(isValidPosition(i+1, j, false)){
-    //                 this.moveEngimon(i, j, i+1, j, this.mapelem[i][j].get_engimon().getSpecies());
-    //             }else if(this.isPlayerPosition(i+1, j)){
-    //                 throw(InvalidEngimonMoveToPlayer());
-    //             }
-    //         } else if(number==4){
-    //             // Engimon bergerak ke kanan
-    //             // Cek apakah tiles valid atau tiles yang dituju adalah tiles player
-    //             if(isValidPosition(i, j+1, false)){
-    //                 this.moveEngimon(i, j, i, j+1, this.mapelem[i][j].get_engimon().getSpecies());
-    //             }else if(this.isPlayerPosition(i, j+1)){
-    //                 throw(InvalidEngimonMoveToPlayer());
-    //             }
-    //         } else{
-    //             // Engimon tidak bergerak
-    //         }
-    //     }      
-
-    // };
+        // Ambil semua posisi engimon beserta speciesnya dari map
+        HashMap<Integer, ArrayList<Integer>> wildEngimon = new HashMap<Integer, ArrayList<Integer>>();
+        wildEngimon = this.getWildEngimonPosition();
 
 
-    // void Map::spawnRandomEngimon(){
-    //     // Fungsi ini digunakan untuk menambahkan pokemon liar ke permainan
-    //     // Bekerja dengan memanfaatkan posisi random yang digenerate menggunakan fungsi rand() dari library standard C 
-    //     // Fungsi ini bekerja secara pseudo random, sehingga apabila terlalu banyak engimon yang sudah ada di map ( > 100 )
-    //     // Fungsi akan memaksa keluar dan menghasilkan exception "Engimon Exist"
-    //     // I.S. Map dengan setiap MapElem terdefinisi
-    //     // F.S. Memunculkan Engimon liar baru di map. 
+        // Move setiap engimon di map
+        for(Integer id : wildEngimon.keySet()){
+            int number = rand.nextInt(5);
+            int i = wildEngimon.get(id).get(0);
+            int j = wildEngimon.get(id).get(1);
+            if(number==1){
+                // Engimon bergerak ke atas
+                // Cek apakah tiles valid atau tiles yang dituju adalah tiles player
+                if(isValidPosition(i-1, j, false)){
+                    this.moveEngimon(i, j, i-1, j, this.mapelem.get(i).get(j).get_engimon());
+                } else if(this.isPlayerPosition(i-1, j)){
+                    throw new InvalidEngimonMoveToPlayer();
+                }
+            }else if(number==2){
+                // Engimon bergerak ke kiri
+                // Cek apakah tiles valid atau tiles yang dituju adalah tiles player
+                if(isValidPosition(i, j-1, false)){
+                    this.moveEngimon(i, j, i, j-1, this.mapelem.get(i).get(j).get_engimon());
+                }else if(this.isPlayerPosition(i, j-1)){
+                    throw new InvalidEngimonMoveToPlayer();
+                }
+            }else if(number==3){
+                // Engimon bergerak ke bawah
+                // Cek apakah tiles valid atau tiles yang dituju adalah tiles player
+                if(isValidPosition(i+1, j, false)){
+                    this.moveEngimon(i, j, i+1, j, this.mapelem.get(i).get(j).get_engimon());
+                }else if(this.isPlayerPosition(i+1, j)){
+                    throw new InvalidEngimonMoveToPlayer();
+                }
+            } else if(number==4){
+                // Engimon bergerak ke kanan
+                // Cek apakah tiles valid atau tiles yang dituju adalah tiles player
+                if(isValidPosition(i, j+1, false)){
+                    this.moveEngimon(i, j, i, j+1, this.mapelem.get(i).get(j).get_engimon());
+                }else if(this.isPlayerPosition(i, j+1)){
+                    throw new InvalidEngimonMoveToPlayer();
+                }
+            } else{
+                // Engimon tidak bergerak
+            }
+        }      
+
+    };
 
 
-    //     // Bekerja untuk menambahkan engimon liar baru dengan maksimal 120 pokemon 
-    //     // Tidak ada level handling. Seluruh Engimon baru akan di spawn pada level 0. 
-    //     // Berikut himpunan untuk meningkatkan probabilitas munculnya engimon dengan satu elemen. 
-    //     vector<string> Pokemons{
-    //         "Pyro", 
-    //         "Pyro", 
-    //         "Pyro", 
-    //         "Hydro",
-    //         "Hydro",
-    //         "Hydro", 
-    //         "Vaporize", 
-    //         "Overload", 
-    //         "PyroCrystallize", 
-    //         "Melt", 
-    //         "Electro",
-    //         "Electro", 
-    //         "Electro", 
-    //         "ElectroCharged", 
-    //         "HydroCrystallize",
-    //         "Frozen", 
-    //         "Geo",
-    //         "Geo",
-    //         "Geo",
-    //         "ElectroCrystallize", 
-    //         "Superconductor",
-    //         "Cryo",
-    //         "Cryo",
-    //         "Cryo", 
-    //         "CryoCrystallize"
-    //     };
+    public void spawnRandomEngimon(int maxLevel){
+        // Fungsi ini digunakan untuk menambahkan pokemon liar ke permainan
+        // Bekerja dengan memanfaatkan posisi random yang digenerate menggunakan fungsi rand() dari library standard C 
+        // Fungsi ini bekerja secara pseudo random, sehingga apabila terlalu banyak engimon yang sudah ada di map ( > 100 )
+        // Fungsi akan memaksa keluar dan menghasilkan exception "Engimon Exist"
+        // I.S. Map dengan setiap MapElem terdefinisi
+        // F.S. Memunculkan Engimon liar baru di map. 
 
-    //     // Random Number Generator membutuhkan seed dari program global 
-    //     int randomNumber = rand() % Pokemons.size();
-    //     Engimon* newEngimon = EngimonFinderWithException(Pokemons[randomNumber]);
-    //     string species = newEngimon.getSpecies();
 
-    //     // Logika program hanya bekerja sesuai map.txt setidaknya sampai tanggal 22/03/2021
-    //     // Batasan Area Air 
-    //     const int waterStartX = 10;
-    //     const int waterEndX = 19;
-    //     const int waterStartY = 0;
-    //     const int waterEndY = 5;
-    //     int x;
-    //     int y;
+        // Bekerja untuk menambahkan engimon liar baru dengan maksimal 120 pokemon 
+        // Tidak ada level handling. Seluruh Engimon baru akan di spawn pada level 0. 
+        // Berikut himpunan untuk meningkatkan probabilitas munculnya engimon dengan satu elemen. 
+        String[] Pokemons = {
+            "Pyro", 
+            "Pyro", 
+            "Pyro", 
+            "Hydro",
+            "Hydro",
+            "Hydro", 
+            "Vaporize", 
+            "Overload", 
+            "PyroCrystallize", 
+            "Melt", 
+            "Electro",
+            "Electro", 
+            "Electro", 
+            "ElectroCharged", 
+            "HydroCrystallize",
+            "Frozen", 
+            "Geo",
+            "Geo",
+            "Geo",
+            "ElectroCrystallize", 
+            "Superconductor",
+            "Cryo",
+            "Cryo",
+            "Cryo", 
+            "CryoCrystallize"
+        };
+
+
+        // Random Number Generator membutuhkan seed dari program global 
+        int randomNumber = rand.nextInt(Pokemons.length);
+        int randomLevel = rand.nextInt(5) + maxLevel;
+        String species = Pokemons[randomNumber];
+
+
+        int x = 0;
+        int y = 0;
         
-    //     // Generate posisi engimon liar baru 
-    //     if(species=="Hydro" || species=="Cryo" || species=="Frozen"){
-    //         // Cek untuk Engimon yang hanya dapat bergerak di area air
-    //         x = (rand() % (this.length - waterStartX)) + waterStartX;
-    //         y = rand() % (this.width - waterEndY + 1);
-    //     } else {
-    //         y = rand() % (this.width);
-    //         if(y <= waterEndY){
-    //             x = rand() % (this.length - waterStartX);
-    //         } else { 
-    //             x = rand() % (this.length);
-    //         } 
-    //     }   
+        // Generate posisi engimon liar baru 
+        if(species=="Pyro"){
+            x = rand.nextInt(10);
+            y = rand.nextInt(5);
+        }else if(species=="Hydro"){
+            x = rand.nextInt(10)+10;
+            y = rand.nextInt(5);
+        }else if(species=="Electro" || species=="Geo" || species=="ElectroCrystallize"){
+            x = rand.nextInt(10);
+            y = rand.nextInt(5)+5;
+        }else if(species=="Cryo"){
+            x = rand.nextInt(10)+10;
+            y = rand.nextInt(5)+5;
+        }else if(species=="Vaporize"){
+            int loc = rand.nextInt(2);
+            if(loc==0){
+                x = rand.nextInt(10);
+                y = rand.nextInt(5);
+            }else{
+                x = rand.nextInt(10)+10;
+                y = rand.nextInt(5);
+            }
+        }else if(species=="Overload" || species=="PyroCrystallize"){
+            int loc = rand.nextInt(2);
+            if(loc==0){
+                x = rand.nextInt(10);
+                y = rand.nextInt(5);
+            }else{
+                x = rand.nextInt(10);
+                y = rand.nextInt(5)+5;
+            }
+        }else if(species=="Melt"){
+            int loc = rand.nextInt(2);
+            if(loc==0){
+                x = rand.nextInt(10);
+                y = rand.nextInt(5);
+            }else{
+                x = rand.nextInt(10)+10;
+                y = rand.nextInt(5)+5;
+            }
+        }else if(species=="ElectroCharged" || species=="HydroCrystallize"){
+            int loc = rand.nextInt(2);
+            if(loc==0){
+                x = rand.nextInt(10)+10;
+                y = rand.nextInt(5);
+            }else{
+                x = rand.nextInt(10);
+                y = rand.nextInt(5)+5;
+            }
+        }else if(species=="Frozen"){
+            int loc = rand.nextInt(2);
+            if(loc==0){
+                x = rand.nextInt(10)+10;
+                y = rand.nextInt(5);
+            }else{
+                x = rand.nextInt(10)+10;
+                y = rand.nextInt(5)+5;
+            }
+        }else if(species=="Superconductor" || species=="CryoCrystallize"){
+            int loc = rand.nextInt(2);
+            if(loc==0){
+                x = rand.nextInt(10);
+                y = rand.nextInt(5)+5;
+            }else{
+                x = rand.nextInt(10)+10;
+                y = rand.nextInt(5)+5;
+            }
+        }
 
-    //     // Membatasi runtime 
-    //     int i = 0;
+        // Mencoba posisi lain apabila terbentur dengan sebuah exeception. 
+        while ((this.mapelem.get(y).get(x).get_symbol()!='-') && (this.mapelem.get(y).get(x).get_symbol()!='o') && (this.mapelem.get(y).get(x).get_symbol()!='*') && (this.mapelem.get(y).get(x).get_symbol()!='^')) {
+            if(species=="Pyro"){
+                x = rand.nextInt(10);
+                y = rand.nextInt(5);
+            }else if(species=="Hydro"){
+                x = rand.nextInt(10)+10;
+                y = rand.nextInt(5);
+            }else if(species=="Electro" || species=="Geo" || species=="ElectroCrystallize"){
+                x = rand.nextInt(10);
+                y = rand.nextInt(5)+5;
+            }else if(species=="Cryo"){
+                x = rand.nextInt(10)+10;
+                y = rand.nextInt(5)+5;
+            }else if(species=="Vaporize"){
+                int loc = rand.nextInt(2);
+                if(loc==0){
+                    x = rand.nextInt(10);
+                    y = rand.nextInt(5);
+                }else{
+                    x = rand.nextInt(10)+10;
+                    y = rand.nextInt(5);
+                }
+            }else if(species=="Overload" || species=="PyroCrystallize"){
+                int loc = rand.nextInt(2);
+                if(loc==0){
+                    x = rand.nextInt(10);
+                    y = rand.nextInt(5);
+                }else{
+                    x = rand.nextInt(10);
+                    y = rand.nextInt(5)+5;
+                }
+            }else if(species=="Melt"){
+                int loc = rand.nextInt(2);
+                if(loc==0){
+                    x = rand.nextInt(10);
+                    y = rand.nextInt(5);
+                }else{
+                    x = rand.nextInt(10)+10;
+                    y = rand.nextInt(5)+5;
+                }
+            }else if(species=="ElectroCharged" || species=="HydroCrystallize"){
+                int loc = rand.nextInt(2);
+                if(loc==0){
+                    x = rand.nextInt(10)+10;
+                    y = rand.nextInt(5);
+                }else{
+                    x = rand.nextInt(10);
+                    y = rand.nextInt(5)+5;
+                }
+            }else if(species=="Frozen"){
+                int loc = rand.nextInt(2);
+                if(loc==0){
+                    x = rand.nextInt(10)+10;
+                    y = rand.nextInt(5);
+                }else{
+                    x = rand.nextInt(10)+10;
+                    y = rand.nextInt(5)+5;
+                }
+            }else if(species=="Superconductor" || species=="CryoCrystallize"){
+                int loc = rand.nextInt(2);
+                if(loc==0){
+                    x = rand.nextInt(10);
+                    y = rand.nextInt(5)+5;
+                }else{
+                    x = rand.nextInt(10)+10;
+                    y = rand.nextInt(5)+5;
+                }
+            } 
+        }
 
-    //     // Mencoba posisi lain apabila terbentur dengan sebuah exeception. 
-    //     while ((this.mapelem[y][x].get_symbol()!='-') && (this.mapelem[y][x].get_symbol()!='o')) {
-    //         if(species=="Hydro" || species=="Cryo" || species=="Frozen"){
-    //             x = (rand() % (this.length - waterStartX - 1)) + waterStartX;
-    //             y = rand() % (this.width - waterEndY);
-    //         } else {
-    //             y = rand() % (this.width - 1);
-    //             if(y <= waterEndY){
-    //                 x = rand() % (this.length - waterStartX - 1);
-    //             } else { 
-    //                 x = rand() % (this.length - 1);
-    //             } 
-    //         }    
-
-    //         // This is a safe valve if we would ever use the application to spawn more than 100 Engimons 
-    //         if ( i == 100){
-    //             // Try to find a slot for the new Engimon 
-    //             break;
-    //         }
-    //         i++;
-    //     }
-
-    //     // Menambahkan engimon baru 
-    //     // Exception handling sudah ditangani oleh fungsi addEngimon
-    //     this.addEngimon(y, x, Pokemons[randomNumber]);
-    // }
+        // Menambahkan engimon baru 
+        // Exception handling sudah ditangani oleh fungsi addEngimon
+        try{
+            Engimon newEngimon = Engidex.getEngimonBySpecies(species);
+            newEngimon.setLevel(randomLevel);
+            this.addEngimon(y, x, newEngimon);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
     // Engimon* Map::getNearbyEnemyEngimon(int* X, int* Y){
     //     // Fungsi ini digunakan untuk battle dengan engimon liar
@@ -457,7 +577,7 @@ public class Map {
     // }
 
     // Player Handlers 
-    public void move(char c){
+    public void move(char c) throws InvalidMoveException, InvalidPlayerMove{
         // I.S. Command c terdefinisi antara w, a, s, d
         // F.S. Jika tiles yang dituju valid untuk engimon dan active engimon, 
         // pindahkah engimon dan active engimonnya sesuai command
@@ -469,12 +589,10 @@ public class Map {
                 // Player ingin bergerak ke atas
                 if(isValidPosition(player_pos.get(0)-1, player_pos.get(1), true) && mapelem.get(player_pos.get(0)-1).get(player_pos.get(1)).isEngimonExist()){
                     // Cek apakah player bergerak ke tiles yang diisi oleh engimon liar
-                    System.out.println("gabisa kesono ada engimon");
-                    // throw(InvalidPlayerMove());
+                    throw new InvalidPlayerMove();
                 }else if(!isValidPosition(player_pos.get(0)-1, player_pos.get(1), true)){
                     // Cek apakah player bergerak ke posisi yang valid (tidak keluar map)
-                    System.out.println("gabisa keluar map");
-                    // throw(InvalidMoveException());
+                    throw new InvalidMoveException();
                 }else{
                     // Pindahkan player dan active engimon ke atas
                     set_player_pos(player_pos.get(0)-1, player_pos.get(1));
@@ -486,12 +604,10 @@ public class Map {
                 // Player ingin bergerak ke kiri
                 if(isValidPosition(player_pos.get(0), player_pos.get(1)-1, true) && mapelem.get(player_pos.get(0)).get(player_pos.get(1)-1).isEngimonExist()){
                     // Cek apakah player bergerak ke tiles yang diisi oleh engimon liar
-                    System.out.println("gabisa kesono ada engimon");
-                    // throw(InvalidPlayerMove());
+                    throw new InvalidPlayerMove();
                 }else if(!isValidPosition(player_pos.get(0), player_pos.get(1)-1, true)){
                     // Cek apakah player bergerak ke posisi yang valid (tidak keluar map)
-                    System.out.println("gabisa keluar map");
-                    // throw(InvalidMoveException());
+                    throw new InvalidMoveException();
                 }else{
                     // Pindahkan player dan active engimon ke kiri
                     set_player_pos(player_pos.get(0), player_pos.get(1)-1);
@@ -503,12 +619,10 @@ public class Map {
                 // Player ingin bergerak ke bawah
                 if(isValidPosition(player_pos.get(0)+1, player_pos.get(1), true) && mapelem.get(player_pos.get(0)+1).get(player_pos.get(1)).isEngimonExist()){
                     // Cek apakah player bergerak ke tiles yang diisi oleh engimon liar
-                    System.out.println("gabisa kesono ada engimon");
-                    // throw(InvalidPlayerMove());
+                    throw new InvalidPlayerMove();
                 }else if(!isValidPosition(player_pos.get(0)+1, player_pos.get(1), true)){
                     // Cek apakah player bergerak ke posisi yang valid (tidak keluar map)
-                    System.out.println("gabisa keluar map");
-                    // throw(InvalidMoveException());
+                    throw new InvalidMoveException();
                 }else{
                     // Pindahkan player dan active engimon ke bawah
                     set_player_pos(player_pos.get(0)+1, player_pos.get(1));
@@ -520,12 +634,10 @@ public class Map {
                 // Player ingin bergerak ke kanan
                 if(isValidPosition(player_pos.get(0), player_pos.get(1)+1, true) && mapelem.get(player_pos.get(0)).get(player_pos.get(1)+1).isEngimonExist()){
                     // Cek apakah player bergerak ke tiles yang diisi oleh engimon liar
-                    System.out.println("gabisa kesono ada engimon");
-                    // throw(InvalidPlayerMove());
+                    throw new InvalidPlayerMove();
                 }else if(!isValidPosition(player_pos.get(0), player_pos.get(1)+1, true)){
                     // Cek apakah player bergerak ke posisi yang valid (tidak keluar map)
-                    System.out.println("gabisa keluar map");
-                    // throw(InvalidMoveException());
+                    throw new InvalidMoveException();
                 }else{
                     // Pindahkan player dan active engimon ke kanan
                     set_player_pos(player_pos.get(0), player_pos.get(1)+1);
@@ -537,12 +649,16 @@ public class Map {
         }
         // Setelah player memberikan command w,a,s,d maka turn akan bertambah
         // Lakukan randomisasi gerakan untuk setiap engimon liar yang ada di map
-        // this.randomMoveAllEngimon();
+        try{
+            this.randomMoveAllEngimon();
+        } catch(Exception e){
+            System.out.println(e);
+        }
         // Print kondisi map terbaru
         this.printMap();
     };
 
-    public void set_player_pos(int x, int y){
+    public void set_player_pos(int x, int y) throws InvalidMoveException {
         // I.S. x dan y adalah posisi baru dari player
         // F.S. pindahkan player jika x, y adalah tiles yang valid dan ubah symbol tiles posisi player sebelumnya sesuai type tiles
         if(x>=0 && x<10 && y>=0 && y<20){
@@ -560,7 +676,7 @@ public class Map {
             this.mapelem.get(x).get(y).set_symbol('P');
         } else{
             // Jika tiles x, y tidak valid throw exception InvalidMoveException
-            // throw InvalidMoveException();
+            throw new InvalidMoveException();
         }
     };
 

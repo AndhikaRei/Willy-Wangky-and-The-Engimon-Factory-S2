@@ -3,6 +3,7 @@ package main.java.skill.test;
 import java.util.List;
 
 import main.java.element.*;
+import main.java.exception.SkidexNotInitalizedException;
 import main.java.skill.*;
 
 
@@ -23,10 +24,16 @@ public class Test_Skill {
         s1.showSkill();
         s2.showSkill();
 
-        List<Skill> listSk = Skidex.getCompatibleSkill(Element.Water);
-        for (Skill sk : listSk) {
-            sk.showSimpleSkill();
+        List<Skill> listSk;
+        try {
+            listSk = Skidex.getCompatibleSkill(Element.Water);
+            for (Skill sk : listSk) {
+                sk.showSimpleSkill();
+            }
+        } catch (SkidexNotInitalizedException e) {
+            e.printStackTrace();
         }
+        
         
     }
 }
