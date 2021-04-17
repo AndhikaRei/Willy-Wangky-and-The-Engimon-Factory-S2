@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -19,15 +21,28 @@ public class MapController {
     @FXML private Button btn_s;
     @FXML private Button btn_d;
 
+    private  Image grass;
+    private  Image sea;
+    private  Image tundra;
+    private  Image mountain;
+
+
     private Map map;
 
     @FXML private void initialize(){
         try{
             this.map = new Map(20, 10, "map.txt");
+            this.loadImage();
             this.refreshMapGUI();
         } catch ( Exception e){
             System.out.println(e.getMessage());
         }
+    }
+    public void loadImage(){
+        this.grass = new Image("./main/resources/grass.png",35,35,false,false);
+        this.sea = new Image("./main/resources/sea.png",35,35,false,false);
+        this.tundra = new Image("./main/resources/tundra.png",35,35,false,false);
+        this.mountain = new Image("./main/resources/mountain.png",35,35,false,false);
     }
     public void refreshMapGUI(){
         this.MapGridPane.getChildren().clear();
@@ -36,16 +51,16 @@ public class MapController {
                 StackPane Npane = new StackPane();Mapelem tile = this.map.getMapElem().get(i).get(j);
                 switch (tile.get_type()){
                     case "grassland":
-                        Npane.setStyle("-fx-background-color: springgreen");
+                        Npane.getChildren().add(new ImageView(this.grass));
                         break;
                     case "sea":
-                        Npane.setStyle("-fx-background-color: aqua");
+                        Npane.getChildren().add(new ImageView(this.sea));
                         break;
                     case("tundra"):
-                        Npane.setStyle("-fx-background-color: skyblue");
+                        Npane.getChildren().add(new ImageView(this.tundra));
                         break;
                     case("mountains"):
-                        Npane.setStyle("-fx-background-color: saddlebrown");
+                        Npane.getChildren().add(new ImageView(this.mountain));
                         break;
                     default:
                         Npane.setStyle("-fx-background-color: black");
