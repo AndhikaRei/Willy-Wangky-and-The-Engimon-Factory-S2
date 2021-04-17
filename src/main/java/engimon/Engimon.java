@@ -93,6 +93,69 @@ public abstract class Engimon implements Cloneable {
     public int getLevel() { return this.level; }
     public int getExp() { return this.exp; }
     public int getCumulExp() { return this.cumul_exp; }
+    public char getEngimonSymbol(){
+        if (this.species.equals("Pyro")) /*--- Fire ---*/
+        {
+            return this.level > 10 ? 'F' : 'f';
+        }
+        else if (this.species.equals("Hydro")) /*--- Water ---*/
+        {
+            return this.level > 10 ? 'W' : 'w';
+        }
+        else if (this.species.equals("Electro")) /*--- Electric ---*/
+        {
+            return this.level > 10 ? 'E' : 'e';
+        }
+        else if (this.species.equals("Geo")) /*--- Ground ---*/
+        {
+            return this.level > 10 ? 'G' : 'g';
+        }
+        else if (this.species.equals("Cryo")) /*--- Ice ---*/
+        {
+            return this.level > 10 ? 'I' : 'i'; 
+        }
+        else if (this.species.equals("Vaporize")) /*--- Fire/Water ---*/
+        {
+            return this.level > 10 ? 'A' : 'a';
+        }
+        else if (this.species.equals("Overload")) /*--- Fire/Electric ---*/
+        {
+            return this.level > 10 ? 'L' : 'l';
+        }
+        else if (this.species.equals("PyroCrystallize")) /*--- Fire/Ground ---*/
+        {
+            return this.level > 10 ? 'B' : 'b';
+        }
+        else if (this.species.equals("Melt")) /*--- Fire/Ice ---*/
+        {
+            return this.level > 10 ? 'C' : 'c';
+        }
+        else if (this.species.equals("ElectroCharged")) /*--- Water/Electric ---*/
+        {
+            return this.level > 10 ? 'D' : 'd';
+        }
+        else if (this.species.equals("HydroCrystallize")) /*--- Water/Ground ---*/
+        {
+            return this.level > 10 ? 'N' : 'n';
+        }
+        else if (this.species.equals("Frozen")) /*--- Water/Ice ---*/
+        {
+            return this.level > 10 ? 'S' : 's';
+        }
+        else if (this.species.equals("ElectroCrystallize")) /*--- Electric/Ground ---*/
+        {
+            return this.level > 10 ? 'H' : 'h';
+        }
+        else if (this.species.equals("Superconductor")) /*--- Electric/Ice ---*/
+        {
+            return this.level > 10 ? 'J' : 'j';
+        }
+        else
+        {
+            //this.species=="CryoCrystallize" /*--- Ground/Ice ---*/
+            return this.level > 10 ? 'K' : 'k';
+        }
+    };
     // getter slogan tidak perlu
 
     /* SETTER */
