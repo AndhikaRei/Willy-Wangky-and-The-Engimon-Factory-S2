@@ -1,8 +1,11 @@
 package main.java.engimon.species;
 
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
+import javafx.scene.effect.DropShadow;
 
 public class Electro extends Engimon {
     /* CONSTRUCTORS */
@@ -37,5 +40,18 @@ public class Electro extends Engimon {
         this.element.add(Element.Electric);
         this.skill.add(new Skill("Thunderstorm", "Lightning goes brrr.", 20, Element.Electric));
         this.slogan = "Mou sonnan ja hora~";
+    }
+    @Override
+    public Image getSprite(){
+        if (this.getLevel() < 7){
+            return new Image("./main/resources/Electro1.png",35,35,false,false);
+        } else {
+            return new Image("./main/resources/Electro2.png",35,35,false,false);
+        }
+    }
+
+    @Override
+    public DropShadow getAura() {
+        return new DropShadow(35, Color.YELLOW);
     }
 }

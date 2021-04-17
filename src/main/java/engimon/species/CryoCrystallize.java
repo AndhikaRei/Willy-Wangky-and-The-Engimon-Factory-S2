@@ -1,8 +1,12 @@
 package main.java.engimon.species;
 
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
+import javafx.scene.image.Image;
+import javafx.scene.effect.DropShadow;
 
 public class CryoCrystallize extends Engimon {
     /* CONSTRUCTORS */
@@ -41,5 +45,17 @@ public class CryoCrystallize extends Engimon {
         this.element.add(Element.Ice);
         this.skill.add(new Skill("Golem Es!", "Ez tank 4.", 20, Element.Ground, Element.Ice));
         this.slogan = "Shiawase na no~";
+    }
+    @Override
+    public Image getSprite(){
+        if (this.getLevel() < 7){
+            return new Image("./main/resources/CryoCrystallize1.png",35,35,false,false);
+        } else {
+            return new Image("./main/resources/CyroCrystallize2.png",35,35,false,false);
+        }
+    }
+    @Override
+    public DropShadow getAura(){
+        return new DropShadow(35, Color.GREEN);
     }
 }

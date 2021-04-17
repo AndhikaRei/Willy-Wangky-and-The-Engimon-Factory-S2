@@ -2,10 +2,14 @@ package main.java.engimon;
 
 // import statements
 import java.util.*;
+
+import javafx.scene.image.Image;
 import main.java.element.*;
 import main.java.exception.*;
 import main.java.skill.*;
 import main.java.inventory.*;
+import javafx.scene.image.Image;
+import javafx.scene.effect.DropShadow;
 
 public abstract class Engimon implements Cloneable {
     /* FINAL ATTRIBUTES */
@@ -267,6 +271,8 @@ public abstract class Engimon implements Cloneable {
         }
         this.interact();
     }
+    public abstract Image getSprite();
+    public abstract  DropShadow getAura();
 }
 
 

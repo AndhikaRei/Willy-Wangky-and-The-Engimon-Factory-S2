@@ -94,6 +94,10 @@ public class Mapelem {
         }
     };
 
+    public Boolean get_engimonExist(){
+        return this.engimonExist;
+    }
+
     public Engimon get_engimon() {
         // I.S. atribut engimon pada Mapelem terdefinisi
         // F.S. mengembalikan nilai pointer to engimon dari atribut engimon pada Mapelem

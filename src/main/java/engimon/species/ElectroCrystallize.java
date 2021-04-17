@@ -1,8 +1,12 @@
 package main.java.engimon.species;
 
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
+
 
 public class ElectroCrystallize extends Engimon {
     /* CONSTRUCTORS */
@@ -41,5 +45,18 @@ public class ElectroCrystallize extends Engimon {
         this.element.add(Element.Ground);
         this.skill.add(new Skill("Golem Petir!", "Ez tank 3.", 20, Element.Electric, Element.Ground));
         this.slogan = "Unmei no itazura demo~";
+    }
+    @Override
+    public Image getSprite(){
+        if (this.getLevel() < 7){
+            return new Image("./main/resources/ElectroCrystallize1.png",35,35,false,false);
+        } else {
+            return new Image("./main/resources/ElectroCrystallize2.png",35,35,false,false);
+        }
+    }
+
+    @Override
+    public DropShadow getAura() {
+        return new DropShadow(35, Color.GOLDENROD);
     }
 }

@@ -1,5 +1,8 @@
 package main.java.engimon.species;
 
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
@@ -37,5 +40,18 @@ public class Hydro extends Engimon {
         this.element.add(Element.Water);
         this.skill.add(new Skill("Purification!", "Aqua approved.", 20, Element.Water));
         this.slogan = "Demo sonnan ja dame~";
+    }
+    @Override
+    public Image getSprite(){
+        if (this.getLevel() < 7){
+            return new Image("./main/resources/Hydro1.png",35,35,false,false);
+        } else {
+            return new Image("./main/resources/Hydro2.png",35,35,false,false);
+        }
+    }
+
+    @Override
+    public DropShadow getAura() {
+        return new DropShadow(35, Color.ROYALBLUE);
     }
 }

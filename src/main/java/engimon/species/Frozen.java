@@ -1,5 +1,8 @@
 package main.java.engimon.species;
 
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
@@ -41,5 +44,18 @@ public class Frozen extends Engimon {
         this.element.add(Element.Ice);
         this.skill.add(new Skill("Let it go~", "Elsa approved.", 20, Element.Water, Element.Ice));
         this.slogan = "Kami-sama arigatou~";
+    }
+    @Override
+    public Image getSprite(){
+        if (this.getLevel() < 7){
+            return new Image("./main/resources/Frozen1.png",35,35,false,false);
+        } else {
+            return new Image("./main/resources/Frozen2.png",35,35,false,false);
+        }
+    }
+
+    @Override
+    public DropShadow getAura() {
+        return new DropShadow(35, Color.DARKTURQUOISE);
     }
 }

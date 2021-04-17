@@ -1,8 +1,12 @@
 package main.java.engimon.species;
 
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
 import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
+import javafx.scene.image.Image;
+import javafx.scene.effect.DropShadow;
 
 public class Cryo extends Engimon {
     /* CONSTRUCTORS */
@@ -37,5 +41,19 @@ public class Cryo extends Engimon {
         this.element.add(Element.Ice);
         this.skill.add(new Skill("Freeze!", "I'll never use my dad's power.", 20, Element.Ice));
         this.slogan = "Motto motto~";
+    }
+
+    @Override
+    public Image getSprite(){
+        if (this.getLevel() < 7){
+            return new Image("./main/resources/Cryo1.png",35,35,false,false);
+        } else {
+            return new Image("./main/resources/Cryo2.png",35,35,false,false);
+        }
+    }
+
+    @Override
+    public DropShadow getAura() {
+        return new DropShadow(35, Color.AQUAMARINE);
     }
 }
