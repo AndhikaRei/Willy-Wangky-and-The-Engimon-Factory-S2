@@ -3,6 +3,7 @@ package main.java.engimon;
 // import statements
 import java.util.*;
 import main.java.element.*;
+import main.java.exception.*;
 import main.java.skill.*;
 import main.java.inventory.*;
 
@@ -142,20 +143,14 @@ public abstract class Engimon implements Cloneable {
         return "%s : %s\n" + this.name + this.slogan; 
     }
 
-    // add skill, asumsi skill pasti compatible
-    public void addSkill(Skill sk) {
+    // add skill asumsikan semua valid
+    public void addSkill(Skill sk) throws SkillAlreadyLearnedException, SkillFullException {
         // skill sudah ada
         if (this.skill.contains(sk)) {
-            for (int i = 0;i < this.skill.size(); i++) {
-                if (this.skill.get(i) == sk) {
-                    this.skill.get(i).levelUp();
-                    break;
-                }
-            }
+            throw new SkillAlreadyLearnedException();
         } else {
             if (this.skill.size() == 4) {
-                return;
-                // throw skillfullexception;
+                throw new SkillFullException();
             }
             this.skill.add(sk);
         }
@@ -163,13 +158,33 @@ public abstract class Engimon implements Cloneable {
         this.skill.sort((s1,s2) -> s2.getMasteryLevel().compareTo(s1.getMasteryLevel()));
     }
     
-    // add skill from skill item
-    public void addSkill(Skill_Item skit) {
+    /**
+     * Add skill from skill item
+     * @param skit Skill item yang akan ditambahkan
+     * @throws SkillAlreadyLearnedException
+     * @throws SkillFullException
+     * @throws ItemNotEnoughAmountException
+     * @throws SkillElementNotCompatibleException
+     * @throws Exception
+     */
+    public void addSkill(Skill_Item skit) throws Exception {
         Skill temp = skit.getSkill();
-        if (temp.isElementCompatible(this.element)) {
-            addSkill(temp);
-            Skill sk = skit.learn(this.element); // ???
+        try {
+            // skill sudah ada
+            if (this.skill.contains(temp)) {
+                throw new SkillAlreadyLearnedException();
+            } else {
+                if (this.skill.size() == 4) {
+                    throw new SkillFullException();
+                }
+                // Pelajari skill baru
+                temp = skit.learn(this.element);
+                this.skill.add(new Skill(temp));
+            }
+        } catch (Exception e) {
+            throw e;
         }
+        
     }
 
     // print engimon di cli

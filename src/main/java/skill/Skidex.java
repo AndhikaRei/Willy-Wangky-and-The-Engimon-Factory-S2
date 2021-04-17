@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.element.Element;
+import main.java.exception.*;
 
 public class Skidex {
     private static List<Skill> listSkill = new ArrayList<>();
-
-    // public Skidex() {
-    //     listSkill = new ArrayList<Skill>();
-    //     initSkill();
-    // }
     
-    public static List<Skill> getCompatibleSkill(Element el) {
+    public static List<Skill> getCompatibleSkill(Element el) throws SkidexNotInitalizedException {
+        if (listSkill.isEmpty()) {
+            throw new SkidexNotInitalizedException();
+        }
+
         List<Skill> compatibleSkill = new ArrayList<>();
         for (Skill sk : listSkill) {
             if (sk.isElementCompatible(el)) {
@@ -23,7 +23,11 @@ public class Skidex {
         return compatibleSkill;
     }
 
-    public static List<Skill> getCompatibleSkill(List<Element> listEl) {
+    public static List<Skill> getCompatibleSkill(List<Element> listEl) throws SkidexNotInitalizedException {
+        if (listSkill.isEmpty()) {
+            throw new SkidexNotInitalizedException();
+        }
+        
         List<Skill> compatibleSkill = new ArrayList<>();
         for (Skill sk : listSkill) {
             if (sk.isElementCompatible(listEl)) {
