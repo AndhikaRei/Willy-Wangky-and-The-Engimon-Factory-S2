@@ -4,6 +4,7 @@ package main.java.engimon;
 import java.util.*;
 import main.java.element.*;
 import main.java.skill.*;
+import main.java.inventory.*;
 
 public abstract class Engimon implements Cloneable {
     /* FINAL ATTRIBUTES */
@@ -141,12 +142,34 @@ public abstract class Engimon implements Cloneable {
         return "%s : %s\n" + this.name + this.slogan; 
     }
 
-    // addSkill
+    // add skill, asumsi skill pasti compatible
     public void addSkill(Skill sk) {
-        this.skill.add(sk);
-
-        // Susun dari mastery level tertinggi
+        // skill sudah ada
+        if (this.skill.contains(sk)) {
+            for (int i = 0;i < this.skill.size(); i++) {
+                if (this.skill.get(i) == sk) {
+                    this.skill.get(i).levelUp();
+                    break;
+                }
+            }
+        } else {
+            if (this.skill.size() == 4) {
+                return;
+                // throw skillfullexception;
+            }
+            this.skill.add(sk);
+        }
+        // susun dari mastery level tertinggi
         this.skill.sort((s1,s2) -> s2.getMasteryLevel().compareTo(s1.getMasteryLevel()));
+    }
+    
+    // add skill from skill item
+    public void addSkill(Skill_Item skit) {
+        Skill temp = skit.getSkill();
+        if (temp.isElementCompatible(this.element)) {
+            addSkill(temp);
+            Skill sk = skit.learn(this.element); // ???
+        }
     }
 
     // print engimon di cli
