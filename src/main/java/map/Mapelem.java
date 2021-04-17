@@ -1,11 +1,14 @@
 package main.java.map;
 
+import main.java.engimon.*;
+import main.java.engimon.species.*;
+
 public class Mapelem {
     private int x; /* Tiles Abscissa Coordinate */
     private int y; /* Tiles Ordinate Coordinate */
     private char symbol; /* Tiles Symbol on Map that represents Tiles Type / Engimon / Active Engimon/ Player */
     private Boolean engimonExist; /* Boolean Status For The Existance of a Wild Engimon in this Tiles */
-    private String engimon; /* Pointer to Engimon in this Tiles*/
+    private Engimon engimon; /* Wild Engimon in this Tiles*/
     private String type; /* Tiles type either grassland or sea*/
 
     // Default ctor
@@ -14,16 +17,20 @@ public class Mapelem {
         this.y = 0;
         this.symbol = 'x';
         this.engimonExist = false;
-        this.engimon = "undefined";
+        this.engimon = new Pyro("Default", true);
         this.type = "xxx";
     }
     // Ctor
-    public Mapelem(int x1, int y1, char symbol1, Boolean exist1, String engi1, String type1){
+    public Mapelem(int x1, int y1, char symbol1, Boolean exist1, Engimon engi1, String type1){
         this.x = x1;
         this.y = y1;
         this.symbol = symbol1;
         this.engimonExist = exist1;
-        this.engimon = engi1;
+        try{
+            this.engimon = engi1.cloneEngimon();
+        } catch (Exception e){
+            System.out.println(e);
+        }
         this.type = type1;
     };
     
@@ -77,13 +84,17 @@ public class Mapelem {
     };
 
     // Engimon Managers 
-    public void set_engimon(String engimon){
+    public void set_engimon(Engimon engimon){
         // I.S. atribut engimon pada Mapelem terdefinisi
         // F.S. atribut engimon pada Mapelem merujuk ke engimon
-        this.engimon = engimon;
+        try{
+            this.engimon = engimon.cloneEngimon();
+        } catch (Exception e){
+            System.out.println(e);
+        }
     };
 
-    public String get_engimon() {
+    public Engimon get_engimon() {
         // I.S. atribut engimon pada Mapelem terdefinisi
         // F.S. mengembalikan nilai pointer to engimon dari atribut engimon pada Mapelem
         return this.engimon;
