@@ -42,11 +42,11 @@ public class Geo extends Engimon {
         this.slogan = "Kokoro wa shinka suru yo~";
     }
     @Override
-    public Image getSprite(){
+    public Image getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Geo1png",35,35,false,false);
+            return new Image("./main/resources/Geo1png",rw,rh,false,false);
         } else {
-            return new Image("./main/resources/Geo2.png",35,35,false,false);
+            return new Image("./main/resources/Geo2.png",rw,rh,false,false);
         }
     }
 

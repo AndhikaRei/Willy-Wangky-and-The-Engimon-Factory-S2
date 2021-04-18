@@ -132,7 +132,7 @@
                         <Image url="@../main/resources/Cryo2.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="CryoCrystallize1_img" fitHeight="34.0" fitWidth="33.0" layoutX="40.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="CryoCrystallize2_img" fitHeight="34.0" fitWidth="33.0" layoutX="40.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../main/resources/CryoCrystallize2.png" />
                      </image>
@@ -340,7 +340,7 @@
                   <Button fx:id="btn_a" layoutX="10.0" layoutY="54.0" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="41.0" prefWidth="62.0" text="A" />
                   <Button fx:id="btn_s" layoutX="79.0" layoutY="55.0" minWidth="37.0" mnemonicParsing="false" onAction="#move" prefHeight="41.0" prefWidth="62.0" text="S" />
                   <Button fx:id="btn_breed" layoutX="10.0" layoutY="105.0" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="41.0" prefWidth="62.0" text="Breed" />
-                  <Button fx:id="btn_battle" layoutX="78.0" layoutY="105.0" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="41.0" prefWidth="62.0" text="Battle" />
+                  <Button fx:id="btn_battle" layoutX="78.0" layoutY="105.0" minWidth="42.0" mnemonicParsing="false" onAction="#Battle" prefHeight="41.0" prefWidth="62.0" text="Battle" />
                   <Button fx:id="btn_use_item" layoutX="9.0" layoutY="153.0" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="41.0" prefWidth="68.0" text="Use Item" />
                   <Button fx:id="btn_engidex" layoutX="145.0" layoutY="154.0" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="41.0" prefWidth="66.0" text="Engidex" />
                   <Button fx:id="btn_save" layoutX="9.0" layoutY="201.0" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="41.0" prefWidth="50.0" text="Save" />

@@ -1,5 +1,7 @@
 package main.java.element;
 
+import javafx.scene.image.Image;
+
 import java.util.List;
 
 public enum Element {
@@ -9,6 +11,7 @@ public enum Element {
     Electric(2),
     Ground(3),
     Ice(4);
+
 
     /* ELEMENT ADVANTAGE */
     private static final double[][] ElementAdvantage =
@@ -73,6 +76,19 @@ public enum Element {
             }
         }
         return elAdv;
+    }
+    public static Image getSpriteEl(Element el1, Double rw, Double rh){
+        if (el1.equals(Element.Ice)){
+            return new Image("./main/resources/el_ice.png",rw,rh,false,false);
+        } else if(el1.equals(Element.Fire)){
+            return new Image("./main/resources/el_fire.png",rw,rh,false,false);
+        } else if(el1.equals(Element.Water)){
+            return new Image("./main/resources/el_water.png",rw,rh,false,false);
+        } else if(el1.equals(Element.Ground)){
+            return new Image("./main/resources/el_earth.png",rw,rh,false,false);
+        } else {
+            return new Image("./main/resources/el_electric.png",rw,rh,false,false);
+        }
     }
 
 }

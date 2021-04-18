@@ -46,6 +46,15 @@ public class battle {
         return playerSkillDamage;
     }
 
+    // Mendapatkan power engimon A terhadap engimon B
+    public static double totalPower(Engimon A, Engimon B){
+        // Menghitung elemenAdvantage A terhadap B
+        Double engimonAElAdvantage = Element.advantage(A.getElement(), B.getElement());
+        // Menghitung damage total dari skill A
+        Integer engimonASkillDamage = sumOfSkillPower(A);
+        return A.getLevel()*engimonAElAdvantage.doubleValue() + engimonASkillDamage.doubleValue();
+    }
+
     // Mendapatkan Skill yang dimiliki oleh musuh
     public static Skill_Item getEnemySkillItem(Engimon enemy){
         return new Skill_Item(enemy.getSkill().get(0));

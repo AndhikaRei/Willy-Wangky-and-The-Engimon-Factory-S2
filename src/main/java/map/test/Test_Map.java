@@ -3,6 +3,8 @@ package main.java.map.test;
 
 import main.java.map.*;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import main.java.engimon.*;
 
 public class Test_Map {
@@ -30,6 +32,11 @@ public class Test_Map {
                     m.move('s');
                 }else if(command == 'd'){
                     m.move('d');
+                }else if(command == 'b'){
+                    AtomicInteger x = new AtomicInteger(0);
+                    AtomicInteger y = new AtomicInteger(0);
+                    Engimon e = m.getNearbyEnemyEngimon(x,y);
+                    e.printEngimon();
                 }else{
                     System.out.println("Command tidak tersedia");;
                 }

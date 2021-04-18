@@ -46,11 +46,11 @@ public class ElectroCharged extends Engimon {
         this.slogan = "Anata ga waratte iru~";
     }
     @Override
-    public Image getSprite(){
+    public Image getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/ElectroCharged1.png",35,35,false,false);
+            return new Image("./main/resources/ElectroCharged1.png",rw,rh,false,false);
         } else {
-            return new Image("./main/resources/ElectroCharged2.png",35,35,false,false);
+            return new Image("./main/resources/ElectroCharged2.png",rw,rh,false,false);
         }
     }
 
