@@ -58,4 +58,9 @@ public class Melt extends Engimon {
     public DropShadow getAura() {
         return new DropShadow(35, Color.DARKRED);
     }
+
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
 }

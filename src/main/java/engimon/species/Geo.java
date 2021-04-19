@@ -54,4 +54,9 @@ public class Geo extends Engimon {
     public DropShadow getAura() {
         return new DropShadow(35, Color.SADDLEBROWN);
     }
+
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
 }

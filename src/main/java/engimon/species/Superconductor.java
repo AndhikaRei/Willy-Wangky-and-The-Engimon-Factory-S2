@@ -15,7 +15,7 @@ public class Superconductor extends Engimon {
         this.species = "Superconductor";
         this.element.add(Element.Electric);
         this.element.add(Element.Ice);
-        this.skill.add(new Skill("Species-self-explanatory.", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
+        this.skill.add(new Skill("Atta Halilintar", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
         this.slogan = "Meguriaeta koto ga~";
     }
     // ctor dengan parent
@@ -24,7 +24,7 @@ public class Superconductor extends Engimon {
         this.species = "Superconductor";
         this.element.add(Element.Electric);
         this.element.add(Element.Ice);
-        this.skill.add(new Skill("Species-self-explanatory.", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
+        this.skill.add(new Skill("Atta Halilintar", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
         this.slogan = "Meguriaeta koto ga~";
     }
     // ctor tanpa parent
@@ -33,7 +33,7 @@ public class Superconductor extends Engimon {
         this.species = "Superconductor";
         this.element.add(Element.Electric);
         this.element.add(Element.Ice);
-        this.skill.add(new Skill("Species-self-explanatory.", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
+        this.skill.add(new Skill("Atta Halilintar", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
         this.slogan = "Meguriaeta koto ga~";
     }
     // ctor dengan parent
@@ -42,7 +42,7 @@ public class Superconductor extends Engimon {
         this.species = "Superconductor";
         this.element.add(Element.Electric);
         this.element.add(Element.Ice);
-        this.skill.add(new Skill("Species-self-explanatory.", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
+        this.skill.add(new Skill("Atta Halilintar", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
         this.slogan = "Meguriaeta koto ga~";
     }
     @Override
@@ -57,5 +57,10 @@ public class Superconductor extends Engimon {
     @Override
     public DropShadow getAura() {
         return new DropShadow(35, Color.ORANGERED);
+    }
+
+    @Override
+    public String getSlogan() {
+        return this.slogan;
     }
 }

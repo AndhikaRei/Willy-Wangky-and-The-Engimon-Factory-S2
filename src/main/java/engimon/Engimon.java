@@ -272,7 +272,8 @@ public abstract class Engimon implements Cloneable {
         this.interact();
     }
     public abstract Image getSprite(double rw, double rh);
-    public abstract  DropShadow getAura();
+    public abstract DropShadow getAura();
+    public abstract String getSlogan();
 }
 
 

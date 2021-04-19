@@ -54,4 +54,9 @@ public class Electro extends Engimon {
     public DropShadow getAura() {
         return new DropShadow(35, Color.YELLOW);
     }
+
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
 }

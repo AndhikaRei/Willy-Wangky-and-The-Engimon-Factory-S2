@@ -58,4 +58,8 @@ public class ElectroCharged extends Engimon {
     public DropShadow getAura() {
         return new DropShadow(35, Color.GOLD);
     }
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
 }

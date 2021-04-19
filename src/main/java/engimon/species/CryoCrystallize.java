@@ -54,8 +54,15 @@ public class CryoCrystallize extends Engimon {
             return new Image("./main/resources/CyroCrystallize2.png",rw,rh,false,false);
         }
     }
+
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
+
     @Override
     public DropShadow getAura(){
         return new DropShadow(35, Color.GREEN);
     }
+
 }

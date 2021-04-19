@@ -56,4 +56,9 @@ public class Cryo extends Engimon {
     public DropShadow getAura() {
         return new DropShadow(35, Color.AQUAMARINE);
     }
+
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
 }

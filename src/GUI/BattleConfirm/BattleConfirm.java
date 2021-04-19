@@ -1,4 +1,4 @@
-package sample;
+package GUI.BattleConfirm;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.java.engimon.Engimon;
+import GUI.AlertBox;
 
 public class BattleConfirm {
     // Menampilkan konfirmasi battle
@@ -16,8 +17,8 @@ public class BattleConfirm {
             FXMLLoader battleLoader = new FXMLLoader(BattleConfirm.class.getResource("BattleConfirm.fxml"));
             AnchorPane root = battleLoader.load();
             BattleConfirmController battleConfirmController = battleLoader.getController();
-            battleConfirmController.loadData(enemy,enemy);
-            Scene scene = new Scene(root, 700, 600);
+            battleConfirmController.loadData(ally,enemy);
+            Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
             battleStage.setScene(scene);
             battleStage.showAndWait();
             return battleConfirmController.getIsBattle();
