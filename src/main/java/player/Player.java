@@ -22,5 +22,12 @@ public class Player {
     public void changeActiveEngimon(int i){
         activeEngimon = inventoryEntity.getEngimon(i);
     }
+    public Engimon getActiveEngimon(){
+        return activeEngimon;
+    }
+    public void KillActiveEngimon(){
+        inventoryEntity.KillEngimon(activeEngimon);
+        activeEngimon = null;
+    }
 
 }
