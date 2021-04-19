@@ -7,7 +7,7 @@ import main.java.engimon.Engimon;
 import main.java.inventory.Skill_Item;
 import main.java.skill.Skill;
 
-public class battle {
+public class Battle {
 
     // Mencari tahun apakah engimon "player" bisa menang melawan engimon "enemy"
     public static Boolean playerEngimonWin(Engimon player, Engimon enemy){
@@ -32,8 +32,13 @@ public class battle {
         return (playerPower >= enemyPower);
     }
 
+    // Mendapatkan element advantage dari engimon satu ke engimon lain
+    public static Double getElAdvantage(Engimon a, Engimon b){
+        return Element.advantage(a.getElement(), b.getElement());
+    }
+
      // Menghitung damage total  dari skill suatu engimon
-    private static Integer sumOfSkillPower(Engimon player){
+    public static Integer sumOfSkillPower(Engimon player){
         int playerSkillDamage = 0;
         // Dapatkan vector yang berisikan skill engimon
         List<Skill> skillPlayer = player.getSkill();

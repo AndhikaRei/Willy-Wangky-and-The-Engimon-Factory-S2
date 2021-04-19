@@ -58,4 +58,9 @@ public class PyroCrystallize extends Engimon {
     public DropShadow getAura() {
         return new DropShadow(35, Color.FIREBRICK);
     }
+
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
 }

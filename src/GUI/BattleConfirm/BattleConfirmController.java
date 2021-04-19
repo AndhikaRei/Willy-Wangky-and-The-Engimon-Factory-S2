@@ -1,4 +1,4 @@
-package sample;
+package GUI.BattleConfirm;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -12,7 +12,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import main.java.element.Element;
 import main.java.engimon.Engimon;
-import main.java.map.Map;
 import main.java.battle.*;
 import main.java.skill.Skill;
 
@@ -65,11 +64,11 @@ public class BattleConfirmController {
         //  Engimon musuh
         this.enemy_sprite.setImage(enemy.getSprite(150,150));
 
-        //  Load power
+        //  Load power dan elAdvantage
         //  Engimon kita
-        this.ally_power.setText(Double.toString(battle.totalPower(ally,enemy)));
+        this.ally_power.setText(Double.toString(Battle.totalPower(ally,enemy)).concat("(").concat(Double.toString(Battle.getElAdvantage(ally,enemy)).concat(")")));
         //  Engimon musuh
-        this.enemy_power.setText(Double.toString(battle.totalPower(ally,enemy)));
+        this.enemy_power.setText(Double.toString(Battle.totalPower(enemy,ally)).concat("(").concat(Double.toString(Battle.getElAdvantage(enemy,ally)).concat(")")));
 
         //  Load info dasar berupa nama spesies, nama engimon, dan level engimon
         //  Engimon kita
@@ -84,7 +83,7 @@ public class BattleConfirmController {
         //  Load info panjang
         //  Info live
         //  Engimon kita
-        Image heart = new Image("./main/resources/heart.png",20,20,false,false);
+        Image heart = new Image("main/resources/heart.png",20,20,false,false);
         for (int i =0; i < ally.getLives(); i++){
             StackPane Npane = new StackPane();
             ImageView heartView = new ImageView(heart);

@@ -58,4 +58,8 @@ public class Vaporize extends Engimon {
     public DropShadow getAura() {
         return new DropShadow(35, Color.LIGHTGRAY);
     }
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
 }

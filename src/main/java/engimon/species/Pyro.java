@@ -54,4 +54,9 @@ public class Pyro extends Engimon {
     public DropShadow getAura() {
         return new DropShadow(35, Color.RED);
     }
+
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
 }

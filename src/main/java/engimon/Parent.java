@@ -62,4 +62,13 @@ public class Parent{
     public void printParent() {
         System.out.printf("| %s - %s | %s - %s |\n", this.name.get(0), this.species.get(0), this.name.get(1), this.species.get(1));
     }
+    // Return parent dalam bentuk string
+    public String stringParent(){
+        if(this.name.isEmpty()){
+            return ("No Parent");
+        } else {
+            return String.format("%s | %s", this.name.get(0), this.name.get(1));
+        }
+
+    }
 }

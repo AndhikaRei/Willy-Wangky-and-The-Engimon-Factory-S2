@@ -58,4 +58,9 @@ public class HydroCrystallize extends Engimon {
     public DropShadow getAura() {
         return new DropShadow(35, Color.SLATEBLUE);
     }
+
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
 }

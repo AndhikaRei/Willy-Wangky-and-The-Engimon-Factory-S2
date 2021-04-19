@@ -1,12 +1,7 @@
-package sample;
+package GUI;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.*;
-import javafx.scene.*;
-import javafx.scene.layout.*;
 import javafx.scene.control.*;
-import javafx.geometry.*;
 import main.java.engimon.Engimon;
 
 public class AlertBox {
@@ -16,6 +11,15 @@ public class AlertBox {
         alert.setTitle("Exception detected");
         alert.setContentText(message);
         alert.setHeaderText(null);
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.showAndWait();
+    }
+
+    public static void displayInteract(Engimon activeEngimon){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Interact with active engimon");
+        alert.setHeaderText(activeEngimon.getSpecies().concat(" : ").concat(activeEngimon.getName()));
+        alert.setContentText(activeEngimon.getSlogan());
         alert.initModality(Modality.APPLICATION_MODAL);
         alert.showAndWait();
     }

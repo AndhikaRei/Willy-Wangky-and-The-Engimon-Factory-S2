@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="733.0" prefWidth="1358.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Game.GameController">
+   <children>
+      <GridPane fx:id="MapGridPane" layoutX="25.0" layoutY="22.0" prefHeight="382.0" prefWidth="760.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <TitledPane fx:id="mapLegend" animated="false" layoutX="28.0" layoutY="412.0" prefHeight="288.0" prefWidth="159.0" text="Map Legend">
+        <content>
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="253.0" prefWidth="157.0">
+               <children>
+                  <ImageView fx:id="grassLegend" fitHeight="45.0" fitWidth="51.0" layoutX="15.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/grass.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="mountainLegend" fitHeight="45.0" fitWidth="51.0" layoutX="15.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/mountain.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="tundraLegend" fitHeight="45.0" fitWidth="51.0" layoutX="15.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/tundra.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="seaLegend" fitHeight="45.0" fitWidth="51.0" layoutX="15.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/sea.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="grassLabel" layoutX="73.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grassland" wrappingWidth="75.74999984353781">
+                     <font>
+                        <Font name="Roboto" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="mountainLabel" layoutX="73.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mountain" wrappingWidth="75.74999984353781">
+                     <font>
+                        <Font name="Roboto" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="seaLabel" layoutX="74.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sea" wrappingWidth="75.74999984353781">
+                     <font>
+                        <Font name="Roboto" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="tundraLabel" layoutX="73.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tundra" wrappingWidth="75.74999984353781">
+                     <font>
+                        <Font name="Roboto" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane fx:id="mapLegend1" animated="false" layoutX="196.0" layoutY="410.0" prefHeight="288.0" prefWidth="376.0" text="Engimon Legend">
+         <content>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="251.0" prefWidth="380.0">
+               <children>
+                  <ImageView fx:id="Cryo1_img" fitHeight="34.0" fitWidth="33.0" layoutX="7.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Cryo1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="CryoCrystallize1_img" fitHeight="34.0" fitWidth="33.0" layoutX="7.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/CryoCrystallize1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Electro1_img" fitHeight="34.0" fitWidth="33.0" layoutX="7.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Electro1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ElectroCharged1_img" fitHeight="38.0" fitWidth="33.0" layoutX="8.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/ElectroCharged1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ElectroCrystallize1_img" fitHeight="34.0" fitWidth="33.0" layoutX="8.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/ElectroCrystallize1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Cryo2_img" fitHeight="34.0" fitWidth="33.0" layoutX="40.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Cryo2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="CryoCrystallize2_img" fitHeight="34.0" fitWidth="33.0" layoutX="40.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/CryoCrystallize2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Electro2_img" fitHeight="34.0" fitWidth="33.0" layoutX="40.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Electro2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ElectroCharged2_img" fitHeight="34.0" fitWidth="33.0" layoutX="41.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/ElectroCharged2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ElectroCrystallize2_img" fitHeight="34.0" fitWidth="33.0" layoutX="41.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/ElectroCrystallize2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Frozen1_img" fitHeight="34.0" fitWidth="33.0" layoutX="133.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Frozen1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Geo1_img" fitHeight="34.0" fitWidth="33.0" layoutX="133.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Geo1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Hydro1_img" fitHeight="34.0" fitWidth="33.0" layoutX="133.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Hydro1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="HydroCrystallize1_img" fitHeight="34.0" fitWidth="33.0" layoutX="134.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/HydroCrystallize1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Melt1_img" fitHeight="34.0" fitWidth="33.0" layoutX="134.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Melt1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Frozen2_img" fitHeight="34.0" fitWidth="33.0" layoutX="166.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Frozen2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Hydro2_img" fitHeight="34.0" fitWidth="33.0" layoutX="166.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Hydro2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="HydroCrystallize2_img" fitHeight="34.0" fitWidth="33.0" layoutX="167.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/HydroCrystallize2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Melt2_img" fitHeight="34.0" fitWidth="33.0" layoutX="167.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Melt2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Geo2_img" fitHeight="34.0" fitWidth="33.0" layoutX="165.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Geo2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Overload1_img" fitHeight="34.0" fitWidth="33.0" layoutX="254.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Overload1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Pyro1_img" fitHeight="34.0" fitWidth="33.0" layoutX="254.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Pyro1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="PyroCrystallize1_img" fitHeight="34.0" fitWidth="33.0" layoutX="254.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/PyroCrystallize1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="SuperConductor1_img" fitHeight="34.0" fitWidth="33.0" layoutX="255.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Superconductor1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Vaporize1_img" fitHeight="34.0" fitWidth="33.0" layoutX="255.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Vaporize1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Overload2_img" fitHeight="34.0" fitWidth="33.0" layoutX="287.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Overload2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="PyroCrystallize2_img" fitHeight="34.0" fitWidth="33.0" layoutX="287.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/PyroCrystallize2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="SuperConductor2_img" fitHeight="34.0" fitWidth="33.0" layoutX="288.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Superconductor2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Vaporize2_img" fitHeight="34.0" fitWidth="33.0" layoutX="288.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Vaporize2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Pyro2_img" fitHeight="34.0" fitWidth="33.0" layoutX="286.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Pyro2.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="Cryo_label" layoutX="79.0" layoutY="16.0" prefHeight="32.0" prefWidth="50.0" text="Cryo">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Cryo_Crystallize_label" layoutX="78.0" layoutY="65.0" prefHeight="33.0" prefWidth="50.0" text="Cryo Crystallize" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Electro_label1" layoutX="78.0" layoutY="110.0" prefHeight="33.0" prefWidth="51.0" text="Electro" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ElectroCharged2_label" layoutX="79.0" layoutY="156.0" prefHeight="33.0" prefWidth="51.0" text="Electro  Charged" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ElectroCrystallize2_label" layoutX="79.0" layoutY="203.0" prefHeight="33.0" prefWidth="51.0" text="Electro  Crystallize" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Frozen_label" layoutX="204.0" layoutY="18.0" prefHeight="33.0" prefWidth="51.0" text="Frozen" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Geo_label" layoutX="203.0" layoutY="66.0" prefHeight="33.0" prefWidth="51.0" text="Geo" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Hydro_label" layoutX="204.0" layoutY="111.0" prefHeight="33.0" prefWidth="51.0" text="Hydro" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="HydroCrystallize_label" layoutX="205.0" layoutY="157.0" prefHeight="33.0" prefWidth="51.0" text="Hydro Crystallize" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Melt_label" layoutX="205.0" layoutY="204.0" prefHeight="33.0" prefWidth="51.0" text="Melt" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Electro_label112" layoutX="325.0" layoutY="20.0" prefHeight="33.0" prefWidth="51.0" text="Overload" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Pyro_label" layoutX="324.0" layoutY="67.0" prefHeight="33.0" prefWidth="51.0" text="Pyro" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="PyroCrystallize_label" layoutX="325.0" layoutY="111.0" prefHeight="33.0" prefWidth="50.0" text="Pyro Crystallize" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="SuperConductor2_label" layoutX="326.0" layoutY="158.0" prefHeight="33.0" prefWidth="50.0" text="Super Conductor" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Vaporize_label" layoutX="326.0" layoutY="205.0" prefHeight="33.0" prefWidth="50.0" text="Vaporize" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+      <Label layoutX="971.0" layoutY="7.0" text="Tuturu">
+         <font>
+            <Font name="Roboto Black" size="36.0" />
+         </font>
+      </Label>
+      <TitledPane animated="false" layoutX="816.0" layoutY="56.0" prefHeight="90.0" prefWidth="255.0" text="Mastery Legend">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="Cryo1_img14" fitHeight="34.0" fitWidth="33.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/mastery_1.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="Frozen_label14" layoutX="47.0" layoutY="13.0" prefHeight="33.0" prefWidth="51.0" text="Level 1" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="Cryo1_img15" fitHeight="34.0" fitWidth="33.0" layoutX="88.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/mastery_2.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="Frozen_label121" layoutX="127.0" layoutY="14.0" prefHeight="33.0" prefWidth="51.0" text="Level 2" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="Cryo1_img16" fitHeight="34.0" fitWidth="33.0" layoutX="167.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/mastery_3.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="Frozen_label122" layoutX="202.0" layoutY="16.0" prefHeight="33.0" prefWidth="51.0" text="Level 3" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="816.0" layoutY="156.0" prefHeight="157.0" prefWidth="254.0" text="Element Legend">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="232.0">
+               <children>
+                  <ImageView fx:id="Fire_img" fitHeight="40.0" fitWidth="40.0" layoutX="8.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/el_fire.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Cryo1_img11" fitHeight="40.0" fitWidth="40.0" layoutX="8.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/el_water.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Cryo1_img111" fitHeight="40.0" fitWidth="40.0" layoutX="161.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/el_electric.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="Frozen_label1" layoutX="53.0" layoutY="18.0" prefHeight="33.0" prefWidth="51.0" text="Fire" wrapText="true" />
+                  <Label fx:id="Frozen_label11" layoutX="52.0" layoutY="77.0" prefHeight="33.0" prefWidth="51.0" text="Water" wrapText="true" />
+                  <Label fx:id="Frozen_label111" layoutX="205.0" layoutY="49.0" prefHeight="33.0" prefWidth="51.0" text="Electric" wrapText="true" />
+                  <ImageView fx:id="Cryo1_img12" fitHeight="40.0" fitWidth="40.0" layoutX="91.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/el_ice.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="Cryo1_img13" fitHeight="40.0" fitWidth="40.0" layoutX="91.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/el_earth.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="Frozen_label12" layoutX="136.0" layoutY="19.0" prefHeight="33.0" prefWidth="51.0" text="Ice" wrapText="true" />
+                  <Label fx:id="Frozen_label13" layoutX="137.0" layoutY="78.0" prefHeight="33.0" prefWidth="51.0" text="Earth" wrapText="true" />
+               </children></AnchorPane>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="819.0" layoutY="324.0" prefHeight="378.0" prefWidth="252.0" text="Inventory Engimon">
+         <content>
+            <TableView fx:id="table_Engimon" editable="true" prefHeight="326.0" prefWidth="250.0" />
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="1084.0" layoutY="324.0" prefHeight="378.0" prefWidth="252.0" text="Inventory Skill Item">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="186.0" prefWidth="261.0">
+               <children>
+                  <TableView fx:id="table_skillItem" editable="true" prefHeight="355.0" prefWidth="248.0" />
+               </children></AnchorPane>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="1083.0" layoutY="56.0" prefHeight="258.0" prefWidth="254.0" text="Active Engimon">
+         <content>
+            <AnchorPane fx:id="active_engimonPane" minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="232.0">
+               <children>
+                  <ImageView fx:id="active_sprite" fitHeight="130.0" fitWidth="130.0" layoutX="61.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/Cryo1.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="active_speciesName" alignment="CENTER" layoutY="134.0" prefHeight="27.0" prefWidth="252.0" text="Cryo">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="active_name" alignment="CENTER" layoutY="159.0" prefHeight="27.0" prefWidth="252.0" text="Nama Engimon">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="192.0" prefHeight="27.0" prefWidth="39.0" text="LV">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="94.0" layoutY="192.0" prefHeight="27.0" prefWidth="110.0" text="Skill Power : ">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="active_el1" fitHeight="30.0" fitWidth="30.0" layoutX="7.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/el_electric.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="active_el2" fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../main/resources/el_ice.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="active_level" layoutX="36.0" layoutY="192.0" prefHeight="27.0" prefWidth="41.0" text="80">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="active_skillPower" layoutX="202.0" layoutY="192.0" prefHeight="27.0" prefWidth="50.0" text="2000">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+         </content>
+      </TitledPane>
+      <Label layoutX="1090.0" layoutY="6.0" text="Turn-X">
+         <font>
+            <Font name="Roboto Black" size="36.0" />
+         </font>
+      </Label>
+      <TitledPane fx:id="mapLegend2" animated="false" layoutX="586.0" layoutY="410.0" prefHeight="115.0" prefWidth="218.0" text="Basic Command">
+         <content>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="115.0" prefWidth="225.0">
+               <children>
+                  <Button fx:id="btn_d" layoutX="147.0" layoutY="45.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="D" />
+                  <Button fx:id="btn_w" layoutX="77.0" layoutY="8.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="W" />
+                  <Button fx:id="btn_a" layoutX="8.0" layoutY="44.0" maxHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="A" />
+                  <Button fx:id="btn_s" layoutX="77.0" layoutY="45.0" minWidth="37.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="S" />
+                  <Button fx:id="btn_battle" layoutX="146.0" layoutY="8.0" minWidth="42.0" mnemonicParsing="false" onAction="#Battle" prefHeight="30.0" prefWidth="55.0" text="Battle" />
+                  <Button fx:id="btn_save" layoutX="8.0" layoutY="8.0" maxHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="50.0" text="Save" />
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="586.0" layoutY="532.0" prefHeight="166.0" prefWidth="218.0" text="Inventory Command">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="94.0" prefWidth="216.0">
+               <children>
+                  <Button fx:id="btn_breed" layoutX="4.0" layoutY="7.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="62.0" text="Breed" />
+                  <Button fx:id="btn_rename" layoutX="73.0" layoutY="7.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Rename" />
+                  <Button fx:id="btn_change_active" layoutX="4.0" layoutY="48.0" minWidth="42.0" mnemonicParsing="false" onAction="#changeActiveEngimon" prefHeight="30.0" prefWidth="65.0" text="Active" />
+                  <Button fx:id="btn_release" layoutX="77.0" layoutY="48.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="62.0" text="Release" />
+                  <Button fx:id="btn_interact" layoutX="146.0" layoutY="7.0" minWidth="42.0" mnemonicParsing="false" onAction="#interactActiveEngimon" prefHeight="30.0" prefWidth="62.0" text="Interact" />
+                  <Button fx:id="btn_examine" layoutX="146.0" layoutY="49.0" minWidth="42.0" mnemonicParsing="false" onAction="#examineEngimon" prefHeight="30.0" prefWidth="62.0" text="Examine" />
+                  <Button fx:id="btn_throw" layoutX="4.0" layoutY="100.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Throw" />
+                  <Button fx:id="btn_useItem" layoutX="74.0" layoutY="101.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Use Item" />
+                  <Button fx:id="btn_inspect" layoutX="146.0" layoutY="101.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Inspect" />
+                  <Line endX="111.0" layoutX="105.0" layoutY="89.0" startX="-105.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Button fx:id="btn_exit" layoutX="1251.0" layoutY="11.0" minWidth="42.0" mnemonicParsing="false" onAction="#exit" prefHeight="36.0" prefWidth="85.0" text="Exit" />
+   </children>
+</AnchorPane>

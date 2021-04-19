@@ -58,4 +58,9 @@ public class Frozen extends Engimon {
     public DropShadow getAura() {
         return new DropShadow(35, Color.DARKTURQUOISE);
     }
+
+    @Override
+    public String getSlogan() {
+        return this.slogan;
+    }
 }
