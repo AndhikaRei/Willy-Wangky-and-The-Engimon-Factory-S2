@@ -47,11 +47,11 @@ public class ElectroCrystallize extends Engimon {
         this.slogan = "Unmei no itazura demo~";
     }
     @Override
-    public Image getSprite(){
+    public Image getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/ElectroCrystallize1.png",35,35,false,false);
+            return new Image("./main/resources/ElectroCrystallize1.png",rw,rh,false,false);
         } else {
-            return new Image("./main/resources/ElectroCrystallize2.png",35,35,false,false);
+            return new Image("./main/resources/ElectroCrystallize2.png",rw,rh,false,false);
         }
     }
 

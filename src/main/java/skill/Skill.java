@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.scene.image.Image;
 import main.java.element.Element;
 
 public class Skill {
@@ -160,6 +161,16 @@ public class Skill {
     @Override
     public int hashCode() {
         return Objects.hash(name, desc, basePower, masteryLevel, listElements);
+    }
+
+    public Image getSprite(Double rw, Double rh){
+        if(this.getMasteryLevel()==1){
+            return new Image("./main/resources/mastery_1.png",rw,rh,false,false);
+        } else if(this.getMasteryLevel()==1){
+            return new Image("./main/resources/mastery_2.png",rw,rh,false,false);
+        } else{
+            return new Image("./main/resources/mastery_3.png",rw,rh,false,false);
+        }
     }
 
 }

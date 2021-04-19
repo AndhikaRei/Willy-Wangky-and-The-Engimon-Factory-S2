@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.io.File;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import main.java.exception.*;
 import main.java.engimon.*;
 import main.java.engimon.species.*;
@@ -533,48 +535,42 @@ public class Map {
         }
     }
 
-    // Engimon* Map::getNearbyEnemyEngimon(int* X, int* Y){
-    //     // Fungsi ini digunakan untuk battle dengan engimon liar
-    //     // I.S. Posisi player terdeifinisi di map
-    //     // F.S. Jika terdapat engimon disekitar player (diatas/dibawah/dikanan/dikiri) 
-    //     // maka X dan Y adalah posisi diketemukannya engimon pertama kali di sekitar player
-    //     // Jika tidak ada engimon liar disekitar player maka throw exception
-
-    //     // Cek apakah diatas posisi player sekarang terdapat engimon liar
-    //     if(isValidPosition(this.player_pos[0]-1, this.player_pos[1], true)){
-    //         if (this.mapelem[this.player_pos[0]-1][this.player_pos[1]].isEngimonExist()){
-    //             *X = this.player_pos[0]-1; *Y =this.player_pos[1];
-    //             return this.mapelem[this.player_pos[0]-1][this.player_pos[1]].get_engimon();
-    //         }
-    //     } 
-
-    //     // Cek apakah di kiri posisi player sekarang terdapat engimon liar
-    //     if(isValidPosition(this.player_pos[0], this.player_pos[1]-1, true)){
-    //         if (this.mapelem[this.player_pos[0]][this.player_pos[1]-1].isEngimonExist()){
-    //             *X = this.player_pos[0]; *Y =this.player_pos[1]-1;
-    //             return this.mapelem[this.player_pos[0]][this.player_pos[1]-1].get_engimon();
-    //         }
-    //     }
-
-    //     // Cek apakah di bawah posisi player sekarang terdapat engimon liar 
-    //     if(isValidPosition(this.player_pos[0]+1, this.player_pos[1], true)){
-    //         if (this.mapelem[this.player_pos[0]+1][this.player_pos[1]].isEngimonExist()){
-    //             *X = this.player_pos[0]+1; *Y =this.player_pos[1];
-    //             return this.mapelem[this.player_pos[0]+1][this.player_pos[1]].get_engimon();
-    //         }
-    //     }
-
-    //     // Cek apakah di kanan posisi player sekarang terdapat engimon liar  
-    //     if(isValidPosition(this.player_pos[0], this.player_pos[1]+1, true)){
-    //         if (this.mapelem[this.player_pos[0]][this.player_pos[1]+1].isEngimonExist()){
-    //             *X = this.player_pos[0]; *Y =this.player_pos[1]+1;
-    //             return this.mapelem[this.player_pos[0]][this.player_pos[1]+1].get_engimon();
-    //         }
-    //     }
-
-    //     // Jika tidak diketemukan engimon liar disekitar player, throw exception
-    //     throw InvalidBattleException();
-    // }
+    public Engimon getNearbyEnemyEngimon(AtomicInteger X, AtomicInteger Y) throws InvalidBattleException{
+        // Fungsi ini digunakan untuk battle dengan engimon liar
+        // I.S. Posisi player terdeifinisi di map
+        // F.S. Jika terdapat engimon disekitar player (diatas/dibawah/dikanan/dikiri)
+        // maka X dan Y adalah posisi diketemukannya engimon pertama kali di sekitar player
+        // Jika tidak ada engimon liar disekitar player maka throw exception
+        if(isValidPosition(this.player_pos.get(0)-1, this.player_pos.get(1), true)){
+            if (this.mapelem.get(this.player_pos.get(0)-1).get(this.player_pos.get(1)).isEngimonExist()){
+                 X.set(this.player_pos.get(0)-1);
+                 Y.set(this.player_pos.get(1));
+                 return this.mapelem.get(this.player_pos.get(0)-1).get(this.player_pos.get(1)).get_engimon();
+            }
+        }
+        if(isValidPosition(this.player_pos.get(0), this.player_pos.get(1)-1, true)){
+            if (this.mapelem.get(this.player_pos.get(0)).get(this.player_pos.get(1)-1).isEngimonExist()){
+                X.set(this.player_pos.get(0));
+                Y.set(this.player_pos.get(1)-1);
+                return this.mapelem.get(this.player_pos.get(0)).get(this.player_pos.get(1)-1).get_engimon();
+            }
+        }
+        if(isValidPosition(this.player_pos.get(0)+1, this.player_pos.get(1), true)){
+            if (this.mapelem.get(this.player_pos.get(0)+1).get(this.player_pos.get(1)).isEngimonExist()){
+                X.set(this.player_pos.get(0)+1);
+                Y.set(this.player_pos.get(1));
+                return this.mapelem.get(this.player_pos.get(0)+1).get(this.player_pos.get(1)).get_engimon();
+            }
+        }
+        if(isValidPosition(this.player_pos.get(0), this.player_pos.get(1)+1, true)){
+            if (this.mapelem.get(this.player_pos.get(0)).get(this.player_pos.get(1)+1).isEngimonExist()){
+                X.set(this.player_pos.get(0));
+                Y.set(this.player_pos.get(1)+1);
+                return this.mapelem.get(this.player_pos.get(0)).get(this.player_pos.get(1)+1).get_engimon();
+            }
+        }
+        throw new InvalidBattleException();
+    }
 
     // Player Handlers 
     public void move(char c) throws InvalidMoveException, InvalidPlayerMove{
