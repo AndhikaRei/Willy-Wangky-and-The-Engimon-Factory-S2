@@ -291,7 +291,7 @@ public class GameController {
             AtomicInteger x = new AtomicInteger(0);
             AtomicInteger y = new AtomicInteger(0);
             Engimon enemy = this.map.getNearbyEnemyEngimon(x,y);
-            Boolean isBattle = BattleConfirm.display(this.e.get(0),enemy);
+            Boolean isBattle = BattleConfirm.display(this.activeEngimon,enemy);
             if (isBattle){
                 this.map.removeEngimon(x.get(),y.get());
                 AlertBox.displayWarning("Menang");

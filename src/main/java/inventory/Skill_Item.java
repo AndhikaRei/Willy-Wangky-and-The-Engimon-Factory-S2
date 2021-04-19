@@ -125,6 +125,6 @@ public class Skill_Item {
     }
 
 
-    public static <I> Object addAmount(I i) {
-    }
+//    public static <I> Object addAmount(I i) {
+//    }
 }
