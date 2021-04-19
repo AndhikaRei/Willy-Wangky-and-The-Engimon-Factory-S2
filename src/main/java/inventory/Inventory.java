@@ -10,6 +10,8 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         this.ListItem = new ArrayList<I>();
         this.ListEngimon = new ArrayList<E>();
     }
+
+    /** modify data**/
     public void addEngimon(E Engimon){
         this.ListEngimon.add(Engimon);
     }
@@ -23,7 +25,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
 
         for(int i = 0; i< this.ListItem.size();i++){
             if(this.ListItem.get(i).equals(Item)){
-                this.ListItem.get(i).addAmount();
+                this.ListItem.get(i).addAmount(Item.getAmount());
                 found = true;
             }
         }
@@ -31,6 +33,23 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
             ListItem.add(Item);
         }
     }
+    public void useItem(int i, E engimon){
+        this.ListItem.get(i).learn(engimon.getElement());
+        if(this.ListItem.get(i).getAmount() < 1){
+            this.ListItem.remove(i);
+        }
+    }
+
+    public void KillEngimon(E engimon){
+        for(int i = 0;i < this.ListEngimon.size();i++){
+            if(this.ListEngimon.get(i).equals(engimon)){
+                this.ListEngimon.remove(i);
+                return;
+            }
+        }
+        //throw something
+    }
+    /** getter**/
     public List<I> getItems(){
         return this.ListItem;
     }
@@ -43,6 +62,8 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     public E getEngimon(Integer i){
         return this.ListEngimon.get(i);
     }
+
+    /** printer**/
     public void printItems(){
         System.out.println("Items : ");
         for(int i = 0;i < this.ListItem.size();i++){
