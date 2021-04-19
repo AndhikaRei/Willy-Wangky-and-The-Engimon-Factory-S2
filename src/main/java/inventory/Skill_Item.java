@@ -123,6 +123,8 @@ public class Skill_Item {
     public int hashCode() {
         return Objects.hash(contSkill, amount);
     }
-    
 
+
+    public static <I> Object addAmount(I i) {
+    }
 }
