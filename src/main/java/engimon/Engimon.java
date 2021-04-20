@@ -192,6 +192,7 @@ public abstract class Engimon implements Cloneable {
     }
     public void setParent(Parent parent) { this.parent = parent; }
     public void setLivesIsWild( boolean isWild ) { this.lives = isWild ? DEFAULT_WILD_LIVES : DEFAULT_LIVES; }
+    public void decrementLive() { this.lives--; }
     // setter sisanya terlihat tidak lazim digunakan
 
     /* METHODS */
