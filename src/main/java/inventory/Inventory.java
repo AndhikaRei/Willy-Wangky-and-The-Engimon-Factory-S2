@@ -1,5 +1,7 @@
 package main.java.inventory;
 import main.java.engimon.Engimon;
+import main.java.exception.ItemNotEnoughAmountException;
+import main.java.exception.SkillElementNotCompatibleException;
 
 import java.util.*;
 
@@ -33,7 +35,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
             ListItem.add(Item);
         }
     }
-    public void useItem(int i, E engimon){
+    public void useItem(int i, E engimon) throws ItemNotEnoughAmountException, SkillElementNotCompatibleException {
         this.ListItem.get(i).learn(engimon.getElement());
         if(this.ListItem.get(i).getAmount() < 1){
             this.ListItem.remove(i);

@@ -78,7 +78,7 @@ public class BreedConfirmController {
             ImageView element = new ImageView(Element.getSpriteEl(el,25.0,25.0));
             Npane.getChildren().add(element);
             Npane.setAlignment(element, Pos.CENTER);
-            this.engi1_dualInfo.add(Npane,i+1,1);
+            this.engi1_dualInfo.add(Npane,i+1,0);
             i++;
         }
         //  Engimon 2
@@ -88,7 +88,7 @@ public class BreedConfirmController {
             ImageView element = new ImageView(Element.getSpriteEl(el,25.0,25.0));
             Npane.getChildren().add(element);
             Npane.setAlignment(element, Pos.CENTER);
-            this.engi2_dualInfo.add(Npane,i+1,1);
+            this.engi2_dualInfo.add(Npane,i+1,0);
             i++;
         }
 
@@ -111,7 +111,7 @@ public class BreedConfirmController {
             // Nama Skill
             Label name = new Label(skill.getName());
             name.setFont(new Font("Roboto",14));
-        this.engi1_skills.add(name,2,i);
+            this.engi1_skills.add(name,2,i);
 
             // Element dari skill
             int j = 3;
@@ -161,7 +161,7 @@ public class BreedConfirmController {
 
     // Apabila tombol breed di tekan
     // Menutup window dan set boolean isBattle menjadi true
-    void Breed() {
+    public void Breed() {
         this.isBreeding = Boolean.TRUE;
         Stage stage = (Stage) this.button_breed.getScene().getWindow();
         stage.close();
@@ -170,7 +170,7 @@ public class BreedConfirmController {
 
     // Apabila tombol cancel di tekan
     // Menutup window dan set boolean isBattle menjadi true
-    void Cancel() {
+    public void Cancel() {
         this.isBreeding = Boolean.FALSE;
         Stage stage = (Stage) this.button_cancel.getScene().getWindow();
         stage.close();

@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import GUI.AlertBox;
+import GUI.BreedConfirm.BreedConfirm;
 import GUI.DetailEngimon.DetailEngimon;
+import GUI.ReplaceSkill.ReplaceSkill;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,8 +25,11 @@ import main.java.battle.Battle;
 import main.java.element.Element;
 import main.java.engimon.Engimon;
 import main.java.engimon.species.*;
+import main.java.exception.SkillFullException;
+import main.java.inventory.Skill_Item;
 import main.java.map.*;
 import GUI.BattleConfirm.BattleConfirm;
+import main.java.skill.Skill;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -43,6 +48,7 @@ public class GameController {
 
     // Tabel (Inventory)
     @FXML private TableView table_Engimon;
+    @FXML private TableView table_Item;
 
     // Data active engimon
     @FXML private AnchorPane active_engimonPane;
@@ -69,6 +75,7 @@ public class GameController {
     // Dummy
     private List<Engimon> e;
     private Engimon activeEngimon;
+    private List<Skill_Item> f;
 
     // Inisialisasi komponen peta
     @FXML private void initialize(){
@@ -84,7 +91,10 @@ public class GameController {
             this.e.add(new Cryo("Hello",3));
             this.e.add(new Pyro("Hello2",2));
             this.e.add(new Frozen("Helo3",3));
-            this.setupInventoryEngimon();
+            this.f = new ArrayList<Skill_Item>();
+            this.f.add(new Skill_Item(new Skill("Fire Breath", "Hah Naga!", 20, Element.Fire)));
+            this.f.add(new Skill_Item(new Skill("Kondum blast", "Rasa Stroberi!", 20, Element.Ice)));
+            this.setupInventory();
             this.refreshInventory();
             this.activeEngimon = this.e.get(0);
             this.refreshActiveEngimonGUI();
@@ -185,20 +195,20 @@ public class GameController {
             }
         }
     }
-    // Melakukan setup inventory engimon
-    public void setupInventoryEngimon(){
+    // Melakukan setup inventory engimon dan skill item
+    public void setupInventory(){
         TableColumn<Engimon, String> speciesColumn = new TableColumn<>("Species");
         speciesColumn.setMinWidth(70);
         speciesColumn.setSortable(false);
         speciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
 
         TableColumn<Engimon, String> nameColumn = new TableColumn<>("Name");
-        nameColumn.setMinWidth(100);
+        nameColumn.setMinWidth(90);
         nameColumn.setSortable(false);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         TableColumn<Engimon, List<String>> elementColumn = new TableColumn<>("Element");
-        elementColumn.setMinWidth(100);
+        elementColumn.setMinWidth(90);
         elementColumn.setSortable(false);
         elementColumn.setCellValueFactory(new PropertyValueFactory<>("element"));
 
@@ -212,6 +222,31 @@ public class GameController {
                 SelectionMode.MULTIPLE
         );
 
+        TableColumn<Skill_Item, Integer> quantityColumn = new TableColumn<>("Qty");
+        quantityColumn.setMinWidth(25);
+        quantityColumn.setSortable(false);
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+        TableColumn<Skill_Item, String> skillNameColumn = new TableColumn<>("Name");
+        skillNameColumn.setMinWidth(90);
+        skillNameColumn.setSortable(false);
+        skillNameColumn.setCellValueFactory(new PropertyValueFactory<>("skillName"));
+
+        TableColumn<Skill_Item, List<String>> skillElementColumn = new TableColumn<>("Element");
+        skillElementColumn.setMinWidth(90);
+        skillElementColumn.setSortable(false);
+        skillElementColumn.setCellValueFactory(new PropertyValueFactory<>("element"));
+
+        TableColumn<Skill_Item, Integer> basePowerColumn = new TableColumn<>("BP");
+        basePowerColumn.setMinWidth(25);
+        basePowerColumn.setSortable(false);
+        basePowerColumn.setCellValueFactory(new PropertyValueFactory<>("basePower"));
+
+        this.table_Item.getColumns().addAll(quantityColumn,skillNameColumn,skillElementColumn,basePowerColumn);
+        this.table_Item.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );
+
     }
     // Masih dummy
     public ObservableList<Engimon> getEngi(){
@@ -219,37 +254,63 @@ public class GameController {
         products.addAll(this.e);
         return products;
     }
+    // Masih dummy
+    public ObservableList<Skill_Item> getItem(){
+        ObservableList<Skill_Item> products = FXCollections.observableArrayList();
+        products.addAll(this.f);
+        return products;
+    }
 
     // Masih dummy
     public void refreshInventory(){
         this.table_Engimon.setItems(getEngi());
+        this.table_Item.setItems(getItem());
     }
 
-    public void changeActiveEngimon(){
+    // Inventory Command
+    // Breed Engimon Command
+    public void breedEngimon(){
         try{
-            if ((this.table_Engimon.getSelectionModel().getSelectedIndices()).size() != 1) {
-                throw new Exception("Pilihlah tepat satu engimon");
+            if ((this.table_Engimon.getSelectionModel().getSelectedIndices()).size() != 2) {
+                throw new Exception("Pilihlah tepat dua engimon untuk melakukan breeding");
             } else {
-               this.activeEngimon = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
-               refreshActiveEngimonGUI();
+                Integer indexEngimon1 = (Integer) this.table_Engimon.getSelectionModel().getSelectedIndices().get(0);
+                Integer indexEngimon2 = (Integer) this.table_Engimon.getSelectionModel().getSelectedIndices().get(1);
+                Boolean isBreed = BreedConfirm.display(this.e.get(indexEngimon1),this.e.get(indexEngimon2));
+                if (isBreed){
+                    // Prosedur breeding
+                    AlertBox.displayWarning("Kawin kuy");
+                    this.refreshInventory();
+                    this.refreshActiveEngimonGUI();
+                } else {
+                    AlertBox.displayWarning("Gajadi kawin");
+                }
             }
         } catch (Exception e){
             AlertBox.displayWarning(e.getMessage());
         }
     }
 
-    public void examineEngimon(){
+    // Rename engimon command
+    public void renameEngimon(){
         try{
             if ((this.table_Engimon.getSelectionModel().getSelectedIndices()).size() != 1) {
-                throw new Exception("Pilihlah tepat satu engimon");
+                throw new Exception("Pilihlah tepat satu engimon untuk di rename");
             } else {
-                DetailEngimon.display(this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex()));
+                String newName = AlertBox.displayAskNewName();
+                if(newName != null){
+                    // Prosedur rename engimon (detilnya di player, disini tinggal panggil aja)
+                    AlertBox.displayWarning(newName);
+                    this.refreshInventory();
+                    this.refreshActiveEngimonGUI();
+                }
             }
         } catch (Exception e){
             AlertBox.displayWarning(e.getMessage());
         }
     }
 
+    // Interact with active engimon command
     public void interactActiveEngimon(){
         try{
             if (this.activeEngimon == null) {
@@ -262,6 +323,91 @@ public class GameController {
         }
     }
 
+    // Change Active Engimon Command
+    public void changeActiveEngimon(){
+        try{
+            if ((this.table_Engimon.getSelectionModel().getSelectedIndices()).size() != 1) {
+                throw new Exception("Pilihlah tepat satu engimon untuk menjadi active engimon");
+            } else {
+               this.activeEngimon = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
+               refreshActiveEngimonGUI();
+            }
+        } catch (Exception e){
+            AlertBox.displayWarning(e.getMessage());
+        }
+    }
+
+    // Release Engimon command
+    public void releaseEngimon(){
+        try{
+            if ((this.table_Engimon.getSelectionModel().getSelectedIndices()).size() != 1) {
+                throw new Exception("Pilihlah tepat satu engimon untuk di examine");
+            } else {
+                // Prosedur release engimon dengan index tertentu (detilnya di player, disini tinggal panggil aja)
+                this.refreshInventory();
+                this.refreshActiveEngimonGUI();
+            }
+        } catch (Exception e){
+            AlertBox.displayWarning(e.getMessage());
+        }
+    }
+    // Examine Engimon command
+    public void examineEngimon(){
+        try{
+            if ((this.table_Engimon.getSelectionModel().getSelectedIndices()).size() != 1) {
+                throw new Exception("Pilihlah tepat satu engimon untuk di examine");
+            } else {
+                DetailEngimon.display(this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex()));
+            }
+        } catch (Exception e){
+            AlertBox.displayWarning(e.getMessage());
+        }
+    }
+
+    // Throw item Command
+    public void throwItem(){
+        try{
+            if ((this.table_Item.getSelectionModel().getSelectedIndices()).size() != 1) {
+                throw new Exception("Pilihlah tepat satu item untuk dibuang");
+            } else {
+                Integer numOfItem = AlertBox.displayAskNumDropItems();
+                if(numOfItem != null){
+                    // Prosedur remove item sejumlah x (detilnya di player, disini tinggal panggil aja)
+                    AlertBox.displayWarning(Integer.toString(numOfItem));
+                    this.refreshInventory();
+                }
+            }
+        } catch (Exception e){
+            AlertBox.displayWarning(e.getMessage());
+        }
+    }
+
+    // Use item Command
+    public void useItem(){
+        try{
+            if (((this.table_Item.getSelectionModel().getSelectedIndices()).size() != 1) ||((this.table_Item.getSelectionModel().getSelectedIndices()).size() != 1)  ) {
+                throw new Exception("Pilihlah tepat satu item dan satu engimon untuk learn skill");
+            } else {
+                Engimon goingToLearn = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
+                Skill_Item skilToLearn = this.f.get(this.table_Item.getSelectionModel().getSelectedIndex());
+                goingToLearn.addSkill(skilToLearn);
+            }
+        }
+        catch (SkillFullException e){
+            Engimon goingToLearn = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
+            Integer indexReplace = ReplaceSkill.display(goingToLearn);
+            if (indexReplace != null){
+                // Algo replace skill
+                // goingToLearn.replaceSkill(goingToLearn,indexReplace);
+            }
+        }
+        catch (Exception e){
+            AlertBox.displayWarning(e.getMessage());
+        }
+    }
+
+    // Basic Command
+    // Move command
     public void move(ActionEvent event){
         // Apabila tombol W A S D ditekan
         try{
@@ -285,6 +431,8 @@ public class GameController {
             AlertBox.displayWarning(e.getMessage());
         }
     }
+
+    // Battle Command
     public void Battle(){
         // Apabila tombol battle ditekan
         try{
@@ -294,10 +442,10 @@ public class GameController {
             Boolean isBattle = BattleConfirm.display(this.activeEngimon,enemy);
             if (isBattle){
                 this.map.removeEngimon(x.get(),y.get());
-                AlertBox.displayWarning("Menang");
+                AlertBox.displayWarning("Battle");
                 this.refreshMapGUI();
             } else {
-                AlertBox.displayWarning("Kontol kok kabur");
+                AlertBox.displayWarning("Lho kok kabur");
             }
 
         } catch (Exception e){
@@ -305,6 +453,8 @@ public class GameController {
         }
 
     }
+
+    // Exit command
     public void exit(){
         Stage stage = (Stage) this.btn_exit.getScene().getWindow();
         stage.close();

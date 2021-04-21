@@ -124,6 +124,17 @@ public class Skill_Item {
         return Objects.hash(contSkill, amount);
     }
 
+    // Fungsi untuk mendukung table view
+    public String getSkillName(){
+        return this.contSkill.getName();
+    }
+    public List<Element> getElement(){
+        return this.contSkill.getListElement();
+    }
+    public Integer getBasePower(){
+        return this.contSkill.getBasePower();
+    }
+
 
 //    public static <I> Object addAmount(I i) {
 //    }

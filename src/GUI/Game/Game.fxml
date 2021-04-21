@@ -342,17 +342,17 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="Cryo1_img14" fitHeight="34.0" fitWidth="33.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Cryo1_img14" fitHeight="40.0" fitWidth="40.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../main/resources/mastery_1.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="Frozen_label14" layoutX="47.0" layoutY="13.0" prefHeight="33.0" prefWidth="51.0" text="Level 1" wrapText="true">
+                  <Label fx:id="Frozen_label14" layoutX="48.0" layoutY="13.0" prefHeight="33.0" prefWidth="51.0" text="Level 1" wrapText="true">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="Cryo1_img15" fitHeight="34.0" fitWidth="33.0" layoutX="88.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Cryo1_img15" fitHeight="40.0" fitWidth="40.0" layoutX="87.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../main/resources/mastery_2.png" />
                      </image>
@@ -362,12 +362,12 @@
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="Cryo1_img16" fitHeight="34.0" fitWidth="33.0" layoutX="167.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Cryo1_img16" fitHeight="40.0" fitWidth="40.0" layoutX="167.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../main/resources/mastery_3.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="Frozen_label122" layoutX="202.0" layoutY="16.0" prefHeight="33.0" prefWidth="51.0" text="Level 3" wrapText="true">
+                  <Label fx:id="Frozen_label122" layoutX="206.0" layoutY="18.0" prefHeight="33.0" prefWidth="51.0" text="Level 3" wrapText="true">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -380,7 +380,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="232.0">
                <children>
-                  <ImageView fx:id="Fire_img" fitHeight="40.0" fitWidth="40.0" layoutX="8.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Fire_img" fitHeight="40.0" fitWidth="40.0" layoutX="8.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../main/resources/el_fire.png" />
                      </image>
@@ -420,10 +420,7 @@
       </TitledPane>
       <TitledPane animated="false" layoutX="1084.0" layoutY="324.0" prefHeight="378.0" prefWidth="252.0" text="Inventory Skill Item">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="186.0" prefWidth="261.0">
-               <children>
-                  <TableView fx:id="table_skillItem" editable="true" prefHeight="355.0" prefWidth="248.0" />
-               </children></AnchorPane>
+            <TableView fx:id="table_Item" editable="true" prefHeight="355.0" prefWidth="248.0" />
          </content>
       </TitledPane>
       <TitledPane animated="false" layoutX="1083.0" layoutY="56.0" prefHeight="258.0" prefWidth="254.0" text="Active Engimon">
@@ -437,22 +434,22 @@
                   </ImageView>
                   <Label fx:id="active_speciesName" alignment="CENTER" layoutY="134.0" prefHeight="27.0" prefWidth="252.0" text="Cryo">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Roboto Condensed Bold" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="active_name" alignment="CENTER" layoutY="159.0" prefHeight="27.0" prefWidth="252.0" text="Nama Engimon">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Roboto Condensed Bold" size="18.0" />
                      </font>
                   </Label>
                   <Label layoutX="10.0" layoutY="192.0" prefHeight="27.0" prefWidth="39.0" text="LV">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Roboto Condensed Bold" size="18.0" />
                      </font>
                   </Label>
                   <Label layoutX="94.0" layoutY="192.0" prefHeight="27.0" prefWidth="110.0" text="Skill Power : ">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Roboto Condensed Bold" size="18.0" />
                      </font>
                   </Label>
                   <ImageView fx:id="active_el1" fitHeight="30.0" fitWidth="30.0" layoutX="7.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
@@ -460,19 +457,19 @@
                         <Image url="@../../main/resources/el_electric.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="active_el2" fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="active_el2" fitHeight="30.0" fitWidth="30.0" layoutX="40.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../main/resources/el_ice.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="active_level" layoutX="36.0" layoutY="192.0" prefHeight="27.0" prefWidth="41.0" text="80">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Roboto Condensed Bold" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="active_skillPower" layoutX="202.0" layoutY="192.0" prefHeight="27.0" prefWidth="50.0" text="2000">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Roboto Condensed Bold" size="18.0" />
                      </font>
                   </Label>
                </children></AnchorPane>
@@ -487,12 +484,27 @@
          <content>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="115.0" prefWidth="225.0">
                <children>
-                  <Button fx:id="btn_d" layoutX="147.0" layoutY="45.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="D" />
+                  <Button fx:id="btn_d" layoutX="147.0" layoutY="45.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="D">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
                   <Button fx:id="btn_w" layoutX="77.0" layoutY="8.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="W" />
-                  <Button fx:id="btn_a" layoutX="8.0" layoutY="44.0" maxHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="A" />
-                  <Button fx:id="btn_s" layoutX="77.0" layoutY="45.0" minWidth="37.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="S" />
-                  <Button fx:id="btn_battle" layoutX="146.0" layoutY="8.0" minWidth="42.0" mnemonicParsing="false" onAction="#Battle" prefHeight="30.0" prefWidth="55.0" text="Battle" />
-                  <Button fx:id="btn_save" layoutX="8.0" layoutY="8.0" maxHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="50.0" text="Save" />
+                  <Button fx:id="btn_a" layoutX="8.0" layoutY="44.0" maxHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="A">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btn_s" layoutX="77.0" layoutY="45.0" minWidth="37.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="55.0" text="S">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btn_battle" layoutX="146.0" layoutY="8.0" minWidth="42.0" mnemonicParsing="false" onAction="#Battle" prefHeight="30.0" prefWidth="55.0" text="Battle">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btn_save" layoutX="8.0" layoutY="8.0" maxHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="50.0" text="Save">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </content>
@@ -501,15 +513,38 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="94.0" prefWidth="216.0">
                <children>
-                  <Button fx:id="btn_breed" layoutX="4.0" layoutY="7.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="62.0" text="Breed" />
-                  <Button fx:id="btn_rename" layoutX="73.0" layoutY="7.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Rename" />
-                  <Button fx:id="btn_change_active" layoutX="4.0" layoutY="48.0" minWidth="42.0" mnemonicParsing="false" onAction="#changeActiveEngimon" prefHeight="30.0" prefWidth="65.0" text="Active" />
-                  <Button fx:id="btn_release" layoutX="77.0" layoutY="48.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="62.0" text="Release" />
-                  <Button fx:id="btn_interact" layoutX="146.0" layoutY="7.0" minWidth="42.0" mnemonicParsing="false" onAction="#interactActiveEngimon" prefHeight="30.0" prefWidth="62.0" text="Interact" />
-                  <Button fx:id="btn_examine" layoutX="146.0" layoutY="49.0" minWidth="42.0" mnemonicParsing="false" onAction="#examineEngimon" prefHeight="30.0" prefWidth="62.0" text="Examine" />
-                  <Button fx:id="btn_throw" layoutX="4.0" layoutY="100.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Throw" />
-                  <Button fx:id="btn_useItem" layoutX="74.0" layoutY="101.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Use Item" />
-                  <Button fx:id="btn_inspect" layoutX="146.0" layoutY="101.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Inspect" />
+                  <Button fx:id="btn_breed" layoutX="4.0" layoutY="7.0" minWidth="42.0" mnemonicParsing="false" onAction="#breedEngimon" prefHeight="30.0" prefWidth="62.0" text="Breed">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btn_rename" layoutX="73.0" layoutY="7.0" minWidth="42.0" mnemonicParsing="false" onAction="#renameEngimon" prefHeight="30.0" prefWidth="65.0" text="Rename">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btn_change_active" layoutX="4.0" layoutY="48.0" minWidth="42.0" mnemonicParsing="false" onAction="#changeActiveEngimon" prefHeight="30.0" prefWidth="65.0" text="Active">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btn_release" layoutX="77.0" layoutY="48.0" minWidth="42.0" mnemonicParsing="false" onAction="#releaseEngimon" prefHeight="30.0" prefWidth="62.0" text="Release">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btn_interact" layoutX="146.0" layoutY="7.0" minWidth="42.0" mnemonicParsing="false" onAction="#interactActiveEngimon" prefHeight="30.0" prefWidth="62.0" text="Interact">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btn_examine" layoutX="146.0" layoutY="49.0" minWidth="42.0" mnemonicParsing="false" onAction="#examineEngimon" prefHeight="30.0" prefWidth="62.0" text="Examine">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btn_throw" layoutX="39.0" layoutY="100.0" minWidth="42.0" mnemonicParsing="false" onAction="#throwItem" prefHeight="30.0" prefWidth="65.0" text="Throw">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="btn_useItem" layoutX="110.0" layoutY="101.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Use Item">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font></Button>
                   <Line endX="111.0" layoutX="105.0" layoutY="89.0" startX="-105.0" />
                </children>
             </AnchorPane>

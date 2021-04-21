@@ -9,8 +9,6 @@ import javafx.scene.control.Button;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
-    Stage window;
-    Button button;
 
     @Override
     public void start(Stage primaryStage) throws Exception{

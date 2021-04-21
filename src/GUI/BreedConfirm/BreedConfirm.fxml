@@ -27,14 +27,14 @@
             <Image url="@../../main/resources/Cryo1.png" />
          </image>
       </ImageView>
-      <GridPane fx:id="engi1_dualInfo" layoutX="62.0" layoutY="300.0" prefHeight="33.0" prefWidth="120.0">
+      <GridPane fx:id="engi1_dualInfo" layoutX="61.0" layoutY="298.0" prefHeight="33.0" prefWidth="131.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="58.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="35.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="35.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label prefHeight="17.0" prefWidth="53.0" text="Element">
@@ -102,7 +102,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Label layoutX="61.0" layoutY="331.0" prefHeight="18.0" prefWidth="47.0" text="Skills">
+      <Label layoutX="62.0" layoutY="333.0" prefHeight="18.0" prefWidth="47.0" text="Skills">
          <font>
             <Font name="Roboto Condensed Bold" size="14.0" />
          </font>
@@ -110,11 +110,11 @@
       <GridPane fx:id="engi2_dualInfo" layoutX="420.0" layoutY="304.0" maxHeight="-Infinity" prefHeight="30.0" prefWidth="120.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="56.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="35.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="35.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label prefHeight="17.0" prefWidth="53.0" text="Element">
@@ -167,7 +167,7 @@
             </Label>
          </children>
       </GridPane>
-      <Label layoutX="420.0" layoutY="335.0" prefHeight="18.0" prefWidth="47.0" text="Skills">
+      <Label layoutX="420.0" layoutY="338.0" prefHeight="18.0" prefWidth="47.0" text="Skills">
          <font>
             <Font name="Roboto Condensed Bold" size="14.0" />
          </font>
@@ -192,7 +192,13 @@
             <Image url="@../../main/resources/breed.png" />
          </image>
       </ImageView>
-      <Button fx:id="button_cancel" layoutX="331.0" layoutY="178.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="33.0" prefWidth="78.0" text="Cancel" />
-      <Button fx:id="button_breed" layoutX="231.0" layoutY="178.0" mnemonicParsing="false" onAction="#Breed" prefHeight="33.0" prefWidth="78.0" text="Breed" />
+      <Button fx:id="button_cancel" layoutX="320.0" layoutY="161.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="45.0" prefWidth="105.0" text="Cancel">
+         <font>
+            <Font name="Roboto Condensed" size="24.0" />
+         </font></Button>
+      <Button fx:id="button_breed" layoutX="214.0" layoutY="161.0" mnemonicParsing="false" onAction="#Breed" prefHeight="33.0" prefWidth="94.0" text="Breed">
+         <font>
+            <Font name="Roboto Condensed" size="24.0" />
+         </font></Button>
    </children>
 </AnchorPane>
