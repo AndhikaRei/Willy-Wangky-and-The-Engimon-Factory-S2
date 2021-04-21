@@ -13,6 +13,9 @@ import main.java.exception.*;
 
 public class Engidex { 
     private static Map<String, Engimon> Engidex  = new HashMap<String, Engimon>();
+    /**
+     * Initializing the first instance of Engidex. Unless initialized, the engidex will not work 
+     */
     public static void initEngidex(){
         Engimon e1 = new Cryo("Cryo sp.", true);
         Engimon e2 = new CryoCrystallize("CyroCrystallize sp.", 1);
@@ -68,9 +71,16 @@ public class Engidex {
     public static Map<String, Engimon> getEngidex(){
         return Engidex;
     }
-
+    /**
+     * Searching an Engimon Object based on it's species name
+     * @param species
+     * @return Engimon object 
+     * @throws EngidexNotInitialized Engidex has not been initialized by initEngidex
+     * @throws Exception Species doesn't exist 
+     */
     // Basic Methods
     public static Engimon getEngimonBySpecies(String species) throws Exception{
+        
         if(Engidex.size() == 0){
             throw new EngidexNotInitalized();
         }
@@ -81,6 +91,13 @@ public class Engidex {
         }
     }
 
+    /**
+     * Searching an Engimon Object with only one element
+     * @param element 
+     * @return Engimon object
+     * @throws EngidexNotInitialized Engidex has not been initialized by initEngidex
+     * @throws CloneNotSupportedException Engimon object is not an extension of the cloneable interface
+     */
     // Untuk mengambil engimon dengan hanya 1 element 
     public static Engimon getBaseEngimon(Element element) throws EngidexNotInitalized, CloneNotSupportedException{
         if(Engidex.size() == 0){
@@ -101,12 +118,25 @@ public class Engidex {
         // Case Not Found
         return null;
     }
-
+    /**
+     * Searching an Engimon Name with only one element
+     * @param element 
+     * @return String Engimon Name
+     * @throws EngidexNotInitialized Engidex has not been initialized by initEngidex
+     * @throws CloneNotSupportedException Engimon object is not an extension of the cloneable interface
+     */
     // Untuk mengambil nama species engimon dengan hanya satu element
     public static String getBaseEngimonSpecies(Element element) throws EngidexNotInitalized, CloneNotSupportedException {
         return getBaseEngimon(element).getSpecies();
     }
 
+    /**
+     * Searching All Engimon that includes the specified element
+     * @param element 
+     * @return List of Engimon Object
+     * @throws EngidexNotInitialized Engidex has not been initialized by initEngidex
+     * @throws CloneNotSupportedException Engimon object is not an extension of the cloneable interface
+     */
     // Untuk mengambil semua engimon bertipe element
     public static List<Engimon> getEngimonByElement(Element element) throws EngidexNotInitalized, CloneNotSupportedException{
         if(Engidex.size() == 0){
@@ -125,7 +155,14 @@ public class Engidex {
         return EngimonList;
     }
 
-
+    /**
+     * Searching an Engimon Object with only the specified elements
+     * @param e1 
+     * @param e2 
+     * @return Engimon object
+     * @throws EngidexNotInitialized Engidex has not been initialized by initEngidex
+     * @throws CloneNotSupportedException Engimon object is not an extension of the cloneable interface
+     */
     public static Engimon getEngimonByElement(Element e1, Element e2) throws EngidexNotInitalized{
         if(Engidex.size() == 0){
             throw new EngidexNotInitalized();
@@ -144,11 +181,26 @@ public class Engidex {
         return null;
     }
     
+    /**
+     * Searching for all species name that includes the specified element
+     * @param Element element 
+     * @return List of String of Engimon Species * 
+     * @throws EngidexNotInitialized Engidex has not been initialized by initEngidex
+     * @throws CloneNotSupportedException Engimon object is not an extension of the cloneable interface
+     */
     // Get the species name
     public static List<String> getEngimonSpeciesByElement(Element e) throws EngidexNotInitalized, CloneNotSupportedException {
         return getEngimonByElement(e).stream().map( engimon -> engimon.getSpecies()).collect(Collectors.toList());
     }
 
+    /**
+     * Searching for an Engimon Species Name with the specified Elements
+     * @param e1
+     * @param e2 
+     * @return String Engimon Species
+     * @throws EngidexNotInitialized Engidex has not been initialized by initEngidex
+     * @throws CloneNotSupportedException Engimon object is not an extension of the cloneable interface
+     */
     public static String getEngimonSpeciesByElement(Element e1, Element e2) throws EngidexNotInitalized {
         return getEngimonByElement(e1, e2).getSpecies();
     }

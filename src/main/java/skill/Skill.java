@@ -7,7 +7,7 @@ import java.util.Objects;
 import javafx.scene.image.Image;
 import main.java.element.Element;
 
-public class Skill {
+public class Skill implements Comparable<Skill> {
     /*** FIELDS ***/
     private String name;                    // Nama Skill
     private String desc;                    // Deskripsi Skill
@@ -171,6 +171,13 @@ public class Skill {
         } else{
             return new Image("./main/resources/mastery_3.png",rw,rh,false,false);
         }
+    }
+
+
+    @Override
+    public int compareTo(Skill o) {
+        /** Membandingkan Base Power Skill */
+        return this.basePower - o.basePower;
     }
 
 }

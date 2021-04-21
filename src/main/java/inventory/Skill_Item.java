@@ -7,7 +7,7 @@ import main.java.element.*;
 import main.java.exception.*;
 import main.java.skill.*;
 
-public class Skill_Item {
+public class Skill_Item implements Comparable<Skill_Item> {
     /*** FIELDS ***/
     private Skill contSkill;    // Skill yang disimpan pada item skill
     private int amount;         // Jumlah item yang dimiliki
@@ -131,8 +131,13 @@ public class Skill_Item {
     public List<Element> getElement(){
         return this.contSkill.getListElement();
     }
-    public Integer getBasePower(){
+    public Integer getBasePower() {
         return this.contSkill.getBasePower();
+    }
+
+    @Override
+    public int compareTo(Skill_Item o) {
+        return this.getSkill().getBasePower() - o.getSkill().getBasePower();
     }
 
 

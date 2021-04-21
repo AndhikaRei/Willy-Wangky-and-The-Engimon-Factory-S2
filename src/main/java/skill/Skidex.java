@@ -1,12 +1,13 @@
 package main.java.skill;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import main.java.element.Element;
 import main.java.exception.*;
 
-public class Skidex {
+public class Skidex implements Iterable<Skill> {
     private static List<Skill> listSkill = new ArrayList<>();
     
     public static List<Skill> getCompatibleSkill(Element el) throws SkidexNotInitalizedException {
@@ -72,6 +73,11 @@ public class Skidex {
         listSkill.add(new Skill("Dark Ascension", "Stalker in The Night", 30, Element.Ground, Element.Ice));
 
         // Skill s66 = new Skill("DOOM","JURUS DAJAL",666,allElements);
+    }
+
+    @Override
+    public Iterator<Skill> iterator() {
+        return Skidex.listSkill.iterator();
     }
 
 }
