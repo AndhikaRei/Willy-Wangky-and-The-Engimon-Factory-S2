@@ -41,8 +41,10 @@ public class Test_Map {
                     System.out.println("Command tidak tersedia");;
                 }
                 if(turn%5==0){
-                    m.spawnRandomEngimon(8);
+                    m.spawnRandomEngimon(7);
                     System.out.println("A new engimon spawned");
+                } if(turn%7==0){
+                    m.evolveAllEngimon();
                 }
             }catch(Exception e){
                 System.out.println(e);

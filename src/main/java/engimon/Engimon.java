@@ -201,6 +201,14 @@ public abstract class Engimon implements Cloneable {
         this.level += this.exp / 100;
         this.exp %= 100;
     }
+    // level up
+    public void addExp(int exp) {
+        this.cumul_exp += exp;
+        this.exp += exp;
+        this.level += this.exp / 100;
+        this.exp %= 100;
+    }
+
     // cek jika engimon 1 elemen
     public boolean isOneElement() { 
         return this.element.size() == 1; 

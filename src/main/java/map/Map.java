@@ -333,6 +333,26 @@ public class Map {
 
     };
 
+    public void evolveAllEngimon(){
+        // I.S. Engimon liar terdefinisi di map
+        // F.S. Engimon bergerak random dengan jarak maksimal 1 dari posisi awal (ke atas, ke bawah, ke kanan, ke kiri, atau diam)
+        // Jika tiles yang dituju valid maka engimon bergerak ke tiles itu, jika engimon bergerak ke tiles player maka throw exception InvalidEngimonMoveToPlayer
+        
+        // Ambil semua posisi engimon beserta speciesnya dari map
+        HashMap<Integer, ArrayList<Integer>> wildEngimon = new HashMap<Integer, ArrayList<Integer>>();
+        wildEngimon = this.getWildEngimonPosition();
+        // Level up semua wild engimon
+        for(Integer id : wildEngimon.keySet()){
+            int i = wildEngimon.get(id).get(0);
+            int j = wildEngimon.get(id).get(1);
+            this.mapelem.get(i).get(j).get_engimon().addExp(100);
+            this.mapelem.get(i).get(j).set_symbol(this.mapelem.get(i).get(j).get_engimon().getEngimonSymbol());
+            System.out.print(this.mapelem.get(i).get(j).get_symbol());
+            System.out.println(this.mapelem.get(i).get(j).get_engimon().getLevel());
+        }
+        System.out.println("All engimon evolved");
+    };
+
 
     public void spawnRandomEngimon(int maxLevel){
         // Fungsi ini digunakan untuk menambahkan pokemon liar ke permainan
