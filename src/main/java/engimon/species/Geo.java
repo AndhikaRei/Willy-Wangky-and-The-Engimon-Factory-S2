@@ -44,7 +44,7 @@ public class Geo extends Engimon {
     @Override
     public Image getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Geo1png",rw,rh,false,false);
+            return new Image("./main/resources/Geo1.png",rw,rh,false,false);
         } else {
             return new Image("./main/resources/Geo2.png",rw,rh,false,false);
         }

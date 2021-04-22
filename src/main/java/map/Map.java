@@ -546,13 +546,15 @@ public class Map {
         // Menambahkan engimon baru 
         // Exception handling sudah ditangani oleh fungsi addEngimon
         try{
-            Engimon newEngimon = Engidex.getEngimonBySpecies(species);
+
+            Engimon newEngimon = Engidex.getEngimonBySpecies(species).cloneEngimon();
             newEngimon.setLevel(randomLevel);
             List<Skill> list = Skidex.getCompatibleSkill(newEngimon.getElement());
             int randomSkill = rand.nextInt(list.size());
             Skill newSkill = list.get(randomSkill);
             if(!newEngimon.getSkill().contains(newSkill) && newEngimon.getSkill().size() < 4){
-                newEngimon.addSkill(list.get(randomSkill));
+                newEngimon.addSkill(newSkill);
+                System.out.println(newSkill.getName());
             }
             this.addEngimon(y, x, newEngimon);
         } catch (Exception e){

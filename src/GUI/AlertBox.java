@@ -44,7 +44,7 @@ public class AlertBox {
         // Inisialisasi dan mengisi alert
         TextInputDialog dialog = new TextInputDialog(null);
         dialog.setTitle("Membuang item");
-        dialog.setHeaderText("Masukkan jumlah item yang ingin dibuang");
+        dialog.setHeaderText("Masukkan nama baru untuk engimon");
         dialog.setContentText(null);
 
         // Set supaya alert memblock tindakan pada window lain
@@ -65,7 +65,7 @@ public class AlertBox {
         // Inisialisasi dan mengisi alert
         TextInputDialog dialog = new TextInputDialog(null);
         dialog.setTitle("Rename Engimon");
-        dialog.setHeaderText("Masukkan nama baru untuk engimon");
+        dialog.setHeaderText("Masukkan jumlah item yang ingin dibuang");
         dialog.setContentText(null);
 
         // Membuat input hanya bisa diisi oleh angka

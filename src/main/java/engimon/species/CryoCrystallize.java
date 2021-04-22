@@ -51,7 +51,7 @@ public class CryoCrystallize extends Engimon {
         if (this.getLevel() < 7){
             return new Image("./main/resources/CryoCrystallize1.png",rw,rh,false,false);
         } else {
-            return new Image("./main/resources/CyroCrystallize2.png",rw,rh,false,false);
+            return new Image("./main/resources/CryoCrystallize2.png",rw,rh,false,false);
         }
     }
 

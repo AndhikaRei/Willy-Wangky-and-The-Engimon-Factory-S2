@@ -23,12 +23,15 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.java.battle.Battle;
 import main.java.element.Element;
+import main.java.engimon.Engidex;
 import main.java.engimon.Engimon;
 import main.java.engimon.species.*;
 import main.java.exception.SkillFullException;
 import main.java.inventory.Skill_Item;
 import main.java.map.*;
 import GUI.BattleConfirm.BattleConfirm;
+import main.java.player.Player;
+import main.java.skill.Skidex;
 import main.java.skill.Skill;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -59,6 +62,7 @@ public class GameController {
     @FXML private Label active_name;
     @FXML private Label active_level;
     @FXML private Label active_skillPower;
+    @FXML private Label turnGUI;
 
     // Background tiap petak peta
     private  Image grass;
@@ -72,35 +76,43 @@ public class GameController {
     // Data peta
     private Map map;
 
+    // Player
+    private Player player;
     // Dummy
-    private List<Engimon> e;
+    // private List<Engimon> e;
+    // private List<Skill_Item> f;
     private Engimon activeEngimon;
-    private List<Skill_Item> f;
+
 
     // Inisialisasi komponen peta
     @FXML private void initialize(){
         // Load resources yang diperlukan sekaligus refresh GUI
+        Engidex.initEngidex();
+        Skidex.initSkill();
         try{
+            this.turn =0;
             this.map = new Map(20, 10, "map.txt");
+            this.player = new Player();
             this.loadImage();
             this.refreshMapGUI();
-            this.turn =0 ;
+            this.activeEngimon = this.player.getActiveEngimon();
 
             // Dummy
-            this.e = new ArrayList<Engimon>();
-            this.e.add(new Cryo("Hello",3));
-            this.e.add(new Pyro("Hello2",2));
-            this.e.add(new Frozen("Helo3",3));
-            this.f = new ArrayList<Skill_Item>();
-            this.f.add(new Skill_Item(new Skill("Fire Breath", "Hah Naga!", 20, Element.Fire)));
-            this.f.add(new Skill_Item(new Skill("Kondum blast", "Rasa Stroberi!", 20, Element.Ice)));
+            //  this.e = new ArrayList<Engimon>();
+            //  this.e.add(new Cryo("Hello",3));
+            //  this.e.add(new Pyro("Hello2",2));
+            //  this.e.add(new Frozen("Helo3",3));
+            // this.f = new ArrayList<Skill_Item>();
+            // this.f.add(new Skill_Item(new Skill("Fire Breath", "Hah Naga!", 20, Element.Fire)));
+            // this.f.add(new Skill_Item(new Skill("Kondum blast", "Rasa Stroberi!", 20, Element.Ice)));
             this.setupInventory();
             this.refreshInventory();
-            this.activeEngimon = this.e.get(0);
+            // this.activeEngimon = this.e.get(0);
             this.refreshActiveEngimonGUI();
 
         } catch ( Exception e){
             AlertBox.displayWarning(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     public void loadImage(){
@@ -129,6 +141,9 @@ public class GameController {
     }
     public void refreshMapGUI(){
         // Melakukan load ulang peta berdasarkan kondisi peta yang ada di array
+        this.turnGUI.setText(Integer.toString(this.turn));
+        // Set ulang turn
+
         // Membersihkan isi gridpane peta
         this.MapGridPane.getChildren().clear();
 
@@ -251,13 +266,15 @@ public class GameController {
     // Masih dummy
     public ObservableList<Engimon> getEngi(){
         ObservableList<Engimon> products = FXCollections.observableArrayList();
-        products.addAll(this.e);
+    //  products.addAll(this.e);
+        products.addAll(this.player.getInventory().getEngimons());
         return products;
     }
     // Masih dummy
     public ObservableList<Skill_Item> getItem(){
         ObservableList<Skill_Item> products = FXCollections.observableArrayList();
-        products.addAll(this.f);
+        // products.addAll(this.f);
+        products.addAll(this.player.getInventory().getItems());
         return products;
     }
 
@@ -276,7 +293,8 @@ public class GameController {
             } else {
                 Integer indexEngimon1 = (Integer) this.table_Engimon.getSelectionModel().getSelectedIndices().get(0);
                 Integer indexEngimon2 = (Integer) this.table_Engimon.getSelectionModel().getSelectedIndices().get(1);
-                Boolean isBreed = BreedConfirm.display(this.e.get(indexEngimon1),this.e.get(indexEngimon2));
+//                Boolean isBreed = BreedConfirm.display(this.e.get(indexEngimon1),this.e.get(indexEngimon2));
+                Boolean isBreed = BreedConfirm.display(this.player.getInventory().getEngimon(indexEngimon1),this.player.getInventory().getEngimon(indexEngimon2));
                 if (isBreed){
                     // Prosedur breeding
                     AlertBox.displayWarning("Kawin kuy");
@@ -329,7 +347,7 @@ public class GameController {
             if ((this.table_Engimon.getSelectionModel().getSelectedIndices()).size() != 1) {
                 throw new Exception("Pilihlah tepat satu engimon untuk menjadi active engimon");
             } else {
-               this.activeEngimon = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
+               this.activeEngimon = this.player.getInventory().getEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex());
                refreshActiveEngimonGUI();
             }
         } catch (Exception e){
@@ -357,7 +375,8 @@ public class GameController {
             if ((this.table_Engimon.getSelectionModel().getSelectedIndices()).size() != 1) {
                 throw new Exception("Pilihlah tepat satu engimon untuk di examine");
             } else {
-                DetailEngimon.display(this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex()));
+                DetailEngimon.display(this.player.getInventory().getEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex()));
+                // DetailEngimon.display(this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex()));
             }
         } catch (Exception e){
             AlertBox.displayWarning(e.getMessage());
@@ -388,13 +407,16 @@ public class GameController {
             if (((this.table_Item.getSelectionModel().getSelectedIndices()).size() != 1) ||((this.table_Item.getSelectionModel().getSelectedIndices()).size() != 1)  ) {
                 throw new Exception("Pilihlah tepat satu item dan satu engimon untuk learn skill");
             } else {
-                Engimon goingToLearn = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
-                Skill_Item skilToLearn = this.f.get(this.table_Item.getSelectionModel().getSelectedIndex());
+                // Engimon goingToLearn = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
+                Engimon goingToLearn = this.player.getInventory().getEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex());
+                // Skill_Item skilToLearn = this.f.get(this.table_Item.getSelectionModel().getSelectedIndex());
+                Skill_Item skilToLearn = this.player.getInventory().getItem(this.table_Item.getSelectionModel().getSelectedIndex());
                 goingToLearn.addSkill(skilToLearn);
             }
         }
         catch (SkillFullException e){
-            Engimon goingToLearn = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
+            //  Engimon goingToLearn = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
+            Engimon goingToLearn = this.player.getInventory().getEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex());
             Integer indexReplace = ReplaceSkill.display(goingToLearn);
             if (indexReplace != null){
                 // Algo replace skill
@@ -423,6 +445,9 @@ public class GameController {
             this.turn++;
             if(this.turn%5==0){
                 this.map.spawnRandomEngimon(10);
+            }
+            if(this.turn%20==0){
+                this.map.evolveAllEngimon();
             }
             this.refreshMapGUI();
             this.map.printMap();

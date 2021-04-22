@@ -475,7 +475,7 @@
                </children></AnchorPane>
          </content>
       </TitledPane>
-      <Label layoutX="1090.0" layoutY="6.0" text="Turn-X">
+      <Label fx:id="turnGUI" layoutX="1090.0" layoutY="6.0" text="Turn-X">
          <font>
             <Font name="Roboto Black" size="36.0" />
          </font>
