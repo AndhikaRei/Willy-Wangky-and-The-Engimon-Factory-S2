@@ -1,5 +1,5 @@
 package main.java.map;
-
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.File;
@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import main.java.exception.*;
 import main.java.engimon.*;
 import main.java.engimon.species.*;
+import main.java.skill.*;
 
 public class Map {
     private int length; // Map Length
@@ -44,6 +45,7 @@ public class Map {
             mapelem.add(new ArrayList<Mapelem>(this.length));
         }
         Engidex.initEngidex();
+        Skidex.initSkill();
         // Read file txt per character
         // File txt only contains basic map symbol 'o' for sea and '-' for grassland
         // ifstream infile(txt);
@@ -347,10 +349,7 @@ public class Map {
             int j = wildEngimon.get(id).get(1);
             this.mapelem.get(i).get(j).get_engimon().addExp(100);
             this.mapelem.get(i).get(j).set_symbol(this.mapelem.get(i).get(j).get_engimon().getEngimonSymbol());
-            System.out.print(this.mapelem.get(i).get(j).get_symbol());
-            System.out.println(this.mapelem.get(i).get(j).get_engimon().getLevel());
         }
-        System.out.println("All engimon evolved");
     };
 
 
@@ -549,6 +548,12 @@ public class Map {
         try{
             Engimon newEngimon = Engidex.getEngimonBySpecies(species);
             newEngimon.setLevel(randomLevel);
+            List<Skill> list = Skidex.getCompatibleSkill(newEngimon.getElement());
+            int randomSkill = rand.nextInt(list.size());
+            Skill newSkill = list.get(randomSkill);
+            if(!newEngimon.getSkill().contains(newSkill) && newEngimon.getSkill().size() < 4){
+                newEngimon.addSkill(list.get(randomSkill));
+            }
             this.addEngimon(y, x, newEngimon);
         } catch (Exception e){
             System.out.println(e);

@@ -51,7 +51,7 @@ public class Engidex {
         e15.setLevel(1);
 
         Engidex.put("Cryo", e1);
-        Engidex.put("CyroCrystallize", e2);
+        Engidex.put("CryoCrystallize", e2);
         Engidex.put("Electro", e3);
         Engidex.put("ElectroCharged", e4);
         Engidex.put("ElectroCrystallize", e5);
