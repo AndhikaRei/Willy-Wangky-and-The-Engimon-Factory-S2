@@ -262,6 +262,24 @@ public abstract class Engimon implements Cloneable {
         }
         
     }
+    public void replaceSkill(int index, Skill_Item skit) throws Exception {
+        Skill temp = skit.getSkill();
+        try {
+            // skill sudah ada
+            if (this.skill.contains(temp)) {
+                throw new SkillAlreadyLearnedException();
+            } else {
+                // indeks tidak sesuai skill yang ada
+                if (this.skill.size() <= index) {
+                    throw new IndexOutOfBoundsException();
+                }
+                temp = skit.learn(this.element);
+                this.skill.set(index, temp);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 
     // print engimon di cli
     public void printEngimon() {
