@@ -19,11 +19,16 @@ public class Test_player {
         whotau.addExp(10000);
         Engimon chongyun = new Cryo("Chongyun",3);
         chongyun.addExp(10000);
-        test.getInventory().addEngimon(neula);
-        test.getInventory().addEngimon(diluc);
-        test.getInventory().addEngimon(bennet);
-        test.getInventory().addEngimon(whotau);
-        test.getInventory().addEngimon(chongyun);
+        try{
+            test.getInventory().addEngimon(diluc);
+            test.getInventory().addEngimon(neula);
+            test.getInventory().addEngimon(bennet);
+            test.getInventory().addEngimon(whotau);
+            test.getInventory().addEngimon(chongyun);
+        }catch (Exception e){
+            System.out.println("Something Went Wrong");
+        }
+
         test.getInventory().printInventory();
 
         Skill_Item item = new Skill_Item();
@@ -35,7 +40,13 @@ public class Test_player {
         }
 
         Engimon illegal = new HydroCrystallize("illegal",3);
-        test.getInventory().addEngimon(illegal);
+        try{
+            test.getInventory().addEngimon(illegal);
+        }catch (Exception e){
+            System.out.println("Something Went Wrong");
+        }
+
+
 
 
         try {

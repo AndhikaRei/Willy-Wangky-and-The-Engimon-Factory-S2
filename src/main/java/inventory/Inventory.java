@@ -20,7 +20,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     /** modify data**/
     public void addEngimon(E Engimon)throws Exception{
         if(this.getAmount() >100){
-            throw Exception;
+            throw new Exception();
         }
         this.ListEngimon.add(Engimon);
         this.sortEngimons();
@@ -52,7 +52,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
 //                //.ifPresent(found = true);
 
         if(this.getAmount() >100){
-            throw Exception;
+            throw new Exception();
         }
 
         for(int i = 0; i< this.ListItem.size();i++){
@@ -121,7 +121,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     }
     public int getAmount(){
         int countItem = 0;
-        for(int i = 0; this.ListItem.size();i++){
+        for(int i = 0;i < this.ListItem.size();i++){
             countItem += this.ListItem.get(i).getAmount();
         }
         return this.ListEngimon.size() + countItem;

@@ -1,6 +1,8 @@
 package main.java.player;
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+
 import main.java.engimon.*;
 import main.java.engimon.species.*;
 import main.java.exception.ItemNotEnoughAmountException;
@@ -19,12 +21,15 @@ public class Player {
         Engimon a3 = new Electro("Electro1",3);
         Engimon a4 = new Geo("Geo1",3);
         Engimon a5 = new Cryo("Cryo1",3);
-
-        this.inventoryEntity.addEngimon(a1);
-        this.inventoryEntity.addEngimon(a2);
-        this.inventoryEntity.addEngimon(a3);
-        this.inventoryEntity.addEngimon(a4);
-        this.inventoryEntity.addEngimon(a5);
+        try{
+            this.inventoryEntity.addEngimon(a2);
+            this.inventoryEntity.addEngimon(a1);
+            this.inventoryEntity.addEngimon(a3);
+            this.inventoryEntity.addEngimon(a4);
+            this.inventoryEntity.addEngimon(a5);
+        }catch (Exception e){
+            System.out.println("Something went Wrong");
+        }
 
         this.activeEngimon = this.inventoryEntity.getEngimon(0);
     }
