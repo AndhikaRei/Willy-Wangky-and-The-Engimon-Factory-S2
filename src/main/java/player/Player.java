@@ -105,9 +105,18 @@ public class Player {
     }
 
     public static Player load(String JsonFIle )throws IOException   {
+
         java.net.URL url = JsonFIle.getClass().getResource(JsonFIle);
-        File jsonFile = new File(url.getFile());
-        System.out.println("Full path of file: " + jsonFile);
+        try{
+            File jsonFile = new File(url.getFile());
+            System.out.println("Full path of file: " + jsonFile);
+        }catch (Exception e){
+            System.out.println("File Not Found");
+            throw e;
+        }
+
+
+
 
         try{
             BufferedReader br = new BufferedReader(new FileReader(JsonFIle));
@@ -115,7 +124,9 @@ public class Player {
             return temp;
         }catch (IOException e)
         {
+
             e.printStackTrace();
+
             throw e;
         }
 
