@@ -21,13 +21,13 @@ public class Test_player {
             System.out.print(e.getMessage());
         }
         try {
-            test = Player.load("playerSaveFile.json");
+            test = Player.load("./playerSaveFile.json");
         }catch (Exception e){
             System.out.print(e.getMessage());
         }
 
 
-
-        System.out.print("wkkw");
+        test.getInventory().printInventory();
+        //System.out.print("wkkw");
     }
 }

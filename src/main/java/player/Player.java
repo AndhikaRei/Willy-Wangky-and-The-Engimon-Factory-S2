@@ -106,18 +106,14 @@ public class Player {
 
     public static Player load(String JsonFIle )throws IOException   {
 
-        java.net.URL url = JsonFIle.getClass().getResource(JsonFIle);
+        //java.net.URL url = JsonFIle.getClass().getResource(JsonFIle);
         try{
-            File jsonFile = new File(url.getFile());
+            File jsonFile = new File(JsonFIle);
             System.out.println("Full path of file: " + jsonFile);
         }catch (Exception e){
             System.out.println("File Not Found");
             throw e;
         }
-
-
-
-
         try{
             BufferedReader br = new BufferedReader(new FileReader(JsonFIle));
             Player temp = new Gson().fromJson(br, Player.class);
