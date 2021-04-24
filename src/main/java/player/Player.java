@@ -1,5 +1,5 @@
 package main.java.player;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.*;
 import main.java.engimon.*;
 import main.java.engimon.species.*;
@@ -26,6 +26,24 @@ public class Player {
 
         this.activeEngimon = this.inventoryEntity.getEngimon(0);
     }
+
+    public Player(String JsonFIle ){
+        java.net.URL url = this.getClass().getResource(JsonFIle);
+        File jsonFile = new File(url.getFile());
+        System.out.println("Full path of file: " + jsonFile);
+
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(JsonFIle));
+            BufferedReader br = new BufferedReader(new FileReader("/tmp/test.json"));
+            Player temp = new Gson().fromJson(br, Player.class);
+            this = temp;
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public Inventory getInventory(){
         return this.inventoryEntity;
@@ -54,6 +72,29 @@ public class Player {
         String filePath = "./"
         gson.toJson(this, new FileWriter(filePath));
         System.out.println(new Gson().toJson(this));
+    }
+
+    public static void save(Player player){
+        Gson gson = new Gson();
+        String filePath = "./"
+        gson.toJson(player, new FileWriter(filePath));
+        System.out.println(new Gson().toJson(player));
+    }
+
+    public static Player load(String JsonFIle ){
+        java.net.URL url = this.getClass().getResource(JsonFIle);
+        File jsonFile = new File(url.getFile());
+        System.out.println("Full path of file: " + jsonFile);
+
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(JsonFIle));
+            BufferedReader br = new BufferedReader(new FileReader("/tmp/test.json"));
+            Player temp = new Gson().fromJson(br, Player.class);
+            return temp;
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 }
