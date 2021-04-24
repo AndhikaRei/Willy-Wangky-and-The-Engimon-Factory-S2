@@ -1,0 +1,25 @@
+^^^^^^^^^^wooooooooo
+^^^^^^^^^^oooooooooo
+^^^^^^^^^Poooooooooo
+^^^^f^^^FXooooooooWo
+^^^^^^^^^^oooooooooS
+----------****c*****
+-----g----**********
+G----G----**********
+----------**********
+-e----l---**********
+20 10
+Player 2 9
+"Pyro" 3 9
+Total Engimon: 11
+0,10,"Hydro sp.",1,"Hydro","No Parent",[Water],{("Purification!","Aqua approved.",20,1,[Water]),("Gush","Ciuhh!",20,1,[Water]),},6,0,500,"Demo sonnan ja dame~"
+3,4,"Pyro sp.",1,"Pyro","No Parent",[Fire],{("Explosion!","Megumin approved.",20,1,[Fire]),("Hand of God","Tangan Madonna",30,1,[Fire, Ice]),},6,0,500,"Se no!~"
+3,8,"Pyro sp.",1,"Pyro","No Parent",[Fire],{("Explosion!","Megumin approved.",20,1,[Fire]),("Hand of God","Tangan Madonna",30,1,[Fire, Ice]),},11,0,300,"Se no!~"
+3,18,"Hydro sp.",1,"Hydro","No Parent",[Water],{("Purification!","Aqua approved.",20,1,[Water]),("Gush","Ciuhh!",20,1,[Water]),},13,0,500,"Demo sonnan ja dame~"
+4,19,"Frozen sp.",1,"Frozen","No Parent",[Water, Ice],{("Let it go~","Elsa approved.",20,1,[Water, Ice]),("Freezing Field","Badai salju",30,1,[Ice]),},14,0,400,"Kami-sama arigatou~"
+5,14,"Melt sp.",1,"Melt","No Parent",[Fire, Ice],{("Half-Cold Half-Hot","Todoroki not approve.",20,1,[Fire, Ice]),},6,0,500,"Fuwafuwaru fuwafuwari~"
+6,5,"Geo sp.",1,"Geo","No Parent",[Ground],{("Tanah tinggi!","Ez cover.",20,1,[Ground]),("Life Break","Loncat Indah",30,1,[Fire, Ground]),},6,0,500,"Kokoro wa shinka suru yo~"
+7,0,"Geo sp.",1,"Geo","No Parent",[Ground],{("Tanah tinggi!","Ez cover.",20,1,[Ground]),("Life Break","Loncat Indah",30,1,[Fire, Ground]),},12,0,200,"Kokoro wa shinka suru yo~"
+7,5,"Geo sp.",1,"Geo","No Parent",[Ground],{("Tanah tinggi!","Ez cover.",20,1,[Ground]),("Life Break","Loncat Indah",30,1,[Fire, Ground]),},14,0,300,"Kokoro wa shinka suru yo~"
+9,1,"Electro sp.",1,"Electro","No Parent",[Electric],{("Thunderstorm","Lightning goes brrr.",20,1,[Electric]),("Static Storm","I'm ecstatic!",30,1,[Electric]),},10,0,200,"Mou sonnan ja hora~"
+9,6,"Overload sp.",1,"Overload","No Parent",[Fire, Electric],{("Korsleting","Api berpadu dengan Listrik",20,1,[Fire, Electric]),("Mana Void","Duarr",30,1,[Electric, Ground]),},9,0,100,"Anata ga namae wo yobu~"
