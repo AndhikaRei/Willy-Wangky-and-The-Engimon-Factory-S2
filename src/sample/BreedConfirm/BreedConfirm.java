@@ -1,13 +1,12 @@
-package GUI.BreedConfirm;
+package sample.BreedConfirm;
 
-import GUI.BattleConfirm.BattleConfirmController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.java.engimon.Engimon;
-import GUI.AlertBox;
+import sample.AlertBox;
 
 public class BreedConfirm {
     // Menampilkan konfirmasi breeding
@@ -15,7 +14,7 @@ public class BreedConfirm {
         try{
             Stage breedingStage = new Stage();
             breedingStage.initModality(Modality.APPLICATION_MODAL);
-            FXMLLoader breedingLoader = new FXMLLoader(GUI.BreedConfirm.BreedConfirm.class.getResource("BreedConfirm.fxml"));
+            FXMLLoader breedingLoader = new FXMLLoader(sample.BreedConfirm.BreedConfirm.class.getResource("BreedConfirm.fxml"));
             AnchorPane root = breedingLoader.load();
             BreedConfirmController breedConfirmController = breedingLoader.getController();
             breedConfirmController.loadData(ally,enemy);

@@ -1,11 +1,10 @@
-package GUI.Game;
-import java.util.ArrayList;
+package sample.Game;
 import java.util.List;
 
-import GUI.AlertBox;
-import GUI.BreedConfirm.BreedConfirm;
-import GUI.DetailEngimon.DetailEngimon;
-import GUI.ReplaceSkill.ReplaceSkill;
+import sample.AlertBox;
+import sample.BreedConfirm.BreedConfirm;
+import sample.DetailEngimon.DetailEngimon;
+import sample.ReplaceSkill.ReplaceSkill;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,14 +24,12 @@ import main.java.battle.Battle;
 import main.java.element.Element;
 import main.java.engimon.Engidex;
 import main.java.engimon.Engimon;
-import main.java.engimon.species.*;
 import main.java.exception.SkillFullException;
 import main.java.inventory.Skill_Item;
 import main.java.map.*;
-import GUI.BattleConfirm.BattleConfirm;
+import sample.BattleConfirm.BattleConfirm;
 import main.java.player.Player;
 import main.java.skill.Skidex;
-import main.java.skill.Skill;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
