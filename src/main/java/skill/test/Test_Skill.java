@@ -13,6 +13,9 @@ public class Test_Skill {
 
         Skill s1 = new Skill("Fire Breath", "Hah Naga!", 20, Element.Fire);
         Skill s2 = new Skill(s1);
+        System.out.println(s1);
+        System.out.println(s2);
+
 
         s1.levelUp();
         s1.levelUp();
