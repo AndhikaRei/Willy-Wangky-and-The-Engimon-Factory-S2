@@ -284,6 +284,10 @@ public class GameController {
                 if (isBreed){
                     // Prosedur breeding
                     Engimon engi3 = Breeding_Fountain.startBreeding(engi1,engi2);
+                    String newName = AlertBox.displayAskNewName();
+                    if(newName != null){
+                        engi3.setName(newName);
+                    }
                     this.player.getInventory().addEngimon(engi3);
                     this.refreshInventory();
                     this.refreshActiveEngimonGUI();
@@ -467,6 +471,10 @@ public class GameController {
                 if (Battle.playerEngimonWin(this.player.getActiveEngimon(), enemy)){
                     AlertBox.displayInfo("Anda berhasil menang", "Pesan Kemenangan");
                     this.player.getActiveEngimon().addExp(1000);
+                    String newName = AlertBox.displayAskNewName();
+                    if(newName != null){
+                        enemy.setName(newName);
+                    }
                     this.player.getInventory().addEngimon(enemy);
                     this.player.getInventory().addItem(Battle.getEnemySkillItem(enemy));
                     this.map.removeEngimon(x.get(),y.get());
