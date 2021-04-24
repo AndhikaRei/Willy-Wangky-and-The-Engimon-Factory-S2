@@ -118,7 +118,17 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     public E getEngimon(Integer i){
         return this.ListEngimon.get(i);
     }
-
+    public E getHighestLevel(){
+        E maxengimon = this.ListEngimon.get(0);
+        int maxlvl = this.ListEngimon.get(0).getLevel();
+        for(int i = 0;i<this.ListEngimon.size();i++){
+            if(maxlvl < this.ListEngimon.get(i).getLevel()){
+                maxlvl =     this.ListEngimon.get(i).getLevel();
+                maxengimon = this.ListEngimon.get(i);
+            }
+        }
+        return maxengimon;
+    }
     /** printer**/
     public void printItems(){
         System.out.println("Items : ");

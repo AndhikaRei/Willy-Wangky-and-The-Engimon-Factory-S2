@@ -339,11 +339,16 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon>, Printab
 
     @Override
     public int compareTo(Engimon E) {
-        if(Element.getId(this.getElement().get(0)) - Element.getId(E.getElement().get(0)) == 0){
+        if(Element.toInt(this.getElement()) - Element.toInt(E.getElement()) == 0 ){
             return this.getLevel() - E.getLevel();
-        }else{
-            return Element.getId(this.getElement().get(0)) - Element.getId(E.getElement().get(0));
         }
+        return Element.toInt(this.getElement()) - Element.toInt(E.getElement());
+
+        //        if(Element.getId(this.getElement().get(0)) - Element.getId(E.getElement().get(0)) == 0){
+//            return this.getLevel() - E.getLevel();
+//        }else{
+//            return Element.getId(this.getElement().get(0)) - Element.getId(E.getElement().get(0));
+//        }
 
 //        if(this.getElement() == E.getElement()){
 //            return this.getCumulExp() - E.getCumulExp();
