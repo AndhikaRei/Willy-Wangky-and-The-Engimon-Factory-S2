@@ -24,14 +24,14 @@ public class Test_Skill {
             System.out.println("Yes");
         }
         System.out.println(s1.totalDamage());
-        s1.showSkill();
-        s2.showSkill();
+        s1.print();
+        s2.print();
 
         List<Skill> listSk;
         try {
             listSk = Skidex.getCompatibleSkill(Element.Water);
             for (Skill sk : listSk) {
-                sk.showSimpleSkill();
+                sk.printSimple();
             }
         } catch (SkidexNotInitalizedException e) {
             e.printStackTrace();

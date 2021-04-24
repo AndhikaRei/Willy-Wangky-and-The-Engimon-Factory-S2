@@ -6,8 +6,9 @@ import java.util.Objects;
 
 import javafx.scene.image.Image;
 import main.java.element.Element;
+import main.java.interfaces.Printable;
 
-public class Skill implements Comparable<Skill>, Cloneable {
+public class Skill implements Comparable<Skill>, Cloneable, Printable {
     /*** FIELDS ***/
     private String name;                    // Nama Skill
     private String desc;                    // Deskripsi Skill
@@ -141,7 +142,7 @@ public class Skill implements Comparable<Skill>, Cloneable {
     }
 
     /** Printer **/
-    public void showSkill() {
+    public void print() {
         System.out.println("-- " + name + " --");
         System.out.println(desc);
         System.out.println("BasePower    : " + basePower);
@@ -156,7 +157,7 @@ public class Skill implements Comparable<Skill>, Cloneable {
         System.out.println("");
     }
 
-    public void showSimpleSkill() {
+    public void printSimple() {
         System.out.println("Skill : " + name);
         System.out.println("BP/ML : " + basePower + "/" + masteryLevel);
         System.out.print("EL    : ");
@@ -177,8 +178,9 @@ public class Skill implements Comparable<Skill>, Cloneable {
         if (!(o instanceof Skill)) {
             return false;
         }
-        Skill skill = (Skill) o;
-        return Objects.equals(name, skill.name);
+        Skill sk = (Skill) o;
+        // System.out.println("zzz");
+        return this.name.equals(sk.name);
     }
 
     @Override

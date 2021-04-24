@@ -36,7 +36,7 @@ public class Breeding_Fountain {
         
         // Cari skill yang mungkin bisa diwariskan
         List<Skill> calonSkill = sortingSkills(parentA, parentB);
-
+        
         // Random module
         Random rand = new Random();
 
@@ -103,6 +103,7 @@ public class Breeding_Fountain {
         anak.setParent(ortu);
         anak.setLivesIsWild(false);
         addSkillAnak(anak, calonSkill);
+        
     }
 
     /**
@@ -145,6 +146,7 @@ public class Breeding_Fountain {
             }
 
         }
+        
 
         return skillChild.stream()
             .sorted((s1,s2) -> s2.getMasteryLevel().compareTo(s1.getMasteryLevel()))
@@ -160,11 +162,13 @@ public class Breeding_Fountain {
     private static void addSkillAnak(Engimon child, List<Skill> calonSkill) {
         int i = 0;
         List<Skill> childSkill = child.getSkill();
+        
 
         // Selama skill anak belum 4 dan masih ada skill yang tersedia
         while (child.getSkill().size() <= 4 && i < calonSkill.size()) {
             Skill sk = calonSkill.get(i);
             int idx = childSkill.indexOf(sk);
+            
             if (idx == -1) {
                 // Belum ada skill
                 try {
@@ -180,9 +184,11 @@ public class Breeding_Fountain {
                 // while (child.getSkill().get(idx).getMasteryLevel() < sk.getMasteryLevel()) {
                 //     child.getSkill().get(idx).levelUp();
                 // }  
+                
             }
             i++;
         }
+        
     }
 
     /**
