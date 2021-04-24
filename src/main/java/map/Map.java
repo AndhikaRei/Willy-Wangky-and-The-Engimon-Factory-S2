@@ -249,6 +249,68 @@ public class Map {
         }
     }
 
+    // ctor
+    public void loadMap(String txt) throws Exception{
+        // I.S. m dan n terdefinisi untuk length dan width peta
+        int i, j;
+        // Read file txt per character
+        // File txt only contains basic map symbol 'o' for sea and '-' for grassland
+        // ifstream infile(txt);
+        i = 0;
+        j = 0;
+        // Set x, y, symbol, and type for each MapElem
+        String filename = "src\\main\\resources\\".concat(txt);
+        File file=new File(filename);
+        Scanner sc = new Scanner(file);
+        while(sc.hasNextLine()){
+            String currLine = sc.nextLine();
+            if(i<10){
+                for(j=0; j<currLine.length(); j++){
+                    if(currLine.charAt(j) != '\n'){
+                        mapelem.get(i).get(j).set_symbol(currLine.charAt(j));
+                        if(currLine.charAt(j)!= 'P' && currLine.charAt(j)!= 'X' && currLine.charAt(j)!= '^'&& currLine.charAt(j)!= '-'&& currLine.charAt(j)!= 'o'&& currLine.charAt(j)!= '*'){
+                            // buat debug doang
+                            mapelem.get(i).get(j).set_engimon_exist(true);
+                        }else{
+                            mapelem.get(i).get(j).set_engimon_exist(false);
+                        }
+                    }
+                }
+            }else if(i==10){
+                Scanner scanner = new Scanner(currLine);
+                List<Integer> list = new ArrayList<Integer>();
+                while (scanner.hasNextInt()) {
+                    list.add(scanner.nextInt());
+                }
+                this.length = list.get(0);
+                this.width = list.get(1);
+            }else if(i==11){
+                currLine = currLine.substring(7);
+                Scanner scanner = new Scanner(currLine);
+                this.player_pos = new ArrayList<Integer>(2);
+                while (scanner.hasNextInt()) {
+                    this.player_pos.add(scanner.nextInt());
+                }
+            }else if(i==12){
+                this.active_engimon_species = currLine.substring(1, currLine.indexOf(" ")-1);
+                this.active_engimon_pos = new ArrayList<Integer>(2);
+                currLine = currLine.substring(currLine.indexOf(" ")+1);
+                Scanner scanner = new Scanner(currLine);
+                while (scanner.hasNextInt()) {
+                    this.active_engimon_pos.add(scanner.nextInt());
+                }
+            }else if(i==13){
+                currLine = currLine.substring(15);
+                this.total_engimon = Integer.parseInt(currLine);
+            }else{
+                // do nothing
+            }
+            i++;
+        }
+        System.out.println("Loaded map from saved.txt");
+        printMap();
+    };
+
     // // Engimon Handlers
     public HashMap<Integer, ArrayList<Integer>> getWildEngimonPosition(){
         // I.S. Map terdefinisi dan keberadaan engimon liar di Map juga terdefinisi

@@ -39,6 +39,8 @@ public class Test_Map {
                     e.printEngimon();
                 }else if(command == 'x'){
                     m.saveMap();
+                }else if(command == 't'){
+                    m.loadMap("save.txt");
                 }else{
                     System.out.println("Command tidak tersedia");;
                 }
