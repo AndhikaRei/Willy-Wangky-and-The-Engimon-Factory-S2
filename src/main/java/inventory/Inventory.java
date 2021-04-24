@@ -73,6 +73,11 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         }
         sortItems();
     }
+    public void throwItem(int i, int n){
+        this.ListItem.get(i);
+        this.ListItem.remove(i);
+    }
+
     public void deleteItem(int i){
         this.ListItem.remove(i);
     }

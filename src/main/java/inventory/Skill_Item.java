@@ -75,6 +75,10 @@ public class Skill_Item implements Comparable<Skill_Item> {
         } 
     }
 
+    public void decreaseAmount(int n) throws throws ItemNotEnoughAmountException{
+
+    }
+
     /** Menambah jumlah amount skill item sebanyak 1*/
     public void addAmount() {
         amount++;
