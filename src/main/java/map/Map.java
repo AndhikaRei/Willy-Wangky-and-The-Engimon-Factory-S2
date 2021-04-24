@@ -185,6 +185,16 @@ public class Map {
         // Cek posisi active engimon
         if(this.isAnyActiveEngimon()){
             this.mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).set_symbol('X');
+        }else{
+            if(mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).get_type().equals("grassland") && !mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).isEngimonExist()){
+                mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).set_symbol('-');
+            } else if(mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).get_type().equals("mountains")&& !mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).isEngimonExist()){
+                mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).set_symbol('^');
+            } else if(mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).get_type().equals("sea")&& !mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).isEngimonExist()){
+                mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).set_symbol('o');
+            } else if(mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).get_type().equals("tundra")&& !mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).isEngimonExist()){
+                mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).set_symbol('*');
+            }
         }
         // Cek posisi player
         this.mapelem.get(player_pos.get(0)).get(player_pos.get(1)).set_symbol('P');
@@ -752,7 +762,6 @@ public class Map {
         // Jika tidak throw exception sesuai kondisi
 
         // Cek apakah player memiliki active engimon dan apakah posisi player yang sekarang adalah posisi yang valid untuk ditempati active engimon jika player bergerak
-        if(isAnyActiveEngimon()){
             if(c == 'w'){
                 // Player ingin bergerak ke atas
                 if(isValidPosition(player_pos.get(0)-1, player_pos.get(1), true) && mapelem.get(player_pos.get(0)-1).get(player_pos.get(1)).isEngimonExist()){
@@ -814,7 +823,6 @@ public class Map {
                     }
                 }
             }
-        }
         // Setelah player memberikan command w,a,s,d maka turn akan bertambah
         // Lakukan randomisasi gerakan untuk setiap engimon liar yang ada di map
         try{

@@ -41,7 +41,9 @@ public class Test_Map {
                     m.saveMap();
                 }else if(command == 't'){
                     m.loadMap("save.txt");
-                }else{
+                }else if(command == 'k'){
+                    m.set_active_engimon_species("undefined");
+                } else{
                     System.out.println("Command tidak tersedia");;
                 }
                 if(turn%5==0){
