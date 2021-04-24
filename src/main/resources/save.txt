@@ -1,0 +1,21 @@
+^^^^^^^^^^oooooooooo
+^^^^^^^^^^oowooooooo
+^^^^^^^^^^oooooooooo
+^^^^^^^^^^oooooooooo
+^^^^f^^^^^wooooooooo
+----------*c********
+----PX----**********
+----------**********
+-g--------**********
+--g-h-----**********
+20 10
+Player 6 4
+"Pyro" 6 5
+Total Engimon: 7
+1,12,"Hydro sp.",1,"Hydro","No Parent",[Water],{("Purification!","Aqua approved.",20,1,[Water]),("Rupture","Bocor Bocor",30,1,[Fire, Water]),},9,0,200,"Demo sonnan ja dame~"
+4,4,"Pyro sp.",1,"Pyro","No Parent",[Fire],{("Explosion!","Megumin approved.",20,1,[Fire]),},3,0,200,"Se no!~"
+4,10,"Hydro sp.",1,"Hydro","No Parent",[Water],{("Purification!","Aqua approved.",20,1,[Water]),("Rupture","Bocor Bocor",30,1,[Fire, Water]),},3,0,200,"Demo sonnan ja dame~"
+5,11,"Melt sp.",1,"Melt","No Parent",[Fire, Ice],{("Half-Cold Half-Hot","Todoroki not approve.",20,1,[Fire, Ice]),},3,0,200,"Fuwafuwaru fuwafuwari~"
+8,1,"Geo sp.",1,"Geo","No Parent",[Ground],{("Tanah tinggi!","Ez cover.",20,1,[Ground]),("Echo Slam","1 Million Dollar Slam",30,1,[Ground]),},3,0,200,"Kokoro wa shinka suru yo~"
+9,2,"Geo sp.",1,"Geo","No Parent",[Ground],{("Tanah tinggi!","Ez cover.",20,1,[Ground]),("Echo Slam","1 Million Dollar Slam",30,1,[Ground]),},9,0,0,"Kokoro wa shinka suru yo~"
+9,4,"ElectroCrystallize sp.",1,"ElectroCrystallize","No Parent",[Electric, Ground],{("Golem Petir!","Ez tank 3.",20,1,[Electric, Ground]),("Static Storm","I'm ecstatic!",30,1,[Electric]),},8,0,100,"Unmei no itazura demo~"

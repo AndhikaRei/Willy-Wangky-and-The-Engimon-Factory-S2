@@ -6,7 +6,8 @@ import java.io.File;
 import java.util.Scanner;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
-
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
 import main.java.exception.*;
 import main.java.engimon.*;
 import main.java.engimon.species.*;
@@ -83,6 +84,7 @@ public class Map {
         // Initialize default active engimon species
         this.active_engimon_species = "Pyro";
         this.mapelem.get(player_pos.get(0)).get(player_pos.get(1)).set_symbol('P');
+        this.mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).set_symbol('X');
         // set total wild engimon on map = 0 at the beginning
         this.total_engimon = 0;
         this.rand = new Random();
@@ -186,6 +188,128 @@ public class Map {
         }
         // Cek posisi player
         this.mapelem.get(player_pos.get(0)).get(player_pos.get(1)).set_symbol('P');
+    };
+
+    public void saveMap(){
+        // I.S. Map terdefinisi
+        // F.S. File akan disimpan dalam txt
+        this.updateMap();
+        try {
+            FileWriter myWriter = new FileWriter("src\\main\\resources\\save.txt");
+            String textToSave;
+            StringBuilder sb = new StringBuilder();
+            // Save map symbol
+            for(int i = 0; i<width; i++){
+                for(int j= 0; j<length ; j++){
+                    sb.append(this.mapelem.get(i).get(j).get_symbol());
+                }
+                // Print newline
+                sb.append('\n');
+            }
+            // Save length width
+            sb.append(length).append(" ").append(width).append('\n');
+            // Save player position
+            sb.append("Player ").append(player_pos.get(0)).append(" ").append(player_pos.get(1)).append('\n');
+            // Save active engimon position
+            sb.append("\"").append(active_engimon_species).append("\"").append(" ").append(active_engimon_pos.get(0)).append(" ").append(active_engimon_pos.get(1)).append('\n');
+            // Save total engimon
+            sb.append("Total Engimon: ").append(total_engimon).append('\n');
+            // Save mapelem that contain engimon
+            HashMap<Integer, ArrayList<Integer>> wildEngimon = getWildEngimonPosition();
+            for(Integer id : wildEngimon.keySet()){
+                int i = wildEngimon.get(id).get(0);
+                int j = wildEngimon.get(id).get(1);
+                Engimon currEngimon = this.mapelem.get(i).get(j).get_engimon();
+                sb.append(i).append(',').append(j).append(',')
+                    .append("\"").append(currEngimon.getName()).append("\"").append(',')
+                    .append(currEngimon.getLives()).append(',')
+                    .append("\"").append(currEngimon.getSpecies()).append("\"").append(',')
+                    .append("\"").append(currEngimon.getParent().stringParent()).append("\"").append(',')
+                    .append(currEngimon.getElement().toString()).append(",{");
+                for(Skill skill : currEngimon.getSkill()){
+                    sb.append('(')
+                        .append("\"").append(skill.getName()).append("\"").append(',')
+                        .append("\"").append(skill.getDesc()).append("\"").append(',')
+                        .append(skill.getBasePower()).append(',')
+                        .append(skill.getMasteryLevel()).append(',')
+                        .append(skill.getListElement().toString()).append("),");
+                }
+                sb.append("},")
+                    .append(currEngimon.getLevel()).append(',')
+                    .append(currEngimon.getExp()).append(',')
+                    .append(currEngimon.getCumulExp()).append(',')
+                    .append("\"").append(currEngimon.getSlogan()).append("\"").append('\n');
+            }
+            textToSave = sb.toString();
+            myWriter.write(textToSave);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    // ctor
+    public void loadMap(String txt) throws Exception{
+        // I.S. m dan n terdefinisi untuk length dan width peta
+        int i, j;
+        // Read file txt per character
+        // File txt only contains basic map symbol 'o' for sea and '-' for grassland
+        // ifstream infile(txt);
+        i = 0;
+        j = 0;
+        // Set x, y, symbol, and type for each MapElem
+        String filename = "src\\main\\resources\\".concat(txt);
+        File file=new File(filename);
+        Scanner sc = new Scanner(file);
+        while(sc.hasNextLine()){
+            String currLine = sc.nextLine();
+            if(i<10){
+                for(j=0; j<currLine.length(); j++){
+                    if(currLine.charAt(j) != '\n'){
+                        mapelem.get(i).get(j).set_symbol(currLine.charAt(j));
+                        if(currLine.charAt(j)!= 'P' && currLine.charAt(j)!= 'X' && currLine.charAt(j)!= '^'&& currLine.charAt(j)!= '-'&& currLine.charAt(j)!= 'o'&& currLine.charAt(j)!= '*'){
+                            // buat debug doang
+                            mapelem.get(i).get(j).set_engimon_exist(true);
+                        }else{
+                            mapelem.get(i).get(j).set_engimon_exist(false);
+                        }
+                    }
+                }
+            }else if(i==10){
+                Scanner scanner = new Scanner(currLine);
+                List<Integer> list = new ArrayList<Integer>();
+                while (scanner.hasNextInt()) {
+                    list.add(scanner.nextInt());
+                }
+                this.length = list.get(0);
+                this.width = list.get(1);
+            }else if(i==11){
+                currLine = currLine.substring(7);
+                Scanner scanner = new Scanner(currLine);
+                this.player_pos = new ArrayList<Integer>(2);
+                while (scanner.hasNextInt()) {
+                    this.player_pos.add(scanner.nextInt());
+                }
+            }else if(i==12){
+                this.active_engimon_species = currLine.substring(1, currLine.indexOf(" ")-1);
+                this.active_engimon_pos = new ArrayList<Integer>(2);
+                currLine = currLine.substring(currLine.indexOf(" ")+1);
+                Scanner scanner = new Scanner(currLine);
+                while (scanner.hasNextInt()) {
+                    this.active_engimon_pos.add(scanner.nextInt());
+                }
+            }else if(i==13){
+                currLine = currLine.substring(15);
+                this.total_engimon = Integer.parseInt(currLine);
+            }else{
+                // do nothing
+            }
+            i++;
+        }
+        System.out.println("Loaded map from saved.txt");
+        printMap();
     };
 
     // // Engimon Handlers
@@ -546,7 +670,6 @@ public class Map {
         // Menambahkan engimon baru 
         // Exception handling sudah ditangani oleh fungsi addEngimon
         try{
-
             Engimon newEngimon = Engidex.getEngimonBySpecies(species).cloneEngimon();
             newEngimon.setLevel(randomLevel);
             List<Skill> list = Skidex.getCompatibleSkill(newEngimon.getElement());

@@ -47,6 +47,8 @@ public class GameController {
     @FXML private Button btn_exit;
 
     // Tabel (Inventory)
+    @FXML private TitledPane paneInventoryEngimon;
+    @FXML private TitledPane paneInventorySkillItem;
     @FXML private TableView table_Engimon;
     @FXML private TableView table_Item;
 
@@ -73,12 +75,8 @@ public class GameController {
     // Data peta
     private Map map;
 
-    // Player
+    // Data Player
     private Player player;
-    // Dummy
-    // private List<Engimon> e;
-    // private List<Skill_Item> f;
-    private Engimon activeEngimon;
 
 
     // Inisialisasi komponen peta
@@ -92,19 +90,8 @@ public class GameController {
             this.player = new Player();
             this.loadImage();
             this.refreshMapGUI();
-            this.activeEngimon = this.player.getActiveEngimon();
-
-            // Dummy
-            //  this.e = new ArrayList<Engimon>();
-            //  this.e.add(new Cryo("Hello",3));
-            //  this.e.add(new Pyro("Hello2",2));
-            //  this.e.add(new Frozen("Helo3",3));
-            // this.f = new ArrayList<Skill_Item>();
-            // this.f.add(new Skill_Item(new Skill("Fire Breath", "Hah Naga!", 20, Element.Fire)));
-            // this.f.add(new Skill_Item(new Skill("Kondum blast", "Rasa Stroberi!", 20, Element.Ice)));
             this.setupInventory();
             this.refreshInventory();
-            // this.activeEngimon = this.e.get(0);
             this.refreshActiveEngimonGUI();
 
         } catch ( Exception e){
@@ -120,26 +107,26 @@ public class GameController {
         this.mountain = new Image("main/resources/mountain.png",35,35,false,false);
     }
     public void refreshActiveEngimonGUI(){
-        if(this.activeEngimon == null){
+        if(player.getActiveEngimon() == null){
             this.active_engimonPane.setVisible(false);
         } else {
-            this.active_sprite.setImage(this.activeEngimon.getSprite(130,130));
-            this.active_speciesName.setText(this.activeEngimon.getSpecies());
-            this.active_name.setText(this.activeEngimon.getName());
-            this.active_level.setText(Integer.toString(this.activeEngimon.getLevel()));
-            this.active_skillPower.setText(Integer.toString(Battle.sumOfSkillPower(this.activeEngimon)));
-            this.active_el1.setImage(Element.getSpriteEl(this.activeEngimon.getElement().get(0),30.0,30.0));
-            if (this.activeEngimon.isOneElement()){
+            this.active_sprite.setImage(this.player.getActiveEngimon().getSprite(130,130));
+            this.active_speciesName.setText(this.player.getActiveEngimon().getSpecies());
+            this.active_name.setText(this.player.getActiveEngimon().getName());
+            this.active_level.setText(Integer.toString(this.player.getActiveEngimon().getLevel()));
+            this.active_skillPower.setText(Integer.toString(Battle.sumOfSkillPower(this.player.getActiveEngimon())));
+            this.active_el1.setImage(Element.getSpriteEl(this.player.getActiveEngimon().getElement().get(0),30.0,30.0));
+            if (this.player.getActiveEngimon().isOneElement()){
                 this.active_el2.setImage(null);
             } else {
-                this.active_el2.setImage(Element.getSpriteEl(this.activeEngimon.getElement().get(1),30.0,30.0));
+                this.active_el2.setImage(Element.getSpriteEl(this.player.getActiveEngimon().getElement().get(1),30.0,30.0));
             }
         }
     }
     public void refreshMapGUI(){
         // Melakukan load ulang peta berdasarkan kondisi peta yang ada di array
-        this.turnGUI.setText(Integer.toString(this.turn));
         // Set ulang turn
+        this.turnGUI.setText(Integer.toString(this.turn));
 
         // Membersihkan isi gridpane peta
         this.MapGridPane.getChildren().clear();
@@ -260,25 +247,24 @@ public class GameController {
         );
 
     }
-    // Masih dummy
-    public ObservableList<Engimon> getEngi(){
-        ObservableList<Engimon> products = FXCollections.observableArrayList();
-    //  products.addAll(this.e);
-        products.addAll(this.player.getInventory().getEngimons());
-        return products;
-    }
-    // Masih dummy
-    public ObservableList<Skill_Item> getItem(){
-        ObservableList<Skill_Item> products = FXCollections.observableArrayList();
-        // products.addAll(this.f);
-        products.addAll(this.player.getInventory().getItems());
-        return products;
-    }
 
-    // Masih dummy
+    // Merefresh ulang inventory berdasarkan kondisi inventory engimon dan skill item sekarang
     public void refreshInventory(){
-        this.table_Engimon.setItems(getEngi());
-        this.table_Item.setItems(getItem());
+        // Sort inventory untuk pengaman
+        this.player.getInventory().sortItems();
+        this.player.getInventory().sortEngimons();
+
+        // Instansiasi ObservableList untuk ditampung di tabel
+        // Inventory Engimon
+        ObservableList<Engimon> engimonInventory =  FXCollections.observableArrayList(this.player.getInventory().getEngimons());
+        // Inventory Skill Item
+        ObservableList<Skill_Item> skillItemsInventory = FXCollections.observableArrayList(this.player.getInventory().getItems());
+
+        // Mengisi tabel dengan observable list inventory engimon dan inventory skill_item, mengcolapse title pane supaya kerefresh
+        this.table_Engimon.setItems(engimonInventory);
+        this.paneInventoryEngimon.setExpanded(false);
+        this.table_Item.setItems(skillItemsInventory);
+        this.paneInventorySkillItem.setExpanded(false);
     }
 
     // Inventory Command
@@ -314,8 +300,7 @@ public class GameController {
             } else {
                 String newName = AlertBox.displayAskNewName();
                 if(newName != null){
-                    // Prosedur rename engimon (detilnya di player, disini tinggal panggil aja)
-                    AlertBox.displayWarning(newName);
+                    this.player.renameEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex(),newName);
                     this.refreshInventory();
                     this.refreshActiveEngimonGUI();
                 }
@@ -328,10 +313,10 @@ public class GameController {
     // Interact with active engimon command
     public void interactActiveEngimon(){
         try{
-            if (this.activeEngimon == null) {
+            if (this.player.getActiveEngimon() == null) {
                 throw new Exception("Anda tidak mempunyai active engimon");
             } else {
-                AlertBox.displayInteract(this.activeEngimon);
+                AlertBox.displayInteract(this.player.getActiveEngimon());
             }
         } catch (Exception e){
             AlertBox.displayWarning(e.getMessage());
@@ -344,8 +329,8 @@ public class GameController {
             if ((this.table_Engimon.getSelectionModel().getSelectedIndices()).size() != 1) {
                 throw new Exception("Pilihlah tepat satu engimon untuk menjadi active engimon");
             } else {
-               this.activeEngimon = this.player.getInventory().getEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex());
-               refreshActiveEngimonGUI();
+                this.player.changeActiveEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex());
+                refreshActiveEngimonGUI();
             }
         } catch (Exception e){
             AlertBox.displayWarning(e.getMessage());
@@ -359,6 +344,7 @@ public class GameController {
                 throw new Exception("Pilihlah tepat satu engimon untuk di examine");
             } else {
                 // Prosedur release engimon dengan index tertentu (detilnya di player, disini tinggal panggil aja)
+                this.player.ReleaseEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex());
                 this.refreshInventory();
                 this.refreshActiveEngimonGUI();
             }
@@ -373,7 +359,6 @@ public class GameController {
                 throw new Exception("Pilihlah tepat satu engimon untuk di examine");
             } else {
                 DetailEngimon.display(this.player.getInventory().getEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex()));
-                // DetailEngimon.display(this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex()));
             }
         } catch (Exception e){
             AlertBox.displayWarning(e.getMessage());
@@ -388,8 +373,7 @@ public class GameController {
             } else {
                 Integer numOfItem = AlertBox.displayAskNumDropItems();
                 if(numOfItem != null){
-                    // Prosedur remove item sejumlah x (detilnya di player, disini tinggal panggil aja)
-                    AlertBox.displayWarning(Integer.toString(numOfItem));
+                    // throw item
                     this.refreshInventory();
                 }
             }
@@ -404,25 +388,38 @@ public class GameController {
             if (((this.table_Item.getSelectionModel().getSelectedIndices()).size() != 1) ||((this.table_Item.getSelectionModel().getSelectedIndices()).size() != 1)  ) {
                 throw new Exception("Pilihlah tepat satu item dan satu engimon untuk learn skill");
             } else {
-                // Engimon goingToLearn = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
                 Engimon goingToLearn = this.player.getInventory().getEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex());
-                // Skill_Item skilToLearn = this.f.get(this.table_Item.getSelectionModel().getSelectedIndex());
                 Skill_Item skilToLearn = this.player.getInventory().getItem(this.table_Item.getSelectionModel().getSelectedIndex());
                 goingToLearn.addSkill(skilToLearn);
+                if(skilToLearn.getAmount() == 0){
+                    this.player.getInventory().getItems().remove(this.table_Item.getSelectionModel().getSelectedIndex());
+                }
+                this.refreshInventory();
+                this.refreshActiveEngimonGUI();
             }
         }
         catch (SkillFullException e){
-            //  Engimon goingToLearn = this.e.get(this.table_Engimon.getSelectionModel().getSelectedIndex());
             Engimon goingToLearn = this.player.getInventory().getEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex());
+            Skill_Item skilToLearn = this.player.getInventory().getItem(this.table_Item.getSelectionModel().getSelectedIndex());
             Integer indexReplace = ReplaceSkill.display(goingToLearn);
             if (indexReplace != null){
                 // Algo replace skill
-                // goingToLearn.replaceSkill(goingToLearn,indexReplace);
+                try{
+                    goingToLearn.replaceSkill(indexReplace,skilToLearn);
+                } catch (Exception e2){
+                    AlertBox.displayWarning(e2.getMessage());
+                }
+                if(skilToLearn.getAmount() == 0){
+                    this.player.getInventory().getItems().remove(this.table_Item.getSelectionModel().getSelectedIndex());
+                }
+                this.refreshInventory();
+                this.refreshActiveEngimonGUI();
             }
         }
         catch (Exception e){
             AlertBox.displayWarning(e.getMessage());
         }
+
     }
 
     // Basic Command
@@ -461,7 +458,7 @@ public class GameController {
             AtomicInteger x = new AtomicInteger(0);
             AtomicInteger y = new AtomicInteger(0);
             Engimon enemy = this.map.getNearbyEnemyEngimon(x,y);
-            Boolean isBattle = BattleConfirm.display(this.activeEngimon,enemy);
+            Boolean isBattle = BattleConfirm.display(this.player.getActiveEngimon(),enemy);
             if (isBattle){
                 this.map.removeEngimon(x.get(),y.get());
                 AlertBox.displayWarning("Battle");

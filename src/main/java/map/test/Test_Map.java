@@ -37,6 +37,10 @@ public class Test_Map {
                     AtomicInteger y = new AtomicInteger(0);
                     Engimon e = m.getNearbyEnemyEngimon(x,y);
                     e.printEngimon();
+                }else if(command == 'x'){
+                    m.saveMap();
+                }else if(command == 't'){
+                    m.loadMap("save.txt");
                 }else{
                     System.out.println("Command tidak tersedia");;
                 }
