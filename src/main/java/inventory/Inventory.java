@@ -26,6 +26,19 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         this.sortEngimons();
     }
 
+
+    public void addEngimon(List<? extends Engimon> listEngi)throws InventoryFullException{
+        if(this.getAmount() >100){
+            throw new InventoryFullException();
+        }
+        for (Engimon engimon : listEngi) {
+            this.ListEngimon.add((E) engimon);
+        }
+        
+        this.sortEngimons();
+    }
+
+
     public Integer KillEngimon(E engimon){
         for(int i = 0;i < this.ListEngimon.size();i++){
             if(this.ListEngimon.get(i).equals(engimon)){
@@ -67,6 +80,8 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         }
         sortItems();
     }
+
+
     public void useItem(int i, E engimon) throws ItemNotEnoughAmountException, SkillElementNotCompatibleException {
         this.ListItem.get(i).learn(engimon.getElement());
         if(this.ListItem.get(i).getAmount() < 1){
