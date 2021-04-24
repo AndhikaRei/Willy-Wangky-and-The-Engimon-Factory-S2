@@ -106,7 +106,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     public E getHighestLevel(){
         E maxengimon = this.ListEngimon.get(0);
         int maxlvl = this.ListEngimon.get(0).getLevel();
-        for(int i;i<this.ListEngimon.size();i++){
+        for(int i = 0;i<this.ListEngimon.size();i++){
             if(maxlvl < this.ListEngimon.get(i).getLevel()){
                 maxlvl =     this.ListEngimon.get(i).getLevel();
                 maxengimon = this.ListEngimon.get(i);
