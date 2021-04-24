@@ -1,10 +1,11 @@
 package main.java.player;
+import java.io.FileWriter;
 import java.util.*;
 import main.java.engimon.*;
 import main.java.engimon.species.*;
 import main.java.inventory.Inventory;
 import main.java.inventory.Skill_Item;
-
+import com.google.gson.Gson;
 public class Player {
     private Engimon activeEngimon;
     private Inventory<Engimon,Skill_Item> inventoryEntity;
@@ -46,6 +47,13 @@ public class Player {
     }
     public void renameEngimon(int i, String Name){
         inventoryEntity.getEngimon(i).setName(Name);
+    }
+
+    public void save(){
+        Gson gson = new Gson();
+        String filePath = "./"
+        gson.toJson(this, new FileWriter(filePath));
+        System.out.println(new Gson().toJson(this));
     }
 
 }
