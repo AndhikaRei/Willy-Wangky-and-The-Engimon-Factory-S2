@@ -1,4 +1,4 @@
-package GUI.DetailEngimon;
+package sample.DetailEngimon;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -6,8 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.java.engimon.Engimon;
-import GUI.AlertBox;
-import GUI.BattleConfirm.BattleConfirmController;
+import sample.AlertBox;
 
 public class DetailEngimon {
     // Menampilkan detail suatu engimon

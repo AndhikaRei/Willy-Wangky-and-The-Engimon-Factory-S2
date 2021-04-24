@@ -1,14 +1,12 @@
-package GUI.ReplaceSkill;
+package sample.ReplaceSkill;
 
-import GUI.AlertBox;
+import sample.AlertBox;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.java.engimon.Engimon;
-
-import java.awt.*;
 
 public class ReplaceSkill {
     // Menampilkan konfirmasi breeding
