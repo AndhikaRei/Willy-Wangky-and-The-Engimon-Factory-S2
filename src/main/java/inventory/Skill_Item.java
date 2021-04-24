@@ -7,7 +7,7 @@ import main.java.element.*;
 import main.java.exception.*;
 import main.java.skill.*;
 
-public class Skill_Item implements Comparable<Skill_Item> {
+public class Skill_Item implements Comparable<Skill_Item>, java.io.Serializable {
     /*** FIELDS ***/
     private Skill contSkill;    // Skill yang disimpan pada item skill
     private int amount;         // Jumlah item yang dimiliki

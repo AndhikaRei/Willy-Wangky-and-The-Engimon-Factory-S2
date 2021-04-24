@@ -7,7 +7,7 @@ import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
 
-public class Melt extends Engimon {
+public class Melt extends Engimon implements java.io.Serializable{
     /* CONSTRUCTORS */
     // ctor tanpa parent
     public Melt(String name, boolean isWild) {

@@ -1,10 +1,11 @@
 package main.java.element;
 
 import javafx.scene.image.Image;
+import main.java.interfaces.Printable;
 
 import java.util.List;
 
-public enum Element {
+public enum Element  implements java.io.Serializable {
     /* DAFTAR ELEMENT */
     Fire(0),
     Water(1),

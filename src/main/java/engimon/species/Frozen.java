@@ -7,7 +7,7 @@ import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
 
-public class Frozen extends Engimon {
+public class Frozen extends Engimon implements java.io.Serializable{
     /* CONSTRUCTORS */
     // ctor tanpa parent
     public Frozen(String name, boolean isWild) {

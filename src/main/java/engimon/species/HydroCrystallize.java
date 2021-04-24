@@ -7,7 +7,7 @@ import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
 
-public class HydroCrystallize extends Engimon {
+public class HydroCrystallize extends Engimon implements java.io.Serializable{
     /* CONSTRUCTORS */
     // ctor tanpa parent
     public HydroCrystallize(String name, boolean isWild) {

@@ -7,7 +7,7 @@ import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
 
-public class Superconductor extends Engimon {
+public class Superconductor extends Engimon implements java.io.Serializable{
     /* CONSTRUCTORS */
     // ctor tanpa parent
     public Superconductor(String name, boolean isWild) {

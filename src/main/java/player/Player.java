@@ -11,7 +11,7 @@ import main.java.inventory.Inventory;
 import main.java.inventory.Skill_Item;
 import com.google.gson.Gson;
 import main.java.exception.*;
-public class Player {
+public class Player implements Serializable {
     private Engimon activeEngimon;
     private Inventory<Engimon,Skill_Item> inventoryEntity;
 
@@ -93,57 +93,57 @@ public class Player {
 //        System.out.println(new Gson().toJson(this));
 //    }
 
-    public static void save(Player player)throws Exception{
-        Gson gson = new Gson();
-        String filePath = "./wkkw.json";
-        gson.toJson(player, new FileWriter(filePath));
-        System.out.println(new Gson().toJson(player));
+//    public static void save(Player player)throws Exception{
+//        Gson gson = new Gson();
+//        String filePath = "./wkkw.json";
+//        gson.toJson(player, new FileWriter(filePath));
+//        System.out.println(new Gson().toJson(player));
+//
+//        try {
+//            File myObj = new File("./playerSaveFile.json");
+//            if (myObj.createNewFile()) {
+//                System.out.println("File created: " + myObj.getName());
+//            } else {
+//                System.out.println("File already exists.");
+//            }
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
+//        try {
+//            FileWriter myWriter = new FileWriter("./playerSaveFile.json");
+//            myWriter.write(new Gson().toJson(player));
+//            myWriter.close();
+//            System.out.println("Successfully wrote to the file.");
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
+//
+//    }
 
-        try {
-            File myObj = new File("./playerSaveFile.json");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        try {
-            FileWriter myWriter = new FileWriter("./playerSaveFile.json");
-            myWriter.write(new Gson().toJson(player));
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-    }
-
-    public static Player load(String JsonFIle )throws IOException   {
-
-        //java.net.URL url = JsonFIle.getClass().getResource(JsonFIle);
-        try{
-            File jsonFile = new File(JsonFIle);
-            System.out.println("Full path of file: " + jsonFile);
-        }catch (Exception e){
-            System.out.println("File Not Found");
-            throw e;
-        }
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(JsonFIle));
-            Player temp = new Gson().fromJson(br, Player.class);
-            return temp;
-        }catch (IOException e)
-        {
-
-            e.printStackTrace();
-
-            throw e;
-        }
-
-    }
+//    public static Player load(String JsonFIle )throws IOException   {
+//
+//        //java.net.URL url = JsonFIle.getClass().getResource(JsonFIle);
+//        try{
+//            File jsonFile = new File(JsonFIle);
+//            System.out.println("Full path of file: " + jsonFile);
+//        }catch (Exception e){
+//            System.out.println("File Not Found");
+//            throw e;
+//        }
+//        try{
+//            BufferedReader br = new BufferedReader(new FileReader(JsonFIle));
+//            Player temp = new Gson().fromJson(br, Player.class);
+//            return temp;
+//        }catch (IOException e)
+//        {
+//
+//            e.printStackTrace();
+//
+//            throw e;
+//        }
+//
+//    }
 
 }

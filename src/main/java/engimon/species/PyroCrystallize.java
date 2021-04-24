@@ -7,7 +7,7 @@ import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
 
-public class PyroCrystallize extends Engimon {
+public class PyroCrystallize extends Engimon implements java.io.Serializable{
     /* CONSTRUCTORS */
     // ctor tanpa parent
     public PyroCrystallize(String name, boolean isWild) {

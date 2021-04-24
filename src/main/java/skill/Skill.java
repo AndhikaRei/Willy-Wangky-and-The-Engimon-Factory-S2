@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import main.java.element.Element;
 import main.java.interfaces.Printable;
 
-public class Skill implements Comparable<Skill>, Cloneable, Printable {
+public class Skill implements Comparable<Skill>, Cloneable, Printable,java.io.Serializable {
     /*** FIELDS ***/
     private String name;                    // Nama Skill
     private String desc;                    // Deskripsi Skill

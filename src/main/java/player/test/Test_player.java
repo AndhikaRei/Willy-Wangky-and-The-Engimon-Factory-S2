@@ -33,28 +33,28 @@ public class Test_player {
 
         Skill_Item item = new Skill_Item();
 
-        try {
-            Player.save(test);
-        }catch (Exception e){
-            System.out.print(e.getMessage());
-        }
-
-        Engimon illegal = new HydroCrystallize("illegal",3);
-        try{
-            test.getInventory().addEngimon(illegal);
-        }catch (Exception e){
-            System.out.println("Something Went Wrong");
-        }
-
-
-
-
-        try {
-            test = Player.load("./playerSaveFile.json");
-            test.getInventory().printInventory();
-        }catch (Exception e){
-            System.out.print(e.getMessage());
-        }
+//        try {
+//            Player.save(test);
+//        }catch (Exception e){
+//            System.out.print(e.getMessage());
+//        }
+//
+//        Engimon illegal = new HydroCrystallize("illegal",3);
+//        try{
+//            test.getInventory().addEngimon(illegal);
+//        }catch (Exception e){
+//            System.out.println("Something Went Wrong");
+//        }
+//
+//
+//
+//
+//        try {
+//            test = Player.load("./playerSaveFile.json");
+//            test.getInventory().printInventory();
+//        }catch (Exception e){
+//            System.out.print(e.getMessage());
+//        }
 
 
 
