@@ -669,7 +669,6 @@ public class Map {
         // Menambahkan engimon baru 
         // Exception handling sudah ditangani oleh fungsi addEngimon
         try{
-
             Engimon newEngimon = Engidex.getEngimonBySpecies(species).cloneEngimon();
             newEngimon.setLevel(randomLevel);
             List<Skill> list = Skidex.getCompatibleSkill(newEngimon.getElement());

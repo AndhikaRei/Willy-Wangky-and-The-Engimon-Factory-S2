@@ -86,6 +86,19 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
         this.cumul_exp = engimon.cumul_exp;
         this.slogan = engimon.slogan;
     }
+    public Object clone() throws CloneNotSupportedException{
+        Engimon engi = (Engimon)super.clone();
+        engi.skill = new ArrayList<Skill>();
+        for (Skill skill : this.getSkill()){
+            engi.skill.add(skill);
+        }
+        engi.element = new ArrayList<Element>();
+        for(Element el : this.getElement()){
+            engi.element.add(el);
+        }
+        engi.parent = new Parent(this.getParent());
+        return engi;
+    }
 
     public Engimon cloneEngimon() throws CloneNotSupportedException {
         return (Engimon) this.clone();
