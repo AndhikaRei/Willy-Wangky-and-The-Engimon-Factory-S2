@@ -413,12 +413,12 @@
                </children></AnchorPane>
          </content>
       </TitledPane>
-      <TitledPane animated="false" layoutX="819.0" layoutY="324.0" prefHeight="378.0" prefWidth="252.0" text="Inventory Engimon">
+      <TitledPane fx:id="paneInventoryEngimon" animated="false" layoutX="819.0" layoutY="324.0" prefHeight="378.0" prefWidth="252.0" text="Inventory Engimon">
          <content>
             <TableView fx:id="table_Engimon" editable="true" prefHeight="326.0" prefWidth="250.0" />
          </content>
       </TitledPane>
-      <TitledPane animated="false" layoutX="1084.0" layoutY="324.0" prefHeight="378.0" prefWidth="252.0" text="Inventory Skill Item">
+      <TitledPane fx:id="paneInventorySkillItem" animated="false" layoutX="1084.0" layoutY="324.0" prefHeight="378.0" prefWidth="252.0" text="Inventory Skill Item">
          <content>
             <TableView fx:id="table_Item" editable="true" prefHeight="355.0" prefWidth="248.0" />
          </content>

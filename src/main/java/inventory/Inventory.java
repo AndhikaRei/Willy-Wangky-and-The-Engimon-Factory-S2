@@ -26,18 +26,19 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         this.sortEngimons();
     }
 
-    public void KillEngimon(E engimon){
+    public Integer KillEngimon(E engimon){
         for(int i = 0;i < this.ListEngimon.size();i++){
             if(this.ListEngimon.get(i).equals(engimon)){
                 this.ListEngimon.get(i).decrementLive();
                 if(this.ListEngimon.get(i).getLives() == 0) {
                     this.ListEngimon.remove(i);
+                    return 1;
                 }
-                return;
             }
         }
         this.sortEngimons();
         //throw something
+        return 0;
     }
 
     public void deleteEngimon(int i){

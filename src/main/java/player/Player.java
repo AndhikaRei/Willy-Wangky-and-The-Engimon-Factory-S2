@@ -55,6 +55,13 @@ public class Player {
         return this.inventoryEntity;
     }
 
+    public void ReleaseEngimon(Integer i){
+        if(this.getInventory().getEngimons().get(i).equals(this.activeEngimon)){
+            this.activeEngimon = null;
+        }
+        this.getInventory().deleteEngimon(i);
+    }
+
     public void PrintInventory(){
         inventoryEntity.printInventory();
     }
@@ -65,7 +72,10 @@ public class Player {
         return activeEngimon;
     }
     public void KillActiveEngimon(){
-        inventoryEntity.KillEngimon(activeEngimon);
+        Integer isDead = inventoryEntity.KillEngimon(activeEngimon);
+        if (isDead == 1){
+            this.activeEngimon = null;
+        }
     }
     public void renameEngimon(int i, String Name){
         inventoryEntity.getEngimon(i).setName(Name);
