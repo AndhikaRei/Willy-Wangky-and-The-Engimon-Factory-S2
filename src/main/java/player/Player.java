@@ -85,6 +85,9 @@ public class Player {
     public void renameEngimon(int i, String Name){
         inventoryEntity.getEngimon(i).setName(Name);
     }
+    public void setActiveEngimon(Engimon e){
+        this.activeEngimon = e;
+    }
 
 //    public void save() throws Exception {
 //        Gson gson = new Gson();
