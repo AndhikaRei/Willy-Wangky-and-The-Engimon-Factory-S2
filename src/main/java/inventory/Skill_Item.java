@@ -77,7 +77,7 @@ public class Skill_Item implements Comparable<Skill_Item> {
 
     public void decreaseAmount(int n) throws ItemNotEnoughAmountException{
         if(this.getAmount() < n){
-            throw ItemNotEnoughAmountException;
+            throw new ItemNotEnoughAmountException();
         }else{
             this.amount -= n;
         }
