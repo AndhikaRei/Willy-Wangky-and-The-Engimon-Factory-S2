@@ -4,7 +4,9 @@ import main.java.exception.ItemNotEnoughAmountException;
 import main.java.exception.SkillElementNotCompatibleException;
 
 import java.util.*;
-
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 public class Inventory<E extends Engimon,I extends Skill_Item> {
     private List<I> ListItem;
     private List<E> ListEngimon;
@@ -16,6 +18,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     /** modify data**/
     public void addEngimon(E Engimon){
         this.ListEngimon.add(Engimon);
+        this.sortEngimons();
     }
     public void addItem(I Item){
         Boolean found = false;
@@ -34,21 +37,27 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         if(found == false){
             ListItem.add(Item);
         }
+        sortItems();
     }
     public void useItem(int i, E engimon) throws ItemNotEnoughAmountException, SkillElementNotCompatibleException {
         this.ListItem.get(i).learn(engimon.getElement());
         if(this.ListItem.get(i).getAmount() < 1){
             this.ListItem.remove(i);
         }
+        sortItems();
     }
 
     public void KillEngimon(E engimon){
         for(int i = 0;i < this.ListEngimon.size();i++){
             if(this.ListEngimon.get(i).equals(engimon)){
-                this.ListEngimon.remove(i);
+                this.ListEngimon.get(i).decrementLive();
+                if(this.ListEngimon.get(i).getLives() == 0) {
+                    this.ListEngimon.remove(i);
+                }
                 return;
             }
         }
+        this.sortEngimons();
         //throw something
     }
     /** getter**/
@@ -85,5 +94,12 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     public void printInventory(){
         printEngimons();
         printItems();
+    }
+
+    public void sortEngimons(){
+        this.ListEngimon = this.ListEngimon.stream().sorted().collect(Collectors.toList());
+    }
+    public void sortItems(){
+        this.ListItem = this.ListItem.stream().sorted().collect(Collectors.toList());
     }
 }
