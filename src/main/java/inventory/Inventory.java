@@ -22,6 +22,24 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         this.ListEngimon.add(Engimon);
         this.sortEngimons();
     }
+
+    public void KillEngimon(E engimon){
+        for(int i = 0;i < this.ListEngimon.size();i++){
+            if(this.ListEngimon.get(i).equals(engimon)){
+                this.ListEngimon.get(i).decrementLive();
+                if(this.ListEngimon.get(i).getLives() == 0) {
+                    this.ListEngimon.remove(i);
+                }
+                return;
+            }
+        }
+        this.sortEngimons();
+        //throw something
+    }
+
+    public void deleteEngimon(int i){
+        this.ListEngimon.remove(i);
+    }
     public void addItem(I Item){
         Boolean found = false;
 //        this.ListItem
@@ -48,20 +66,10 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         }
         sortItems();
     }
-
-    public void KillEngimon(E engimon){
-        for(int i = 0;i < this.ListEngimon.size();i++){
-            if(this.ListEngimon.get(i).equals(engimon)){
-                this.ListEngimon.get(i).decrementLive();
-                if(this.ListEngimon.get(i).getLives() == 0) {
-                    this.ListEngimon.remove(i);
-                }
-                return;
-            }
-        }
-        this.sortEngimons();
-        //throw something
+    public void deleteItem(int i){
+        this.ListItem.remove(i);
     }
+
     /** getter**/
     public List<I> getItems(){
         return this.ListItem;
@@ -97,7 +105,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         printEngimons();
         printItems();
     }
-
+    /** utility*/
     public void sortEngimons(){
         this.ListEngimon = this.ListEngimon.stream().sorted().collect(Collectors.toList());
     }

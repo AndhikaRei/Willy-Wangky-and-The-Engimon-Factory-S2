@@ -61,8 +61,6 @@ public class Player {
     }
     public void KillActiveEngimon(){
         inventoryEntity.KillEngimon(activeEngimon);
-
-        activeEngimon = null;
     }
     public void renameEngimon(int i, String Name){
         inventoryEntity.getEngimon(i).setName(Name);
