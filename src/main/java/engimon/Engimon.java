@@ -328,7 +328,7 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
         if(Element.getId(this.getElement().get(0)) - Element.getId(E.getElement().get(0)) == 0){
             return this.getLevel() - E.getLevel();
         }else{
-            return Element.getId(this.getElement()) - Element.getId(E.getElement().get(0));
+            return Element.getId(this.getElement().get(0)) - Element.getId(E.getElement().get(0));
         }
 
 //        if(this.getElement() == E.getElement()){
