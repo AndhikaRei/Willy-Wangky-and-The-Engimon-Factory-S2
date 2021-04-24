@@ -20,16 +20,15 @@ public class Test_Breeding {
 
             parentA.setLevel(8);
             parentB.setLevel(8);
-            parentC.setLevel(8);
             
             Engimon child1 = Breeding_Fountain.startBreeding(parentA, parentB);
             Engimon child2 = Breeding_Fountain.startBreeding(parentA, parentB);
 
-            parentC.printEngimon();
-
-            child1.getSkill().get(0).setMasteryLevel(2);
-            
             System.out.println(parentA.getSkill().get(0));
+            System.out.println(child1.getSkill().get(0));
+            System.out.println(child2.getSkill().get(0));
+
+            // child1.getSkill().get(0).levelUp();
         
             // child1.addSkill(sk);
             child1.printEngimon();
@@ -37,7 +36,7 @@ public class Test_Breeding {
             List<Skill> skillAnak1 = child1.getSkill();
             
             for (Skill skill : skillAnak1) {
-                System.out.println(skill);
+                // System.out.println(skill);
                 skill.showSimpleSkill();
             }
 
@@ -47,7 +46,7 @@ public class Test_Breeding {
             System.out.println(child2);
             List<Skill> skillAnak2 = child2.getSkill();
             for (Skill skill : skillAnak2) {
-                System.out.println(skill);
+                // System.out.println(skill);
                 skill.showSimpleSkill();
             }
 

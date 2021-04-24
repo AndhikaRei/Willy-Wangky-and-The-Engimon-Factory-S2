@@ -132,7 +132,12 @@ public class Skill implements Comparable<Skill>, Cloneable {
 
     /** Setter */
     public void setMasteryLevel(int level) {
-        this.masteryLevel = level;
+        if (level > 3) {
+            System.out.println("Melebihi batas Mastery Level, diset menjadi 3");
+            this.masteryLevel = 3;
+        } else {
+            this.masteryLevel = level;
+        }
     }
 
     /** Printer **/
@@ -200,23 +205,15 @@ public class Skill implements Comparable<Skill>, Cloneable {
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        System.out.println("This clone skill");
+        // System.out.println("This clone skill");
         Skill newSk = (Skill) super.clone();
         newSk.listElements = new ArrayList<Element>(this.listElements);
-        System.out.println(newSk);
+        // System.out.println(newSk);
         return newSk;
     }
 
     public Skill cloneSkill() throws CloneNotSupportedException {
-        return (Skill) this.clone();
-        // Skill newSk = (Skill) this.clone();
-        // newSk.name = this.name;
-        // newSk.desc = this.desc;
-        // newSk.basePower = this.basePower;
-        // newSk.masteryLevel = this.masteryLevel;
-        // newSk.listElements = new ArrayList<Element>(this.listElements);
-        // return newSk;
-        
+        return (Skill) this.clone();     
     }
 
 }

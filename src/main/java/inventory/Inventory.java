@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;import java.io.File;  // Import the File class
 import java.io.IOException;  // Import the IOException class to handle errors
+import main.java.exception.*;
 
 public class Inventory<E extends Engimon,I extends Skill_Item> {
     private List<I> ListItem;
@@ -18,9 +19,9 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     }
 
     /** modify data**/
-    public void addEngimon(E Engimon)throws Exception{
+    public void addEngimon(E Engimon)throws InventoryFullException{
         if(this.getAmount() >100){
-            throw new Exception();
+            throw new InventoryFullException();
         }
         this.ListEngimon.add(Engimon);
         this.sortEngimons();
@@ -44,7 +45,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     public void deleteEngimon(int i){
         this.ListEngimon.remove(i);
     }
-    public void addItem(I Item) throws Exception{
+    public void addItem(I Item) throws InventoryFullException{
         Boolean found = false;
 //        this.ListItem
 //                .stream()
@@ -53,7 +54,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
 //                //.ifPresent(found = true);
 
         if(this.getAmount() >100){
-            throw new Exception();
+            throw new InventoryFullException();
         }
 
         for(int i = 0; i< this.ListItem.size();i++){
