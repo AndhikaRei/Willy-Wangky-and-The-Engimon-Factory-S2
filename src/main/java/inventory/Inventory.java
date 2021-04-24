@@ -6,7 +6,9 @@ import main.java.exception.SkillElementNotCompatibleException;
 import java.util.*;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.Collectors;import java.io.File;  // Import the File class
+import java.io.IOException;  // Import the IOException class to handle errors
+
 public class Inventory<E extends Engimon,I extends Skill_Item> {
     private List<I> ListItem;
     private List<E> ListEngimon;

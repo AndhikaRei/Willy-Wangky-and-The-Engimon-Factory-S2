@@ -68,21 +68,43 @@ public class Player {
         inventoryEntity.getEngimon(i).setName(Name);
     }
 
-    public void save() throws Exception {
-        Gson gson = new Gson();
-        String filePath = "./";
-        gson.toJson(this, new FileWriter(filePath));
-        System.out.println(new Gson().toJson(this));
-    }
+//    public void save() throws Exception {
+//        Gson gson = new Gson();
+//        String filePath = "";
+//        gson.toJson(this, new FileWriter(filePath));
+//        System.out.println(new Gson().toJson(this));
+//    }
 
     public static void save(Player player)throws Exception{
         Gson gson = new Gson();
-        String filePath = "./";
+        String filePath = "./wkkw.json";
         gson.toJson(player, new FileWriter(filePath));
         System.out.println(new Gson().toJson(player));
+
+        try {
+            File myObj = new File("./playerSaveFile.json");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        try {
+            FileWriter myWriter = new FileWriter("./playerSaveFile.json");
+            myWriter.write(new Gson().toJson(player));
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
     }
 
-    public static Player load(String JsonFIle )throws IOException{
+    public static Player load(String JsonFIle )throws IOException   {
         java.net.URL url = JsonFIle.getClass().getResource(JsonFIle);
         File jsonFile = new File(url.getFile());
         System.out.println("Full path of file: " + jsonFile);
