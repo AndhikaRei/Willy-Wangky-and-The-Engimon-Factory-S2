@@ -80,4 +80,15 @@ public class Skidex implements Iterable<Skill> {
         return Skidex.listSkill.iterator();
     }
 
+    public static Skill getSkillByName(String skillName){
+        Skill result = null;
+        for(Skill skill : listSkill){
+            if(skill.getName().equals(skillName)){
+                result = skill;
+                break;
+            }
+        }
+        return result;
+    }
+
 }

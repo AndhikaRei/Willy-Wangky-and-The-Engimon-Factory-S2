@@ -221,24 +221,13 @@ public class Map {
                 int j = wildEngimon.get(id).get(1);
                 Engimon currEngimon = this.mapelem.get(i).get(j).get_engimon();
                 sb.append(i).append(',').append(j).append(',')
-                    .append("\"").append(currEngimon.getName()).append("\"").append(',')
-                    .append(currEngimon.getLives()).append(',')
-                    .append("\"").append(currEngimon.getSpecies()).append("\"").append(',')
-                    .append("\"").append(currEngimon.getParent().stringParent()).append("\"").append(',')
-                    .append(currEngimon.getElement().toString()).append(",{");
+                    .append("\"").append(currEngimon.getSpecies()).append("\"").append(",{");
                 for(Skill skill : currEngimon.getSkill()){
-                    sb.append('(')
-                        .append("\"").append(skill.getName()).append("\"").append(',')
-                        .append("\"").append(skill.getDesc()).append("\"").append(',')
-                        .append(skill.getBasePower()).append(',')
-                        .append(skill.getMasteryLevel()).append(',')
-                        .append(skill.getListElement().toString()).append("),");
+                    sb.append(skill.getName()).append(",");
                 }
                 sb.append("},")
                     .append(currEngimon.getLevel()).append(',')
-                    .append(currEngimon.getExp()).append(',')
-                    .append(currEngimon.getCumulExp()).append(',')
-                    .append("\"").append(currEngimon.getSlogan()).append("\"").append('\n');
+                    .append(currEngimon.getCumulExp()).append('\n');
             }
             textToSave = sb.toString();
             myWriter.write(textToSave);
@@ -270,11 +259,17 @@ public class Map {
                     if(currLine.charAt(j) != '\n'){
                         mapelem.get(i).get(j).set_symbol(currLine.charAt(j));
                         if(currLine.charAt(j)!= 'P' && currLine.charAt(j)!= 'X' && currLine.charAt(j)!= '^'&& currLine.charAt(j)!= '-'&& currLine.charAt(j)!= 'o'&& currLine.charAt(j)!= '*'){
-                            // buat debug doang
-                            mapelem.get(i).get(j).set_engimon_exist(true);
-                        }else{
-                            mapelem.get(i).get(j).set_engimon_exist(false);
+                            if(mapelem.get(i).get(j).get_type().equals("grassland")){
+                                mapelem.get(i).get(j).set_symbol('-');
+                            } else if(mapelem.get(i).get(j).get_type().equals("mountains")){
+                                mapelem.get(i).get(j).set_symbol('^');
+                            } else if(mapelem.get(i).get(j).get_type().equals("sea")){
+                                mapelem.get(i).get(j).set_symbol('o');
+                            } else{
+                                mapelem.get(i).get(j).set_symbol('*');
+                            }
                         }
+                        mapelem.get(i).get(j).set_engimon_exist(false);
                     }
                 }
             }else if(i==10){
@@ -304,7 +299,32 @@ public class Map {
                 currLine = currLine.substring(15);
                 this.total_engimon = Integer.parseInt(currLine);
             }else{
-                // do nothing
+                int x2= Integer.parseInt(currLine.substring(0, currLine.indexOf(",")));
+                currLine = currLine.substring(currLine.indexOf(",")+1);
+                int y2 = Integer.parseInt(currLine.substring(0, currLine.indexOf(",")));
+                currLine = currLine.substring(currLine.indexOf(",")+2);
+                String engiSpecies = currLine.substring(0, currLine.indexOf("\""));
+                Engimon loadEngimon = Engidex.getEngimonBySpecies(engiSpecies).cloneEngimon();
+                currLine = currLine.substring(currLine.indexOf(",")+1);
+                currLine = currLine.substring(currLine.indexOf(",")+1);
+                String extraSkillName = currLine.substring(0,currLine.indexOf(","));
+                if(extraSkillName.equals("}")){
+                    currLine = currLine.substring(currLine.indexOf(",")+1);
+                }else{
+                    Skill newSkill = Skidex.getSkillByName(extraSkillName);
+                    loadEngimon.addSkill(newSkill);
+                    currLine = currLine.substring(currLine.indexOf(",")+3);
+                }
+                int level = Integer.parseInt(currLine.substring(0, currLine.indexOf(",")));
+                loadEngimon.setLevel(level);
+                currLine = currLine.substring(currLine.indexOf(",")+1);
+                int cumul_exp = Integer.parseInt(currLine);
+                loadEngimon.setCumulExp(cumul_exp);
+                try{
+                    addEngimon(x2, y2, loadEngimon);
+                } catch (Exception e){
+                    System.out.println(e);
+                }
             }
             i++;
         }
@@ -353,6 +373,7 @@ public class Map {
             // Cek apakah  species yang ingin ditambahkan cocok dengan type tiles x, y 
             else if(!isValidEngimonPosition(x, y, engi.getSpecies(), false)){
                 // do nothing
+                System.out.println(engi.getSpecies());
             } 
             // Jika melewati kedua cek diatas maka tambahkan engimon ke tiles x, y
             else { 
@@ -672,6 +693,7 @@ public class Map {
         try{
             Engimon newEngimon = Engidex.getEngimonBySpecies(species).cloneEngimon();
             newEngimon.setLevel(randomLevel);
+            newEngimon.setCumulExp((randomLevel-1)*100);
             List<Skill> list = Skidex.getCompatibleSkill(newEngimon.getElement());
             int randomSkill = rand.nextInt(list.size());
             Skill newSkill = list.get(randomSkill);

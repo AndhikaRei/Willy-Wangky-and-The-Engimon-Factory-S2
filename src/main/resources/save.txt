@@ -1,21 +1,25 @@
+^^f^^^^^^loooooooowo
+^^PX^^F^^^oooooooooo
 ^^^^^^^^^^oooooooooo
-^^^^^^^^^^oowooooooo
+^^f^^^^^^^oooooooooo
 ^^^^^^^^^^oooooooooo
-^^^^^^^^^^oooooooooo
-^^^^f^^^^^wooooooooo
-----------*c********
-----PX----**********
+---------Gs****I****
+----------**c*******
+-------E--**********
+g---------**********
 ----------**********
--g--------**********
---g-h-----**********
 20 10
-Player 6 4
-"Pyro" 6 5
-Total Engimon: 7
-1,12,"Hydro sp.",1,"Hydro","No Parent",[Water],{("Purification!","Aqua approved.",20,1,[Water]),("Rupture","Bocor Bocor",30,1,[Fire, Water]),},9,0,200,"Demo sonnan ja dame~"
-4,4,"Pyro sp.",1,"Pyro","No Parent",[Fire],{("Explosion!","Megumin approved.",20,1,[Fire]),},3,0,200,"Se no!~"
-4,10,"Hydro sp.",1,"Hydro","No Parent",[Water],{("Purification!","Aqua approved.",20,1,[Water]),("Rupture","Bocor Bocor",30,1,[Fire, Water]),},3,0,200,"Demo sonnan ja dame~"
-5,11,"Melt sp.",1,"Melt","No Parent",[Fire, Ice],{("Half-Cold Half-Hot","Todoroki not approve.",20,1,[Fire, Ice]),},3,0,200,"Fuwafuwaru fuwafuwari~"
-8,1,"Geo sp.",1,"Geo","No Parent",[Ground],{("Tanah tinggi!","Ez cover.",20,1,[Ground]),("Echo Slam","1 Million Dollar Slam",30,1,[Ground]),},3,0,200,"Kokoro wa shinka suru yo~"
-9,2,"Geo sp.",1,"Geo","No Parent",[Ground],{("Tanah tinggi!","Ez cover.",20,1,[Ground]),("Echo Slam","1 Million Dollar Slam",30,1,[Ground]),},9,0,0,"Kokoro wa shinka suru yo~"
-9,4,"ElectroCrystallize sp.",1,"ElectroCrystallize","No Parent",[Electric, Ground],{("Golem Petir!","Ez tank 3.",20,1,[Electric, Ground]),("Static Storm","I'm ecstatic!",30,1,[Electric]),},8,0,100,"Unmei no itazura demo~"
+Player 1 2
+"Pyro" 1 3
+Total Engimon: 11
+0,2,"Pyro",{Explosion!,Rupture,},10,900
+0,9,"Overload",{Korsleting,Chronosphere,},8,700
+0,18,"Hydro",{Purification!,},6,500
+1,6,"Pyro",{Explosion!,Life Break,},11,1000
+3,2,"Pyro",{Explosion!,},6,500
+5,9,"Geo",{Tanah tinggi!,Feast,},15,1400
+5,10,"Frozen",{Let it go~,Ravage,},9,800
+5,15,"Cryo",{Freeze!,Dark Ascension,},11,1000
+6,12,"Melt",{Half-Cold Half-Hot,},6,500
+7,7,"Electro",{Thunderstorm,Chronosphere,},11,1000
+8,0,"Geo",{Tanah tinggi!,},6,500
