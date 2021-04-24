@@ -106,12 +106,12 @@ public class Skill_Item implements Comparable<Skill_Item> {
 
     /** PRINTER **/
     public void showItem() {
-        contSkill.showSkill();
+        contSkill.print();
         System.out.println("Amounts      : " + amount);
     }
 
     public void showSimpleItem() {
-        contSkill.showSimpleSkill();
+        contSkill.printSimple();
         System.err.println("N     : " + amount);
     }
 
