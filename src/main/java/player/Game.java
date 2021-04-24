@@ -1,14 +1,18 @@
 package main.java.player;
-
+import java.io.*;
 import main.java.*;
 import main.java.map.Map;
 
 import java.io.*;
 
-public class Game {
+public class Game implements Serializable{
     public Player player;
     public Map map;
 
+    public Game(){
+        player = null;
+        map = null;
+    }
     public void save(){
         try (FileOutputStream f = new FileOutputStream("save.txt");
              ObjectOutputStream s = new ObjectOutputStream(f)) {
@@ -20,6 +24,7 @@ public class Game {
     }
 
     public void load() throws IOException{
+        System.out.println("loading");
         Game loaded = readFile();
         player = loaded.player;
         map = loaded.map;

@@ -7,7 +7,7 @@ import main.java.engimon.*;
 import main.java.element.*;
 import main.java.skill.*;
 
-public class ElectroCharged extends Engimon {
+public class ElectroCharged extends Engimon  implements java.io.Serializable{
     /* CONSTRUCTORS */
     // ctor tanpa parent
     public ElectroCharged(String name, boolean isWild) {

@@ -7,7 +7,7 @@ import main.java.element.*;
 import main.java.skill.*;
 import javafx.scene.effect.DropShadow;
 
-public class Electro extends Engimon {
+public class Electro extends Engimon implements java.io.Serializable {
     /* CONSTRUCTORS */
     // ctor tanpa parent
     public Electro(String name, boolean isWild) {

@@ -8,7 +8,7 @@ import main.java.skill.*;
 import javafx.scene.image.Image;
 import javafx.scene.effect.DropShadow;
 
-public class Cryo extends Engimon {
+public class Cryo extends Engimon implements java.io.Serializable{
     /* CONSTRUCTORS */
     // ctor tanpa parent
     public Cryo(String name, boolean isWild) {

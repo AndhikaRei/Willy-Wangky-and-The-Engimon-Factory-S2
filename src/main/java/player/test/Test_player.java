@@ -7,6 +7,7 @@ import main.java.engimon.species.HydroCrystallize;
 import main.java.engimon.species.Pyro;
 import main.java.inventory.Skill_Item;
 import main.java.player.*;
+import main.java.player.Game;
 public class Test_player {
     public static void main(String[] args) {
         Player test = new Player();
@@ -32,29 +33,30 @@ public class Test_player {
         test.getInventory().printInventory();
 
         Skill_Item item = new Skill_Item();
+        Game game = new Game();
+        game.player = test;
+        try {
+            game.save();
+        }catch (Exception e){
+            System.out.print(e.getMessage());
+        }
 
-//        try {
-//            Player.save(test);
-//        }catch (Exception e){
-//            System.out.print(e.getMessage());
-//        }
-//
-//        Engimon illegal = new HydroCrystallize("illegal",3);
-//        try{
-//            test.getInventory().addEngimon(illegal);
-//        }catch (Exception e){
-//            System.out.println("Something Went Wrong");
-//        }
-//
-//
-//
-//
-//        try {
-//            test = Player.load("./playerSaveFile.json");
-//            test.getInventory().printInventory();
-//        }catch (Exception e){
-//            System.out.print(e.getMessage());
-//        }
+        Engimon illegal = new HydroCrystallize("illegal",3);
+        try{
+            game.player.getInventory().addEngimon(illegal);
+        }catch (Exception e){
+            System.out.println("Something Went Wrong");
+        }
+
+
+
+
+        try {
+            game.load();
+            game.player.getInventory().printInventory();
+        }catch (Exception e){
+            System.out.print(e.getMessage());
+        }
 
 
 
