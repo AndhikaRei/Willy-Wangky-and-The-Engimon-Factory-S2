@@ -381,7 +381,10 @@ public class GameController {
                 Integer numOfItem = AlertBox.displayAskNumDropItems();
                 if(numOfItem != null){
                     // throw item
-                    this.player.getInventory().throwItem(this.table_Item.getSelectionModel().getSelectedIndex(),numOfItem);
+                    int index = this.table_Item.getSelectionModel().getSelectedIndex();
+                    AlertBox.displayWarning(Integer.toString(this.player.getInventory().getItem(index).getAmount()));
+                    this.player.getInventory().throwItem(index,numOfItem);
+                    AlertBox.displayWarning(Integer.toString(this.player.getInventory().getItem(index).getAmount()));
                     this.refreshInventory();
                 }
             }

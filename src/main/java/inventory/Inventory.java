@@ -112,10 +112,10 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     public List<E>  getEngimons(){
         return this.ListEngimon;
     }
-    public I getItem(Integer i){
+    public I getItem(int i){
         return this.ListItem.get(i);
     }
-    public E getEngimon(Integer i){
+    public E getEngimon(int i){
         return this.ListEngimon.get(i);
     }
     public E getHighestLevel(){
