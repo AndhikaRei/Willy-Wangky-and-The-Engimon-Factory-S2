@@ -19,7 +19,7 @@ public class Test_Breeding {
 
             // parentA.getSkill().get(0).levelUp();
 
-            parentA.printEngimon();
+            parentA.print();
 
             parentA.setLevel(8);
             parentB.setLevel(8);
@@ -34,9 +34,10 @@ public class Test_Breeding {
             System.out.println(child1.getSkill().get(0));
             // System.out.println(child2.getSkill().get(0));
 
+            child1.getSkill().get(0).levelUp();
         
             // child1.addSkill(sk);
-            child1.printEngimon();
+            child1.print();
             System.out.println(child1);
             List<Skill> skillAnak1 = child1.getSkill();
             for (Skill skill : skillAnak1) {
@@ -46,7 +47,15 @@ public class Test_Breeding {
 
             System.out.println(":=======:");
 
-            // child2.printEngimon();
+            parentA.print();
+            System.out.println(parentA);
+            List<Skill> skillParent = parentA.getSkill();
+            for (Skill skill : skillParent) {
+                // System.out.println(skill);
+                skill.printSimple();
+            }
+
+            // child2.print();
             // System.out.println(child2);
             // List<Skill> skillAnak2 = child2.getSkill();
             // for (Skill skill : skillAnak2) {

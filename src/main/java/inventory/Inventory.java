@@ -4,10 +4,9 @@ import main.java.exception.ItemNotEnoughAmountException;
 import main.java.exception.SkillElementNotCompatibleException;
 
 import java.util.*;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;import java.io.File;  // Import the File class
-import java.io.IOException;  // Import the IOException class to handle errors
+import java.util.stream.Collectors;
+
 import main.java.exception.*;
 
 public class Inventory<E extends Engimon,I extends Skill_Item> {
@@ -119,7 +118,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         for(int i = 0;i < this.ListEngimon.size();i++){
             System.out.print(i);
             System.out.print("] ");
-            this.ListEngimon.get(i).printEngimon();
+            this.ListEngimon.get(i).print();
         }
     }
     public void printInventory(){

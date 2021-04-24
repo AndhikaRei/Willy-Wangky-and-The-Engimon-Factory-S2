@@ -6,6 +6,7 @@ import java.util.*;
 import javafx.scene.image.Image;
 import main.java.element.*;
 import main.java.exception.*;
+import main.java.interfaces.Printable;
 import main.java.skill.*;
 import main.java.inventory.*;
 import javafx.scene.image.Image;
@@ -13,7 +14,7 @@ import javafx.scene.effect.DropShadow;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Engimon implements Cloneable, Comparable<Engimon> {
+public abstract class Engimon implements Cloneable, Comparable<Engimon>, Printable {
     /* FINAL ATTRIBUTES */
     private final int DEFAULT_LIVES = 3;
     private final int DEFAULT_WILD_LIVES = 1;
@@ -303,7 +304,7 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
     }
 
     // print engimon di cli
-    public void printEngimon() {
+    public void print() {
         System.out.printf("%s - %s - %d lives\n", this.name, this.species, this.lives);
         System.out.printf("Level : %d \nCurrent Exp : %d \nTotal Exp : %d\n", this.level, this.exp, this.cumul_exp);
         System.out.printf("[%s]", this.element.get(0).name());
@@ -319,6 +320,19 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
         }
         this.interact();
     }
+
+    public void printSimple() {
+        System.out.printf("%s - %s - %d lives\n", this.name, this.species, this.lives);
+        System.out.printf("Level : %d \nCurrent Exp : %d \nTotal Exp : %d\n", this.level, this.exp, this.cumul_exp);
+        System.out.printf("[%s]", this.element.get(0).name());
+        if (this.isOneElement()) {
+            System.out.println();
+        }
+        else {
+            System.out.printf("[%s]\n",this.element.get(1).name());
+        }
+    }
+
     public abstract Image getSprite(double rw, double rh);
     public abstract DropShadow getAura();
     public abstract String getSlogan();
