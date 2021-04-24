@@ -275,7 +275,7 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
                 }
                 // Pelajari skill baru
                 temp = skit.learn(this.element);
-                this.skill.add(temp.cloneSkill());
+                this.skill.add(new Skill(temp));
                 
             }
         } catch (Exception e) {
@@ -325,14 +325,20 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
 
     @Override
     public int compareTo(Engimon E) {
-        if(this.getElement() == E.getElement()){
-            return this.getCumulExp() - E.getCumulExp();
+        if(Element.getId(this.getElement().get(0)) - Element.getId(E.getElement().get(0)) == 0){
+            return this.getLevel() - E.getLevel();
         }else{
-            if(Element.advantage(this.getElement(), E.getElement()) > 1){
-                return 1;
-            }
-            return -1;
+            return Element.getId(this.getElement().get(0)) - Element.getId(E.getElement().get(0));
         }
+
+//        if(this.getElement() == E.getElement()){
+//            return this.getCumulExp() - E.getCumulExp();
+//        }else{
+//            if(Element.advantage(this.getElement(), E.getElement()) > 1){
+//                return 1;
+//            }
+//            return -1;
+//        }
 
     }
 }

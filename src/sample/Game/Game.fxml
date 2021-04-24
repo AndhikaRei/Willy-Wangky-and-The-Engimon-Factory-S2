@@ -541,7 +541,7 @@
                      <font>
                         <Font name="Roboto Condensed" size="12.0" />
                      </font></Button>
-                  <Button fx:id="btn_useItem" layoutX="110.0" layoutY="101.0" minWidth="42.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="Use Item">
+                  <Button fx:id="btn_useItem" layoutX="110.0" layoutY="101.0" minWidth="42.0" mnemonicParsing="false" onAction="#useItem" prefHeight="30.0" prefWidth="65.0" text="Use Item">
                      <font>
                         <Font name="Roboto Condensed" size="12.0" />
                      </font></Button>

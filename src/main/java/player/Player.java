@@ -17,11 +17,15 @@ public class Player {
 
     public Player(){
         this.inventoryEntity = new Inventory<Engimon,Skill_Item>();
-        Engimon a1 = new Pyro("Amber",3);
-        Engimon a2 = new Hydro("Barbara",3);
-        Engimon a3 = new Electro("Lisa",3);
-        Engimon a4 = new Geo("Kumine",3);
-        Engimon a5 = new Cryo("Kaeya",3);
+        Engimon a1 = new Pyro("Pyro1",3);
+        Engimon a2 = new Hydro("Hydro1",3);
+        Engimon a3 = new Electro("Electro1",3);
+        Engimon a4 = new Geo("Geo1",3);
+        Engimon a5 = new Cryo("Cryo1",3);
+        a1.setLevel(40);
+        a2.setLevel(40);
+        a3.setLevel(40);
+        a4.setLevel(40);
         try{
             this.inventoryEntity.addEngimon(a2);
             this.inventoryEntity.addEngimon(a1);

@@ -9,12 +9,44 @@ import main.java.engimon.Engimon;
 import java.util.Optional;
 
 public class AlertBox {
+    // Menampilkan alert box yang berisikan pesan konfirmasi
+    // Alertbox yang ditampilkan berjenis CONFIRMATION
+    public static Boolean displayConfirmation(String message, String title){
+        // Inisialisasi dan mengisi alert
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.setHeaderText(null);
+
+        // Set supaya alert memblock tindakan pada window lain
+        alert.initModality(Modality.APPLICATION_MODAL);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            return Boolean.TRUE;
+        } else {
+            return  Boolean.FALSE;
+        }
+    }
+
     // Menampilkan alert box yang berisikan pesan kesalahan
     // Alertbox yang ditampilkan berjenis WARNING
     public static void displayWarning(String message){
         // Inisialisasi dan mengisi alert
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Exception detected");
+        alert.setContentText(message);
+        alert.setHeaderText(null);
+
+        // Set supaya alert memblock tindakan pada window lain
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.showAndWait();
+    }
+    // Menampilkan alert box yang berisikan infomarsi
+    // Alertbox yang ditampilkan berjenis Information
+    public static void displayInfo(String message, String title){
+        // Inisialisasi dan mengisi alert
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
         alert.setContentText(message);
         alert.setHeaderText(null);
 

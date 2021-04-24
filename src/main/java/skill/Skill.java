@@ -61,12 +61,15 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
         // this.masteryLevel = other.masteryLevel;
         // this.listElements = new ArrayList<Element>(other.listElements);
         try {
-            Skill newSk = other.cloneSkill();
+            Skill newSk = other;
             this.name = newSk.name;
             this.desc = newSk.desc;
             this.basePower = newSk.basePower;
             this.masteryLevel = newSk.masteryLevel;
-            this.listElements = new ArrayList<Element>(newSk.listElements);
+            this.listElements = new ArrayList<Element>();
+            for (Element el : newSk.getListElement()){
+                this.listElements.add(el);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
