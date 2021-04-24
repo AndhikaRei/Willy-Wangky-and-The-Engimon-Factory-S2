@@ -7,7 +7,7 @@ import java.util.Objects;
 import javafx.scene.image.Image;
 import main.java.element.Element;
 
-public class Skill implements Comparable<Skill> {
+public class Skill implements Comparable<Skill>, Cloneable {
     /*** FIELDS ***/
     private String name;                    // Nama Skill
     private String desc;                    // Deskripsi Skill
@@ -54,11 +54,21 @@ public class Skill implements Comparable<Skill> {
 
     /** Copy Constructor **/
     public Skill(Skill other) {
-        this.name = other.name;
-        this.desc = other.desc;
-        this.basePower = other.basePower;
-        this.masteryLevel = other.masteryLevel;
-        this.listElements = new ArrayList<Element>(other.listElements);
+        // this.name = other.name;
+        // this.desc = other.desc;
+        // this.basePower = other.basePower;
+        // this.masteryLevel = other.masteryLevel;
+        // this.listElements = new ArrayList<Element>(other.listElements);
+        try {
+            Skill newSk = other.cloneSkill();
+            this.name = newSk.name;
+            this.desc = newSk.desc;
+            this.basePower = newSk.basePower;
+            this.masteryLevel = newSk.masteryLevel;
+            this.listElements = new ArrayList<Element>(newSk.listElements);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
   
 
@@ -115,6 +125,11 @@ public class Skill implements Comparable<Skill> {
     }
     public List<Element> getListElement() {
         return listElements;
+    }
+
+    /** Setter */
+    public void setMasteryLevel(int level) {
+        this.masteryLevel = level;
     }
 
     /** Printer **/
@@ -178,6 +193,27 @@ public class Skill implements Comparable<Skill> {
     public int compareTo(Skill o) {
         /** Membandingkan Base Power Skill */
         return this.basePower - o.basePower;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        System.out.println("This clone skill");
+        Skill newSk = (Skill) super.clone();
+        newSk.listElements = new ArrayList<Element>(this.listElements);
+        System.out.println(newSk);
+        return newSk;
+    }
+
+    public Skill cloneSkill() throws CloneNotSupportedException {
+        return (Skill) this.clone();
+        // Skill newSk = (Skill) this.clone();
+        // newSk.name = this.name;
+        // newSk.desc = this.desc;
+        // newSk.basePower = this.basePower;
+        // newSk.masteryLevel = this.masteryLevel;
+        // newSk.listElements = new ArrayList<Element>(this.listElements);
+        // return newSk;
+        
     }
 
 }

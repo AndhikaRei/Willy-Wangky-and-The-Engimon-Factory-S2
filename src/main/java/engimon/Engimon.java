@@ -90,7 +90,7 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
         Engimon engi = (Engimon)super.clone();
         engi.skill = new ArrayList<Skill>();
         for (Skill skill : this.getSkill()){
-            engi.skill.add(skill);
+            engi.skill.add(skill.cloneSkill());
         }
         engi.element = new ArrayList<Element>();
         for(Element el : this.getElement()){
@@ -243,7 +243,12 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
             if (this.skill.size() == 4) {
                 throw new SkillFullException();
             }
-            this.skill.add(sk);
+            try {
+                this.skill.add(sk.cloneSkill());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
         }
         // susun dari mastery level tertinggi
         this.skill.sort((s1,s2) -> s2.getMasteryLevel().compareTo(s1.getMasteryLevel()));
@@ -270,7 +275,8 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
                 }
                 // Pelajari skill baru
                 temp = skit.learn(this.element);
-                this.skill.add(new Skill(temp));
+                this.skill.add(temp.cloneSkill());
+                
             }
         } catch (Exception e) {
             throw e;
