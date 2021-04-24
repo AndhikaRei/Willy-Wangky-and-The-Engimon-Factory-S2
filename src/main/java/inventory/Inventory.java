@@ -18,7 +18,10 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     }
 
     /** modify data**/
-    public void addEngimon(E Engimon){
+    public void addEngimon(E Engimon)throws Exception{
+        if(this.getAmount() >100){
+            throw Exception;
+        }
         this.ListEngimon.add(Engimon);
         this.sortEngimons();
     }
@@ -40,13 +43,17 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     public void deleteEngimon(int i){
         this.ListEngimon.remove(i);
     }
-    public void addItem(I Item){
+    public void addItem(I Item) throws Exception{
         Boolean found = false;
 //        this.ListItem
 //                .stream()
 //                .filter( i -> i.equals(Item))
 //                .map(Skill_Item::addAmount);
 //                //.ifPresent(found = true);
+
+        if(this.getAmount() >100){
+            throw Exception;
+        }
 
         for(int i = 0; i< this.ListItem.size();i++){
             if(this.ListItem.get(i).equals(Item)){
@@ -112,4 +119,12 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     public void sortItems(){
         this.ListItem = this.ListItem.stream().sorted().collect(Collectors.toList());
     }
+    public int getAmount(){
+        int countItem = 0;
+        for(int i = 0; this.ListItem.size();i++){
+            countItem += this.ListItem.get(i).getAmount();
+        }
+        return this.ListEngimon.size() + countItem;
+    }
+
 }
