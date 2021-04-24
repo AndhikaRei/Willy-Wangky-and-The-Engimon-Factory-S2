@@ -91,4 +91,15 @@ public enum Element {
         }
     }
 
+    public static int toInt(List<Element> in){
+        int out = 0;
+        for(int i = 0;i<in.size();i++){
+            int temp = Element.getId(in.get(in.size()-i-1));
+            if(temp == 0){
+                temp = 5;
+            }
+            out += temp * 10 ^(in.size()-i-1);
+        }
+        return out;
+    }
 }
