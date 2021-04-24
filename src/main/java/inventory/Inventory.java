@@ -71,7 +71,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
 
         for(int i = 0; i< this.ListItem.size();i++){
             if(this.ListItem.get(i).getSkillName() == Item.getSkillName()){
-                this.ListItem.get(i).addAmount(Item.getAmount());
+                this.ListItem.get(i).addAmount(1);
                 found = true;
             }
         }
@@ -112,10 +112,10 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     public List<E>  getEngimons(){
         return this.ListEngimon;
     }
-    public I getItem(Integer i){
+    public I getItem(int i){
         return this.ListItem.get(i);
     }
-    public E getEngimon(Integer i){
+    public E getEngimon(int i){
         return this.ListEngimon.get(i);
     }
     public E getHighestLevel(){
