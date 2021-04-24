@@ -10,8 +10,10 @@ import main.java.skill.*;
 import main.java.inventory.*;
 import javafx.scene.image.Image;
 import javafx.scene.effect.DropShadow;
+import java.util.List;
+import java.util.Objects;
 
-public abstract class Engimon implements Cloneable {
+public abstract class Engimon implements Cloneable, Comparable<Engimon> {
     /* FINAL ATTRIBUTES */
     private final int DEFAULT_LIVES = 3;
     private final int DEFAULT_WILD_LIVES = 1;
@@ -301,6 +303,19 @@ public abstract class Engimon implements Cloneable {
     public abstract Image getSprite(double rw, double rh);
     public abstract DropShadow getAura();
     public abstract String getSlogan();
+
+    @Override
+    public int compareTo(Engimon E) {
+        if(this.getElement() == E.getElement()){
+            return this.getCumulExp() - E.getCumulExp();
+        }else{
+            if(Element.advantage(this.getElement(), E.getElement()) > 1){
+                return 1;
+            }
+            return -1;
+        }
+
+    }
 }
 
 
