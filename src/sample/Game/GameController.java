@@ -79,10 +79,9 @@ public class GameController {
     // Data Player
     private Player player;
 
-
     // Inisialisasi komponen peta
     @FXML private void initialize(){
-        // Load resources yang diperlukan sekaligus refresh GUI
+        // Inisialisasi resources yang diperlukan sekaligus refresh GUI
         Engidex.initEngidex();
         Skidex.initSkill();
         try{
@@ -94,7 +93,6 @@ public class GameController {
             this.setupInventory();
             this.refreshInventory();
             this.refreshActiveEngimonGUI();
-
         } catch ( Exception e){
             AlertBox.displayWarning(e.getMessage());
             System.out.println(e.getMessage());
@@ -107,6 +105,8 @@ public class GameController {
         this.tundra = new Image("main/resources/tundra.png",35,35,false,false);
         this.mountain = new Image("main/resources/mountain.png",35,35,false,false);
     }
+
+    // Merefresh GUI bagian active engimon dengan data active engimon player sekarang
     public void refreshActiveEngimonGUI(){
         if(player.getActiveEngimon() == null){
             this.active_engimonPane.setVisible(false);
@@ -124,8 +124,9 @@ public class GameController {
             }
         }
     }
+
+    // Melakukan load ulang peta berdasarkan kondisi peta yang ada di array
     public void refreshMapGUI(){
-        // Melakukan load ulang peta berdasarkan kondisi peta yang ada di array
         // Set ulang turn
         this.turnGUI.setText(Integer.toString(this.turn));
 
@@ -197,51 +198,61 @@ public class GameController {
     }
     // Melakukan setup inventory engimon dan skill item
     public void setupInventory(){
+        // Setup kolom spesies pada tabel engimon
         TableColumn<Engimon, String> speciesColumn = new TableColumn<>("Species");
         speciesColumn.setMinWidth(70);
         speciesColumn.setSortable(false);
         speciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
 
+        // Setup kolom name pada tabel engimon
         TableColumn<Engimon, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setMinWidth(90);
         nameColumn.setSortable(false);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
+        // Setup kolom elemen pada tabel engimon
         TableColumn<Engimon, List<String>> elementColumn = new TableColumn<>("Element");
         elementColumn.setMinWidth(90);
         elementColumn.setSortable(false);
         elementColumn.setCellValueFactory(new PropertyValueFactory<>("element"));
 
+        // Setup kolom level pada tabel engimon
         TableColumn<Engimon, Integer> levelColumn = new TableColumn<>("Level");
         levelColumn.setMinWidth(30);
         levelColumn.setSortable(false);
         levelColumn.setCellValueFactory(new PropertyValueFactory<>("level"));
 
+        // Menambahkan semua kolom ke tabel engimon
         this.table_Engimon.getColumns().addAll(speciesColumn,nameColumn,elementColumn,levelColumn);
         this.table_Engimon.getSelectionModel().setSelectionMode(
                 SelectionMode.MULTIPLE
         );
 
+        // Setup kolom quantity pada tabel Skill_Item
         TableColumn<Skill_Item, Integer> quantityColumn = new TableColumn<>("Qty");
         quantityColumn.setMinWidth(25);
         quantityColumn.setSortable(false);
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
+        // Setup kolom name pada tabel Skill_Item
         TableColumn<Skill_Item, String> skillNameColumn = new TableColumn<>("Name");
         skillNameColumn.setMinWidth(90);
         skillNameColumn.setSortable(false);
         skillNameColumn.setCellValueFactory(new PropertyValueFactory<>("skillName"));
 
+        // Setup kolom elemen pada tabel Skill_Item
         TableColumn<Skill_Item, List<String>> skillElementColumn = new TableColumn<>("Element");
         skillElementColumn.setMinWidth(90);
         skillElementColumn.setSortable(false);
         skillElementColumn.setCellValueFactory(new PropertyValueFactory<>("element"));
 
+        // Setup kolom base power pada tabel Skill_Item
         TableColumn<Skill_Item, Integer> basePowerColumn = new TableColumn<>("BP");
         basePowerColumn.setMinWidth(25);
         basePowerColumn.setSortable(false);
         basePowerColumn.setCellValueFactory(new PropertyValueFactory<>("basePower"));
 
+        // Menambahkan semua kolom ke tabel skill_item
         this.table_Item.getColumns().addAll(quantityColumn,skillNameColumn,skillElementColumn,basePowerColumn);
         this.table_Item.getSelectionModel().setSelectionMode(
                 SelectionMode.MULTIPLE
@@ -380,7 +391,6 @@ public class GameController {
             } else {
                 Integer numOfItem = AlertBox.displayAskNumDropItems();
                 if(numOfItem != null){
-                    // throw item
                     this.player.getInventory().throwItem(this.table_Item.getSelectionModel().getSelectedIndex(),numOfItem);
                     this.refreshInventory();
                 }
@@ -475,9 +485,15 @@ public class GameController {
                     if(newName != null){
                         enemy.setName(newName);
                     }
+                    enemy.setLives(3);
                     this.player.getInventory().addEngimon(enemy);
                     this.player.getInventory().addItem(Battle.getEnemySkillItem(enemy));
                     this.map.removeEngimon(x.get(),y.get());
+                    if (this.player.getActiveEngimon().getLevel() > 100){
+                        this.player.getInventory().getEngimons().remove(this.player.getActiveEngimon());
+                        this.player.setActiveEngimon(null);
+                        AlertBox.displayInfo("Engimon anda meninggal karena level sudah melebihi 100", "Pesan Kematian");
+                    }
                 } else {
                     AlertBox.displayInfo("Anda kalah", "Pesan Kekalahan");
                     this.player.KillActiveEngimon();

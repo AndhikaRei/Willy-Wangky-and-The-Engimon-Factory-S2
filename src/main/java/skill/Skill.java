@@ -191,7 +191,7 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
     public Image getSprite(Double rw, Double rh){
         if(this.getMasteryLevel()==1){
             return new Image("./main/resources/mastery_1.png",rw,rh,false,false);
-        } else if(this.getMasteryLevel()==1){
+        } else if(this.getMasteryLevel()==2){
             return new Image("./main/resources/mastery_2.png",rw,rh,false,false);
         } else{
             return new Image("./main/resources/mastery_3.png",rw,rh,false,false);
