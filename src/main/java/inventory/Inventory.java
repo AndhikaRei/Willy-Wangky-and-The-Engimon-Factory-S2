@@ -74,6 +74,18 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         }
         sortItems();
     }
+    public void throwItem(int i, int n)throws ItemNotEnoughAmountException{
+        try{
+            this.ListItem.get(i).decreaseAmount(n);
+            if(this.ListItem.get(i).getAmount() == 0){
+                this.deleteItem(i);
+            }
+        }catch (ItemNotEnoughAmountException e){
+            throw e;
+        }
+
+    }
+
     public void deleteItem(int i){
         this.ListItem.remove(i);
     }
