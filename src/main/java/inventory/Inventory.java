@@ -57,7 +57,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         }
 
         for(int i = 0; i< this.ListItem.size();i++){
-            if(this.ListItem.get(i).equals(Item)){
+            if(this.ListItem.get(i).getSkillName() == Item.getSkillName()){
                 this.ListItem.get(i).addAmount(Item.getAmount());
                 found = true;
             }
