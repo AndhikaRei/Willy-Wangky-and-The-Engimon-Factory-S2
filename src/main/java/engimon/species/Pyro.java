@@ -42,17 +42,17 @@ public class Pyro extends Engimon {
         this.slogan = "Se no!~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Pyro1.png",rw,rh,false,false);
+            return "./main/resources/Pyro1.png";
         } else {
-            return new Image("./main/resources/Pyro2.png",rw,rh,false,false);
+            return "./main/resources/Pyro2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.RED);
+    public String getAura() {
+        return "RED";
     }
 
     @Override

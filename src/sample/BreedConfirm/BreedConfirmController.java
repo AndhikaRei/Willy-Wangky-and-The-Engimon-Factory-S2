@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -52,9 +53,9 @@ public class BreedConfirmController {
 
         //  Load image sesuai engimon yang akan battle
         //  Engimon `1`
-        this.engi1_sprite.setImage(engimon1.getSprite(150,150));
+        this.engi1_sprite.setImage(new Image(engimon1.getSprite(150,150),150,150,false,false));
         //  Engimon 2
-        this.engi2_sprite.setImage(engimon2.getSprite(150,150));
+        this.engi2_sprite.setImage(new Image(engimon2.getSprite(150,150),150,150,false,false));
 
         //  Load info dasar berupa nama spesies, nama engimon, dan level engimon
         //  Engimon 1

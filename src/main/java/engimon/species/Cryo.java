@@ -44,17 +44,17 @@ public class Cryo extends Engimon {
     }
 
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Cryo1.png",rw,rh,false,false);
+            return "./main/resources/Cryo1.png";
         } else {
-            return new Image("./main/resources/Cryo2.png",rw,rh,false,false);
+            return "./main/resources/Cryo2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.AQUAMARINE);
+    public String getAura() {
+        return "AQUAMARINE";
     }
 
     @Override

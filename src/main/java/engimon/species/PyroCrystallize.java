@@ -46,17 +46,17 @@ public class PyroCrystallize extends Engimon {
         this.slogan = "Sore dake de chuu e ukabu~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/PyroCrystallize1.png",rw,rh,false,false);
+            return "./main/resources/PyroCrystallize1.png";
         } else {
-            return new Image("./main/resources/PyroCrystallize2.png",rw,rh,false,false);
+            return "./main/resources/PyroCrystallize2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.FIREBRICK);
+    public String getAura() {
+        return "FIREBRICK";
     }
 
     @Override

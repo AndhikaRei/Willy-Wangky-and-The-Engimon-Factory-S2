@@ -46,17 +46,17 @@ public class Frozen extends Engimon {
         this.slogan = "Kami-sama arigatou~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Frozen1.png",rw,rh,false,false);
+            return "./main/resources/Frozen1.png";
         } else {
-            return new Image("./main/resources/Frozen2.png",rw,rh,false,false);
+            return "./main/resources/Frozen2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.DARKTURQUOISE);
+    public String getAura() {
+        return "DARKTURQUOISE";
     }
 
     @Override

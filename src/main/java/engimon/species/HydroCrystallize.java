@@ -46,17 +46,17 @@ public class HydroCrystallize extends Engimon {
         this.slogan = "Sore dake de egao ni naru~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/HydroCrystallize1.png",rw,rh,false,false);
+            return "./main/resources/HydroCrystallize1.png";
         } else {
-            return new Image("./main/resources/HydroCrystallize2.png",rw,rh,false,false);
+            return "./main/resources/HydroCrystallize2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.SLATEBLUE);
+    public String getAura() {
+        return "SLATEBLUE";
     }
 
     @Override

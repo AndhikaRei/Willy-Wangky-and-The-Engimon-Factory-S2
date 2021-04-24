@@ -46,17 +46,17 @@ public class Melt extends Engimon {
         this.slogan = "Fuwafuwaru fuwafuwari~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Melt1.png",rw,rh,false,false);
+            return "./main/resources/Melt1.png";
         } else {
-            return new Image("./main/resources/Melt2.png",rw,rh,false,false);
+            return "./main/resources/Melt2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.DARKRED);
+    public String getAura() {
+        return "DARKRED";
     }
 
     @Override

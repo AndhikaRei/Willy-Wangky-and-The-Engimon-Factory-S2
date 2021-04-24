@@ -60,9 +60,9 @@ public class BattleConfirmController {
 
         //  Load image sesuai engimon yang akan battle
         //  Engimon kita
-        this.ally_sprite.setImage(ally.getSprite(150,150));
+        this.ally_sprite.setImage(new Image(ally.getSprite(150,150),150,150,false,false));
         //  Engimon musuh
-        this.enemy_sprite.setImage(enemy.getSprite(150,150));
+        this.enemy_sprite.setImage(new Image(enemy.getSprite(150,150),150,150,false,false));
 
         //  Load power dan elAdvantage
         //  Engimon kita

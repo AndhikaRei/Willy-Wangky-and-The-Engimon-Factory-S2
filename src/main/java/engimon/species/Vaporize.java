@@ -46,17 +46,17 @@ public class Vaporize extends Engimon {
         this.slogan = "Fuwa fuwari, fuwa fuwaru~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Vaporize1.png",rw,rh,false,false);
+            return "./main/resources/Vaporize1.png";
         } else {
-            return new Image("./main/resources/Vaporize2.png",rw,rh,false,false);
+            return "./main/resources/Vaporize2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.LIGHTGRAY);
+    public String getAura() {
+        return "LIGHTGRAY";
     }
     @Override
     public String getSlogan() {

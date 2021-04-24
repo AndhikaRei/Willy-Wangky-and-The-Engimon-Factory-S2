@@ -42,17 +42,17 @@ public class Hydro extends Engimon {
         this.slogan = "Demo sonnan ja dame~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Hydro1.png",rw,rh,false,false);
+            return "./main/resources/Hydro1.png";
         } else {
-            return new Image("./main/resources/Hydro2.png",rw,rh,false,false);
+            return "./main/resources/Hydro2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.ROYALBLUE);
+    public String getAura() {
+        return "ROYALBLUE";
     }
 
     @Override

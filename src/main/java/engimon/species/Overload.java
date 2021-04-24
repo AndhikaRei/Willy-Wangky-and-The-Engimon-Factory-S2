@@ -46,19 +46,18 @@ public class Overload extends Engimon {
         this.slogan = "Anata ga namae wo yobu~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Overload1.png",rw,rh,false,false);
+            return "./main/resources/Overload1.png";
         } else {
-            return new Image("./main/resources/Overload2.png",rw,rh,false,false);
+            return "./main/resources/Overload2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.DARKORANGE);
+    public String getAura() {
+        return "DARKORANGE";
     }
-
     @Override
     public String getSlogan() {
         return this.slogan;

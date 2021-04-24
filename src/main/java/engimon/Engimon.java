@@ -333,8 +333,8 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon>, Printab
         }
     }
 
-    public abstract Image getSprite(double rw, double rh);
-    public abstract DropShadow getAura();
+    public abstract String getSprite(double rw, double rh);
+    public abstract String getAura();
     public abstract String getSlogan();
 
     @Override

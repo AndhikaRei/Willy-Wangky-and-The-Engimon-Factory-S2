@@ -1,6 +1,7 @@
 package sample.Game;
 import java.util.List;
 
+import javafx.scene.paint.Color;
 import main.java.engimon.Breeding_Fountain;
 import sample.AlertBox;
 import sample.BreedConfirm.BreedConfirm;
@@ -111,7 +112,7 @@ public class GameController {
         if(player.getActiveEngimon() == null){
             this.active_engimonPane.setVisible(false);
         } else {
-            this.active_sprite.setImage(this.player.getActiveEngimon().getSprite(130,130));
+            this.active_sprite.setImage(new Image(this.player.getActiveEngimon().getSprite(130,130),130,130,false,false));
             this.active_speciesName.setText(this.player.getActiveEngimon().getSpecies());
             this.active_name.setText(this.player.getActiveEngimon().getName());
             this.active_level.setText(Integer.toString(this.player.getActiveEngimon().getLevel()));
@@ -181,20 +182,57 @@ public class GameController {
                 // Menambahkan gambar engimon liar di pane apabila tile sekarang ada engimon liar
                 if(tile.get_engimonExist() == Boolean.TRUE){
                     // Mendapatkan foto engimon yang sesuai dengan engimon yang ada di tile sekarang
-                    ImageView engimon = new ImageView(tile.get_engimon().getSprite(35,35));
+                    ImageView engimon = new ImageView(new Image(tile.get_engimon().getSprite(35,35),130,130,false,false));
 
                     // Mendapatkan aura engimon yang sesuai dengan engimon yang ada di tile sekarang
-                    DropShadow ds = tile.get_engimon().getAura();
-                    ds.setBlurType(BlurType.GAUSSIAN); ds.setRadius(1.5); ds.setSpread(1.5);
-                    engimon.setEffect(ds);
-
-                    // Menambahkan engimon dan aura ke pane
-                    Npane.getChildren().add(engimon);
-                    Npane.setAlignment(engimon, Pos.CENTER);
+                    try{
+                        DropShadow ds = getAuraUtil(tile);
+                        ds.setBlurType(BlurType.GAUSSIAN); ds.setRadius(1.5); ds.setSpread(1.5);
+                        engimon.setEffect(ds);
+                        // Menambahkan engimon dan aura ke pane
+                        Npane.getChildren().add(engimon);
+                        Npane.setAlignment(engimon, Pos.CENTER);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         }
     }
+    public DropShadow getAuraUtil(Mapelem tile) throws Exception { //tile.get_engimon().getAuraUtil();
+        switch (tile.get_engimon().getAura()){
+            case "DARKTURQUOISE":
+                return new DropShadow(35, Color.DARKTURQUOISE);
+
+            case    "SADDLEBROWN":
+                return new DropShadow(35, Color.SADDLEBROWN);
+
+            case    "ROYALBLUE":
+                return new DropShadow(35, Color.ROYALBLUE);
+
+            case    "SLATEBLUE":
+                return new DropShadow(35, Color.SLATEBLUE);
+
+            case    "DARKRED":
+                return new DropShadow(35, Color.DARKRED);
+
+            case    "RED":
+                return new DropShadow(35, Color.RED);
+
+            case    "DARKORANGE":
+                return new DropShadow(35, Color.DARKORANGE);
+
+            case    "FIREBRICK":
+                return new DropShadow(35, Color.FIREBRICK);
+            case "ORANGERED":
+                return new DropShadow(35, Color.ORANGERED);
+            case "LIGHTGRAY":
+                return new DropShadow(35, Color.LIGHTGRAY);
+            default :
+                throw new Exception();
+        }
+    }
+
     // Melakukan setup inventory engimon dan skill item
     public void setupInventory(){
         TableColumn<Engimon, String> speciesColumn = new TableColumn<>("Species");

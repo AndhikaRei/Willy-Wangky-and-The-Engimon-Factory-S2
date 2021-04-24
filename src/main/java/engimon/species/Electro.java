@@ -42,19 +42,18 @@ public class Electro extends Engimon {
         this.slogan = "Mou sonnan ja hora~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Electro1.png",rw,rh,false,false);
+            return "./main/resources/Electro1.png";
         } else {
-            return new Image("./main/resources/Electro2.png",rw,rh,false,false);
+            return "./main/resources/Electro2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.YELLOW);
+    public String getAura() {
+        return "YELLOW";
     }
-
     @Override
     public String getSlogan() {
         return this.slogan;

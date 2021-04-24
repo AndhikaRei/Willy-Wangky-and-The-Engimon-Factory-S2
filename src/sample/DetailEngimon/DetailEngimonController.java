@@ -36,7 +36,7 @@ public class DetailEngimonController {
     public void loadData(Engimon ally){
 
         //  Load image sesuai engimon
-        this.ally_sprite.setImage(ally.getSprite(150,150));
+        this.ally_sprite.setImage(new Image(ally.getSprite(150,150),150,150,false,false));
 
         //  Load info dasar berupa nama spesies, nama engimon, dan level engimon
         this.ally_speciesName.setText(ally.getSpecies());

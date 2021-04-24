@@ -47,11 +47,11 @@ public class CryoCrystallize extends Engimon {
         this.slogan = "Shiawase na no~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/CryoCrystallize1.png",rw,rh,false,false);
+            return "./main/resources/CryoCrystallize1.png";
         } else {
-            return new Image("./main/resources/CryoCrystallize2.png",rw,rh,false,false);
+            return "./main/resources/CryoCrystallize2.png";
         }
     }
 
@@ -61,8 +61,7 @@ public class CryoCrystallize extends Engimon {
     }
 
     @Override
-    public DropShadow getAura(){
-        return new DropShadow(35, Color.GREEN);
+    public String getAura() {
+        return "GREEN";
     }
-
 }

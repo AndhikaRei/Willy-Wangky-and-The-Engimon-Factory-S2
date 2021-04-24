@@ -46,17 +46,17 @@ public class Superconductor extends Engimon {
         this.slogan = "Meguriaeta koto ga~";
     }
     @Override
-    public Image getSprite(double rw, double rh){
+    public String getSprite(double rw, double rh){
         if (this.getLevel() < 7){
-            return new Image("./main/resources/Superconductor1.png",rw,rh,false,false);
+            return "./main/resources/Superconductor1.png";
         } else {
-            return new Image("./main/resources/Superconductor2.png",rw,rh,false,false);
+            return "./main/resources/Superconductor2.png";
         }
     }
 
     @Override
-    public DropShadow getAura() {
-        return new DropShadow(35, Color.ORANGERED);
+    public String getAura() {
+        return "ORANGERED";
     }
 
     @Override
