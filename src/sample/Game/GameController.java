@@ -1,6 +1,7 @@
 package sample.Game;
 import java.util.List;
 
+import main.java.engimon.Breeding_Fountain;
 import sample.AlertBox;
 import sample.BreedConfirm.BreedConfirm;
 import sample.DetailEngimon.DetailEngimon;
@@ -276,15 +277,16 @@ public class GameController {
             } else {
                 Integer indexEngimon1 = (Integer) this.table_Engimon.getSelectionModel().getSelectedIndices().get(0);
                 Integer indexEngimon2 = (Integer) this.table_Engimon.getSelectionModel().getSelectedIndices().get(1);
+                Engimon engi1 = this.player.getInventory().getEngimon(indexEngimon1);
+                Engimon engi2 = this.player.getInventory().getEngimon(indexEngimon2);
 //                Boolean isBreed = BreedConfirm.display(this.e.get(indexEngimon1),this.e.get(indexEngimon2));
-                Boolean isBreed = BreedConfirm.display(this.player.getInventory().getEngimon(indexEngimon1),this.player.getInventory().getEngimon(indexEngimon2));
+                Boolean isBreed = BreedConfirm.display(engi1,engi2);
                 if (isBreed){
                     // Prosedur breeding
-                    AlertBox.displayWarning("Kawin kuy");
+                    Engimon engi3 = Breeding_Fountain.startBreeding(engi1,engi2);
+                    this.player.getInventory().addEngimon(engi3);
                     this.refreshInventory();
                     this.refreshActiveEngimonGUI();
-                } else {
-                    AlertBox.displayWarning("Gajadi kawin");
                 }
             }
         } catch (Exception e){
@@ -300,6 +302,7 @@ public class GameController {
             } else {
                 String newName = AlertBox.displayAskNewName();
                 if(newName != null){
+                    // Prosedur rename engimon
                     this.player.renameEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex(),newName);
                     this.refreshInventory();
                     this.refreshActiveEngimonGUI();
@@ -374,6 +377,7 @@ public class GameController {
                 Integer numOfItem = AlertBox.displayAskNumDropItems();
                 if(numOfItem != null){
                     // throw item
+                    this.player.getInventory().throwItem(this.table_Item.getSelectionModel().getSelectedIndex(),numOfItem);
                     this.refreshInventory();
                 }
             }
@@ -460,19 +464,33 @@ public class GameController {
             Engimon enemy = this.map.getNearbyEnemyEngimon(x,y);
             Boolean isBattle = BattleConfirm.display(this.player.getActiveEngimon(),enemy);
             if (isBattle){
-                this.map.removeEngimon(x.get(),y.get());
-                AlertBox.displayWarning("Battle");
+                if (Battle.playerEngimonWin(this.player.getActiveEngimon(), enemy)){
+                    AlertBox.displayInfo("Anda berhasil menang", "Pesan Kemenangan");
+                    this.player.getActiveEngimon().addExp(1000);
+                    this.player.getInventory().addEngimon(enemy);
+                    this.player.getInventory().addItem(Battle.getEnemySkillItem(enemy));
+                    this.map.removeEngimon(x.get(),y.get());
+                } else {
+                    AlertBox.displayInfo("Anda kalah", "Pesan Kekalahan");
+                    this.player.KillActiveEngimon();
+                }
                 this.refreshMapGUI();
-            } else {
-                AlertBox.displayWarning("Lho kok kabur");
+                this.refreshActiveEngimonGUI();
+                this.refreshInventory();
             }
-
         } catch (Exception e){
             AlertBox.displayWarning(e.getMessage());
         }
 
     }
+    // Save Command
+    public void save(){
 
+    }
+    // Load Command
+    public void load(){
+        AlertBox.displayInfo("LOADLUR","LOADLUR");
+    }
     // Exit command
     public void exit(){
         Stage stage = (Stage) this.btn_exit.getScene().getWindow();

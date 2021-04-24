@@ -275,7 +275,7 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
                 }
                 // Pelajari skill baru
                 temp = skit.learn(this.element);
-                this.skill.add(temp.cloneSkill());
+                this.skill.add(new Skill(temp));
                 
             }
         } catch (Exception e) {

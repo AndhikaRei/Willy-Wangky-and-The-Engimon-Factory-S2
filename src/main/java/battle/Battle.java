@@ -1,6 +1,7 @@
 package main.java.battle;
 
 import java.util.List;
+import java.util.Random;
 
 import main.java.element.Element;
 import main.java.engimon.Engimon;
@@ -62,6 +63,8 @@ public class Battle {
 
     // Mendapatkan Skill yang dimiliki oleh musuh
     public static Skill_Item getEnemySkillItem(Engimon enemy){
-        return new Skill_Item(enemy.getSkill().get(0));
+        Random rand = new Random();
+        int randomNum = rand.nextInt(enemy.getSkill().size());
+        return new Skill_Item(enemy.getSkill().get(randomNum));
     }
 }

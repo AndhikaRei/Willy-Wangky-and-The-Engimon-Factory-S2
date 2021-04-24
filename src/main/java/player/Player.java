@@ -21,6 +21,10 @@ public class Player {
         Engimon a3 = new Electro("Electro1",3);
         Engimon a4 = new Geo("Geo1",3);
         Engimon a5 = new Cryo("Cryo1",3);
+        a1.setLevel(40);
+        a2.setLevel(40);
+        a3.setLevel(40);
+        a4.setLevel(40);
         try{
             this.inventoryEntity.addEngimon(a2);
             this.inventoryEntity.addEngimon(a1);
