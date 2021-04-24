@@ -84,6 +84,7 @@ public class Map {
         // Initialize default active engimon species
         this.active_engimon_species = "Pyro";
         this.mapelem.get(player_pos.get(0)).get(player_pos.get(1)).set_symbol('P');
+        this.mapelem.get(active_engimon_pos.get(0)).get(active_engimon_pos.get(1)).set_symbol('X');
         // set total wild engimon on map = 0 at the beginning
         this.total_engimon = 0;
         this.rand = new Random();

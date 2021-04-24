@@ -96,7 +96,7 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon> {
         for(Element el : this.getElement()){
             engi.element.add(el);
         }
-        engi.parent = new Parent(this.getParent());
+        engi.parent = new Parent();
         return engi;
     }
 
