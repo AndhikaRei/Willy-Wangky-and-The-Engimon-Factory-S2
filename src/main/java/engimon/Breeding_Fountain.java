@@ -118,19 +118,29 @@ public class Breeding_Fountain {
 
         // Tambah skill dari Parent A
         for (Skill skill : skillParentA) {
-            skillChild.add(new Skill(skill));
+            // skillChild.add(new Skill(skill));
+            try {
+                skillChild.add(skill.cloneSkill());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         // Tambah skill dari Parent B
         for (Skill skill : skillParentB) {
             int idx = skillChild.indexOf(skill); 
             if (idx == -1) {    // Skill belum ditemukan
-                skillChild.add(new Skill(skill));
+                // skillChild.add(new Skill(skill));
+                try {
+                    skillChild.add(skill.cloneSkill());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else {            // Skill sudah ada ditemukan
                 if (skill.getMasteryLevel() == skillChild.get(idx).getMasteryLevel()) { // Jika mastery level sama, coba naikkan
                     skillChild.get(idx).levelUp();   
                 } else if (skill.getMasteryLevel() > skillChild.get(idx).getMasteryLevel()) { // Jika tidak, maka ambil yang terbesar
-                    skillChild.set(idx, new Skill(skill));
+                    skillChild.get(idx).setMasteryLevel(skill.getMasteryLevel());
                 }
             }
 
@@ -158,16 +168,18 @@ public class Breeding_Fountain {
             if (idx == -1) {
                 // Belum ada skill
                 try {
-                    child.addSkill(new Skill(sk));
+                    // child.addSkill(new Skill(sk));
+                    child.addSkill(sk.cloneSkill());
                 } catch (Exception e) {
                     System.err.println("Something Error di breeding");
                     e.printStackTrace();
                 }
             } else {
                 // Tambah Level
-                while (child.getSkill().get(idx).getMasteryLevel() < sk.getMasteryLevel()) {
-                    child.getSkill().get(idx).levelUp();
-                }  
+                child.getSkill().get(idx).setMasteryLevel(sk.getMasteryLevel());
+                // while (child.getSkill().get(idx).getMasteryLevel() < sk.getMasteryLevel()) {
+                //     child.getSkill().get(idx).levelUp();
+                // }  
             }
             i++;
         }

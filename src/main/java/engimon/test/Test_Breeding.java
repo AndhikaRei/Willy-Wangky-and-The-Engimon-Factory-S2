@@ -9,31 +9,45 @@ import main.java.skill.*;
 public class Test_Breeding {
     public static void main(String[] args) {
         Engidex.initEngidex();
+        Skidex.initSkill();
         
         try {
-            Engimon parentA = Engidex.getEngimonBySpecies("Geo");
-            Engimon parentB = Engidex.getEngimonBySpecies("Hydro");
+            Engimon parentA = Engidex.getEngimonBySpecies("Pyro");
+            Engimon parentB = Engidex.getEngimonBySpecies("Pyro");
+            Engimon parentC = Engidex.getEngimonBySpecies("Pyro");
 
-            parentA.setLevel(5);
-            parentB.setLevel(5);
+            parentA.printEngimon();
+
+            parentA.setLevel(8);
+            parentB.setLevel(8);
+            parentC.setLevel(8);
             
+            Engimon child1 = Breeding_Fountain.startBreeding(parentA, parentB);
+            Engimon child2 = Breeding_Fountain.startBreeding(parentA, parentB);
+
+            parentC.printEngimon();
+
+            child1.getSkill().get(0).setMasteryLevel(2);
             
+            System.out.println(parentA.getSkill().get(0));
+        
+            // child1.addSkill(sk);
+            child1.printEngimon();
+            System.out.println(child1);
+            List<Skill> skillAnak1 = child1.getSkill();
+            
+            for (Skill skill : skillAnak1) {
+                System.out.println(skill);
+                skill.showSimpleSkill();
+            }
 
-            // parentA.getSkill().get(0).levelUp();
-            // parentA.getSkill().get(0).levelUp();
-            // parentB.getSkill().get(0).levelUp();
+            System.out.println(":=======:");
 
-            // Aman
-            // List<Skill> listSk = Breeding_Fountain.sortingSkills(parentA, parentB);
-            // for (Skill sk : listSk) {
-            //     sk.showSimpleSkill();
-            // }
-
-            Engimon child = Breeding_Fountain.startBreeding(parentA, parentB);
-
-            child.printEngimon();
-            List<Skill> skillAnak = child.getSkill();
-            for (Skill skill : skillAnak) {
+            child2.printEngimon();
+            System.out.println(child2);
+            List<Skill> skillAnak2 = child2.getSkill();
+            for (Skill skill : skillAnak2) {
+                System.out.println(skill);
                 skill.showSimpleSkill();
             }
 
