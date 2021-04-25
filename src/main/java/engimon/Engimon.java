@@ -189,6 +189,10 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon>, Printab
         }
         this.cumul_exp = cumul_exp; 
     }
+    public void setSkill(List<Skill> s){
+        this.skill = s;
+    }
+    
     public void setParent(Parent parent) { this.parent = parent; }
     public void setLivesIsWild( boolean isWild ) { this.lives = isWild ? DEFAULT_WILD_LIVES : DEFAULT_LIVES; }
     public void decrementLive() { this.lives--; }
@@ -316,8 +320,8 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon>, Printab
         }
     }
 
-    public abstract Image getSprite(double rw, double rh);
-    public abstract DropShadow getAura();
+    // public abstract Image getSprite(double rw, double rh);
+    // public abstract DropShadow getAura();
     public abstract String getSlogan();
 
     @Override
