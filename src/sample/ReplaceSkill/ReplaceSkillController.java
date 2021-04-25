@@ -32,7 +32,7 @@ public class ReplaceSkillController {
 
     // Apabila tombol replace di tekan
     // Menutup window dan set boolean isBattle menjadi true
-    public void Breed(){
+    public void Replace(){
         if (this.tabel_skill.getSelectionModel().getSelectedIndices().isEmpty()){
             AlertBox.displayWarning("Anda harus memilih satu skill untuk di replace");
         } else {
@@ -56,7 +56,7 @@ public class ReplaceSkillController {
         TableColumn<Skill, Integer> masteryColumn = new TableColumn<>("Mastery");
         masteryColumn.setMinWidth(30);
         masteryColumn.setSortable(false);
-        masteryColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
+        masteryColumn.setCellValueFactory(new PropertyValueFactory<>("masteryLevel"));
 
         TableColumn<Skill, Integer> basePowerColumn = new TableColumn<>("Power");
         basePowerColumn.setMinWidth(30);
@@ -71,7 +71,7 @@ public class ReplaceSkillController {
         TableColumn<Skill, List<String>> elementColumn = new TableColumn<>("Element");
         elementColumn.setMinWidth(100);
         elementColumn.setSortable(false);
-        elementColumn.setCellValueFactory(new PropertyValueFactory<>("listElements"));
+        elementColumn.setCellValueFactory(new PropertyValueFactory<>("element"));
 
         TableColumn<Skill, String> descriptionColumn = new TableColumn<>("Description");
         descriptionColumn.setMinWidth(260);

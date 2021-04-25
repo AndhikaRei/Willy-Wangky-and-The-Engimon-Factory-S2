@@ -48,8 +48,6 @@ public class GameController {
     @FXML private Button btn_exit;
 
     // Tabel (Inventory)
-    @FXML private TitledPane paneInventoryEngimon;
-    @FXML private TitledPane paneInventorySkillItem;
     @FXML private TableView table_Engimon;
     @FXML private TableView table_Item;
 
@@ -127,6 +125,13 @@ public class GameController {
 
     // Melakukan load ulang peta berdasarkan kondisi peta yang ada di array
     public void refreshMapGUI(){
+        // Cek Active engimon
+        if (this.player.getActiveEngimon() == null){
+            this.map.set_active_engimon_species("undefined");
+        } else {
+            this.map.set_active_engimon_species(this.player.getActiveEngimon().getSpecies());
+        }
+
         // Set ulang turn
         this.turnGUI.setText(Integer.toString(this.turn));
 
@@ -273,10 +278,10 @@ public class GameController {
         ObservableList<Skill_Item> skillItemsInventory = FXCollections.observableArrayList(this.player.getInventory().getItems());
 
         // Mengisi tabel dengan observable list inventory engimon dan inventory skill_item, mengcolapse title pane supaya kerefresh
+        this.table_Engimon.getItems().clear();
+        this.table_Item.getItems().clear();
         this.table_Engimon.setItems(engimonInventory);
-        this.paneInventoryEngimon.setExpanded(false);
         this.table_Item.setItems(skillItemsInventory);
-        this.paneInventorySkillItem.setExpanded(false);
     }
 
     // Inventory Command
@@ -456,7 +461,7 @@ public class GameController {
             }
             this.turn++;
             if(this.turn%5==0){
-                this.map.spawnRandomEngimon(10);
+                this.map.spawnRandomEngimon(this.player.getInventory().getHighestLevel().getLevel());
             }
             if(this.turn%20==0){
                 this.map.evolveAllEngimon();
@@ -473,6 +478,9 @@ public class GameController {
     public void Battle(){
         // Apabila tombol battle ditekan
         try{
+            if (this.player.getActiveEngimon() == null){
+                throw new Exception("Anda tidak memiliki active engimon");
+            }
             AtomicInteger x = new AtomicInteger(0);
             AtomicInteger y = new AtomicInteger(0);
             Engimon enemy = this.map.getNearbyEnemyEngimon(x,y);
@@ -488,6 +496,7 @@ public class GameController {
                     enemy.setLives(3);
                     this.player.getInventory().addEngimon(enemy);
                     this.player.getInventory().addItem(Battle.getEnemySkillItem(enemy));
+                    this.refreshInventory();
                     this.map.removeEngimon(x.get(),y.get());
                     if (this.player.getActiveEngimon().getLevel() > 100){
                         this.player.getInventory().getEngimons().remove(this.player.getActiveEngimon());
@@ -497,10 +506,15 @@ public class GameController {
                 } else {
                     AlertBox.displayInfo("Anda kalah", "Pesan Kekalahan");
                     this.player.KillActiveEngimon();
+                    this.refreshMapGUI();
                 }
                 this.refreshMapGUI();
                 this.refreshActiveEngimonGUI();
                 this.refreshInventory();
+            }
+            if (this.player.getInventory().getEngimons().isEmpty()){
+                AlertBox.displayWarning("Anda kalah karena anda tidak mempunyai engimon tersisa");
+                this.exit();
             }
         } catch (Exception e){
             AlertBox.displayWarning(e.getMessage());

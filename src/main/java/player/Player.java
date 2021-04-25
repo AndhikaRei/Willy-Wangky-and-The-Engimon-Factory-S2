@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
+import main.java.element.Element;
 import main.java.engimon.*;
 import main.java.engimon.species.*;
 import main.java.exception.ItemNotEnoughAmountException;
@@ -11,6 +12,8 @@ import main.java.inventory.Inventory;
 import main.java.inventory.Skill_Item;
 import com.google.gson.Gson;
 import main.java.exception.*;
+import main.java.skill.Skill;
+
 public class Player {
     private Engimon activeEngimon;
     private Inventory<Engimon,Skill_Item> inventoryEntity;
@@ -26,7 +29,11 @@ public class Player {
         a2.setLevel(40);
         a3.setLevel(40);
         a4.setLevel(40);
+        a5.setLevel(40);
         try{
+            a1.addSkill(new Skill("Panas1", "Hottt1", 10, Element.Fire));
+            a1.addSkill(new Skill("Panas2", "Hottt2", 10, Element.Fire));
+            a1.addSkill(new Skill("Panas3", "Hottt3", 10, Element.Fire));
             this.inventoryEntity.addEngimon(a2);
             this.inventoryEntity.addEngimon(a1);
             this.inventoryEntity.addEngimon(a3);

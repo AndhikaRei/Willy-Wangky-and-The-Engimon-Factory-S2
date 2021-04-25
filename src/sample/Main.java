@@ -14,7 +14,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         // Ambil objek FXML loadernya untuk mengekstrak controller
         FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("Game/Game.fxml"));
-        // Parent root = FXMLLoader.load(getClass().getResource("Game/Game.fxml"));
         Parent root = gameLoader.load();
         GameController gameController = gameLoader.getController();
 

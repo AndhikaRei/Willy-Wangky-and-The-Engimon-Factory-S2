@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReplaceSkill.ReplaceSkill">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReplaceSkill.ReplaceSkillController">
    <children>
       <Label fx:id="TitleConfirmBox" alignment="CENTER" layoutY="22.0" prefHeight="58.0" prefWidth="575.0" text="Replace Skill" underline="true">
          <font>
             <Font name="Roboto Condensed Bold" size="48.0" />
          </font>
       </Label>
-      <Button fx:id="btn_replace" layoutX="132.0" layoutY="275.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="152.0" text="Replace">
+      <Button fx:id="btn_replace" layoutX="132.0" layoutY="275.0" mnemonicParsing="false" onAction="#Replace" prefHeight="58.0" prefWidth="152.0" text="Replace">
          <font>
             <Font name="Roboto Condensed" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btn_cancel" layoutX="292.0" layoutY="275.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="152.0" text="Cancel">
+      <Button fx:id="btn_cancel" layoutX="292.0" layoutY="275.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="58.0" prefWidth="152.0" text="Cancel">
          <font>
             <Font name="Roboto Condensed" size="24.0" />
          </font>

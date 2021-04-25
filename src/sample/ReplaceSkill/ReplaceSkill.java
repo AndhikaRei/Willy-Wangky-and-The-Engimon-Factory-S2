@@ -1,5 +1,6 @@
 package sample.ReplaceSkill;
 
+import javafx.stage.StageStyle;
 import sample.AlertBox;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ public class ReplaceSkill {
             ReplaceSkillController replaceSkillController = replaceLoader.getController();
             replaceSkillController.loadData(ally);
             Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
+            replaceStage.initStyle(StageStyle.UNDECORATED);
             replaceStage.setScene(scene);
             replaceStage.showAndWait();
             if (replaceSkillController.getIsReplace()){

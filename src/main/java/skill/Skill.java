@@ -130,6 +130,10 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
     public List<Element> getListElement() {
         return listElements;
     }
+    // Untuk tableview
+    public List<Element> getElement(){
+        return listElements;
+    }
 
     /** Setter */
     public void setMasteryLevel(int level) {
@@ -217,5 +221,6 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
     public Skill cloneSkill() throws CloneNotSupportedException {
         return (Skill) this.clone();     
     }
+
 
 }
