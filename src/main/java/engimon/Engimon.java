@@ -70,23 +70,6 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon>, Printab
         this.cumul_exp = 0;
     }
     // cctor lengkap
-    public Engimon(Engimon engimon) {
-        this.name = engimon.name;
-        this.lives = engimon.lives;
-        this.species = engimon.species;
-        this.parent = new Parent(engimon.parent);
-        this.element.add(engimon.element.get(0));
-        if (!engimon.isOneElement()) {
-            this.element.add(engimon.element.get(1));
-        }
-        for (int i = 0; i < engimon.skill.size(); i++) {
-            this.skill.add(new Skill(engimon.skill.get(i)));
-        }
-        this.level = engimon.level;
-        this.exp = engimon.exp;
-        this.cumul_exp = engimon.cumul_exp;
-        this.slogan = engimon.slogan;
-    }
     public Object clone() throws CloneNotSupportedException{
         Engimon engi = (Engimon)super.clone();
         engi.skill = new ArrayList<Skill>();
