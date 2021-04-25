@@ -95,7 +95,7 @@ public class Game implements Serializable {
                     AtomicInteger x = new AtomicInteger(0);
                     AtomicInteger y = new AtomicInteger(0);
                     Engimon e = game.map.getNearbyEnemyEngimon(x,y);
-                    e.printEngimon();
+                    e.print();
                 }else if(command == 'x'){
                     game.save();
                 }else if(command == 't'){
