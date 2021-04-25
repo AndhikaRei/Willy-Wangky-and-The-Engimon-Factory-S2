@@ -84,7 +84,11 @@ public class Skidex implements Iterable<Skill> {
         Skill result = null;
         for(Skill skill : listSkill){
             if(skill.getName().equals(skillName)){
-                result = skill;
+                try {
+                    result = skill.cloneSkill();
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
                 break;
             }
         }
