@@ -148,7 +148,9 @@ public class Skill_Item implements Comparable<Skill_Item> {
         return this.getSkill().getBasePower() - o.getSkill().getBasePower();
     }
 
-
+    public String toString() {
+        return contSkill.toString() + " " + Integer.toString(amount) + "\n";
+    }
 //    public static <I> Object addAmount(I i) {
 //    }
 }
