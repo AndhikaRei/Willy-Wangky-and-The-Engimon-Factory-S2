@@ -11,7 +11,8 @@ import main.java.inventory.Inventory;
 import main.java.inventory.Skill_Item;
 import com.google.gson.Gson;
 import main.java.exception.*;
-public class Player implements Serializable {
+
+public class Player implements java.io.Serializable{
     private Engimon activeEngimon;
     private Inventory<Engimon,Skill_Item> inventoryEntity;
 

@@ -8,6 +8,7 @@ import main.java.engimon.species.Pyro;
 import main.java.inventory.Skill_Item;
 import main.java.player.*;
 import main.java.player.Game;
+import java.io.*;
 public class Test_player {
     public static void main(String[] args) {
         Player test = new Player();
@@ -58,6 +59,15 @@ public class Test_player {
             System.out.print(e.getMessage());
         }
 
+
+//
+//        try {
+//            test = Player.load("./playerSaveFile.json");
+//            test.getInventory().printInventory();
+//        }catch (Exception e){
+//            System.out.print(e.getMessage());
+//        }
+//
 
 
         //System.out.print("wkkw");
