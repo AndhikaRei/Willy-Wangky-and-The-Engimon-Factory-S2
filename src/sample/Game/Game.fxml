@@ -440,7 +440,7 @@
                      <font>
                         <Font name="Roboto Condensed" size="12.0" />
                      </font></Button>
-                  <Button fx:id="btn_save" layoutX="8.0" layoutY="8.0" maxHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" onAction="#move" prefHeight="30.0" prefWidth="50.0" text="Save">
+                  <Button fx:id="btn_save" layoutX="8.0" layoutY="8.0" maxHeight="-Infinity" minWidth="42.0" mnemonicParsing="false" onAction="#save" prefHeight="30.0" prefWidth="50.0" text="Save">
                      <font>
                         <Font name="Roboto Condensed" size="12.0" />
                      </font></Button>

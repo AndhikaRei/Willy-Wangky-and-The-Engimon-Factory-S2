@@ -41,6 +41,7 @@ public class Test_player {
         }catch (Exception e){
             e.printStackTrace();
         }
+        System.out.println("Lol");
         test2.getInventory().printInventory();
         test2.getActiveEngimon().getName();
     }

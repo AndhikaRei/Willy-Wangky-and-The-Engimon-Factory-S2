@@ -134,7 +134,7 @@ public class Player {
 
     public void savePlayer(){
         try {
-            FileWriter myWriter = new FileWriter("src\\main\\resources\\player.txt");
+            FileWriter myWriter = new FileWriter("src\\main\\resources\\savePlayer.txt");
             String textToSave;
             StringBuilder sb = new StringBuilder();
             // Save Engimon in Inventory

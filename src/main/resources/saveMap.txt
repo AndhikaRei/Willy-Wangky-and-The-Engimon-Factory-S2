@@ -1,0 +1,17 @@
+^^FC^^^^^^ooooooWooo
+^^^^^^^^^^oooooooooo
+^^^^^^^^^^oooooooooo
+^^^^^^^^^^oooooooooo
+^^^^^^^^^^oooooooooo
+----------**********
+----------**********
+----------**********
+----------**********
+----PX----**********
+20 10
+Player 9 4
+"Geo" 9 5
+Total Engimon: 3
+0,2,"Pyro",{Explosion!,},43,4200
+0,3,"Melt",{Half-Cold Half-Hot,},44,4300
+0,16,"Hydro",{Purification!,},43,4200

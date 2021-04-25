@@ -537,11 +537,28 @@ public class GameController {
     }
     // Save Command
     public void save(){
-
+        try {
+            this.map.saveMap();
+            this.player.savePlayer();
+            AlertBox.displayInfo("Anda sukses mengesave", "Save");
+        } catch (Exception e){
+            AlertBox.displayWarning(e.getMessage());
+        }
     }
     // Load Command
     public void load(){
-        AlertBox.displayInfo("LOADLUR","LOADLUR");
+        try {
+            this.map.loadMap("saveMap.txt");
+            Player pal = new Player();
+            pal.loadPlayer("savePlayer.txt");
+            this.player = pal;
+            AlertBox.displayInfo("Anda berhasil meload data", "Load");
+            this.refreshMapGUI();
+            this.refreshInventory();
+            this.refreshActiveEngimonGUI();
+        } catch (Exception e){
+            AlertBox.displayWarning(e.getMessage());
+        }
     }
     // Exit command
     public void exit(){
