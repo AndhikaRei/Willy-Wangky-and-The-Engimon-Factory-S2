@@ -132,7 +132,7 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
     }
     // Untuk tableview
     public List<Element> getElement(){
-        return listElements;
+        return new ArrayList<>(this.elements);
     }
 
     /** Setter */
