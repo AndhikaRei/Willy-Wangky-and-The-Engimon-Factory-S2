@@ -149,7 +149,7 @@ public class Player {
                 sb.append(e.getSpecies()).append('\n')
                     .append(e.getName()).append('\n')
                     .append(e.getLives()).append('\n')
-                    .append(e.getParent().bothParent()).append("\n{");
+                    .append(e.getParent().bothParent()).append("\n{;");
                 List<Skill> liSkill = e.getSkill();
                 for(Skill skill : liSkill){
                     sb.append('(').append(skill.getName()).append(',').append(skill.getMasteryLevel()).append(");");
@@ -218,7 +218,6 @@ public class Player {
             }else if(i<(totalEngimons*8+1)){
                 if(i%8==1){
                     newEngimon = Engidex.getEngimonBySpecies(currLine).cloneEngimon();
-                    System.out.println(newEngimon.getName());
                 }else if(i%8==2){
                     newEngimon.setName(currLine);
                 }else if(i%8==3){
@@ -234,6 +233,7 @@ public class Player {
                 }else if(i%8==5){
                     List<Skill> engiSkill = new ArrayList<Skill>();
                     while(!currLine.equals(";}")){
+                        currLine = currLine.substring(currLine.indexOf(';')+1);
                         String name = currLine.substring(currLine.indexOf('(')+1, currLine.indexOf(','));
                         int mastery = Integer.parseInt(currLine.substring(currLine.indexOf(',')+1, currLine.indexOf(')')));
                         if(name.equals(newEngimon.getSkill().get(0).getName())){
