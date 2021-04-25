@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import main.java.exception.*;
 
 public class Inventory<E extends Engimon,I extends Skill_Item> implements java.io.Serializable{
-    private List<I> ListItem;
+    private List<I > ListItem;
     private List<E> ListEngimon;
     public Inventory(){
         this.ListItem = new ArrayList<I>();
