@@ -31,9 +31,9 @@ public class Player {
         a4.setLevel(40);
         a5.setLevel(40);
         try{
-            a1.addSkill(new Skill("Panas1", "Hottt1", 10, Element.Fire));
-            a1.addSkill(new Skill("Panas2", "Hottt2", 10, Element.Fire));
-            a1.addSkill(new Skill("Panas3", "Hottt3", 10, Element.Fire));
+//            a1.addSkill(new Skill("Panas1", "Hottt1", 10, Element.Fire));
+//            a1.addSkill(new Skill("Panas2", "Hottt2", 10, Element.Fire));
+//            a1.addSkill(new Skill("Panas3", "Hottt3", 10, Element.Fire));
             this.inventoryEntity.addEngimon(a2);
             this.inventoryEntity.addEngimon(a1);
             this.inventoryEntity.addEngimon(a3);

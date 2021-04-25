@@ -95,9 +95,11 @@ public class BreedConfirmController {
         for(Skill skill : engimon1.getSkill()){
             // Mastery
             StackPane mastery = new StackPane();
+            ImageView iconSprite = new ImageView(skill.getIcon(40.0,40.0));
             ImageView masterySprite = new ImageView(skill.getSprite(25.0,25.0));
-            mastery.getChildren().add(masterySprite);
-            mastery.setAlignment(masterySprite, Pos.CENTER);
+            mastery.getChildren().addAll(iconSprite,masterySprite);
+            mastery.setAlignment(iconSprite, Pos.CENTER);
+            mastery.setAlignment(masterySprite, Pos.BOTTOM_RIGHT);
             this.engi1_skills.add(mastery,0,i);
 
             // Power Skill
@@ -127,9 +129,11 @@ public class BreedConfirmController {
         for(Skill skill : engimon2.getSkill()){
             // Mastery
             StackPane mastery = new StackPane();
+            ImageView iconSprite = new ImageView(skill.getIcon(40.0,40.0));
             ImageView masterySprite = new ImageView(skill.getSprite(25.0,25.0));
-            mastery.getChildren().add(masterySprite);
-            mastery.setAlignment(masterySprite, Pos.CENTER);
+            mastery.getChildren().addAll(iconSprite,masterySprite);
+            mastery.setAlignment(iconSprite, Pos.CENTER);
+            mastery.setAlignment(masterySprite, Pos.BOTTOM_RIGHT);
             this.engi2_skills.add(mastery,0,i);
 
             // Power Skill

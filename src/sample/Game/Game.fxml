@@ -413,58 +413,7 @@
                </children></AnchorPane>
          </content>
       </TitledPane>
-      <TitledPane animated="false" layoutX="1083.0" layoutY="56.0" prefHeight="258.0" prefWidth="254.0" text="Active Engimon">
-         <content>
-            <AnchorPane fx:id="active_engimonPane" minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="232.0">
-               <children>
-                  <ImageView fx:id="active_sprite" fitHeight="130.0" fitWidth="130.0" layoutX="61.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../main/resources/Cryo1.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="active_speciesName" alignment="CENTER" layoutY="134.0" prefHeight="27.0" prefWidth="252.0" text="Cryo">
-                     <font>
-                        <Font name="Roboto Condensed Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="active_name" alignment="CENTER" layoutY="159.0" prefHeight="27.0" prefWidth="252.0" text="Nama Engimon">
-                     <font>
-                        <Font name="Roboto Condensed Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="10.0" layoutY="192.0" prefHeight="27.0" prefWidth="39.0" text="LV">
-                     <font>
-                        <Font name="Roboto Condensed Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="94.0" layoutY="192.0" prefHeight="27.0" prefWidth="110.0" text="Skill Power : ">
-                     <font>
-                        <Font name="Roboto Condensed Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="active_el1" fitHeight="30.0" fitWidth="30.0" layoutX="7.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../main/resources/el_electric.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="active_el2" fitHeight="30.0" fitWidth="30.0" layoutX="40.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../main/resources/el_ice.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="active_level" layoutX="36.0" layoutY="192.0" prefHeight="27.0" prefWidth="41.0" text="80">
-                     <font>
-                        <Font name="Roboto Condensed Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="active_skillPower" layoutX="202.0" layoutY="192.0" prefHeight="27.0" prefWidth="50.0" text="2000">
-                     <font>
-                        <Font name="Roboto Condensed Bold" size="18.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
-         </content>
-      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="1083.0" layoutY="56.0" prefHeight="258.0" prefWidth="254.0" text="Active Engimon" />
       <Label fx:id="turnGUI" layoutX="1090.0" layoutY="6.0" text="Turn-X">
          <font>
             <Font name="Roboto Black" size="36.0" />
@@ -527,15 +476,20 @@
                      <font>
                         <Font name="Roboto Condensed" size="12.0" />
                      </font></Button>
-                  <Button fx:id="btn_throw" layoutX="39.0" layoutY="100.0" minWidth="42.0" mnemonicParsing="false" onAction="#throwItem" prefHeight="30.0" prefWidth="65.0" text="Throw">
+                  <Button fx:id="btn_throw" layoutX="75.0" layoutY="100.0" minWidth="42.0" mnemonicParsing="false" onAction="#throwItem" prefHeight="30.0" prefWidth="62.0" text="Throw">
                      <font>
                         <Font name="Roboto Condensed" size="12.0" />
                      </font></Button>
-                  <Button fx:id="btn_useItem" layoutX="110.0" layoutY="101.0" minWidth="42.0" mnemonicParsing="false" onAction="#useItem" prefHeight="30.0" prefWidth="65.0" text="Use Item">
+                  <Button fx:id="btn_useItem" layoutX="145.0" layoutY="100.0" minWidth="42.0" mnemonicParsing="false" onAction="#useItem" prefHeight="30.0" prefWidth="62.0" text="Use Item">
                      <font>
                         <Font name="Roboto Condensed" size="12.0" />
                      </font></Button>
                   <Line endX="111.0" layoutX="105.0" layoutY="89.0" startX="-105.0" />
+                  <Button fx:id="btn_inspect" layoutX="4.0" layoutY="100.0" minWidth="42.0" mnemonicParsing="false" onAction="#inspectItem" prefHeight="30.0" prefWidth="64.0" text="Inspect">
+                     <font>
+                        <Font name="Roboto Condensed" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
         </content>
@@ -551,6 +505,55 @@
          <children>
             <TitledPane collapsible="false" layoutX="-2.0" layoutY="-2.0" prefHeight="26.0" prefWidth="257.0" text="Inventory Skill_Item" />
             <TableView fx:id="table_Item" editable="true" layoutX="-2.0" layoutY="21.0" prefHeight="355.0" prefWidth="257.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="active_engimonPane" layoutX="1083.0" layoutY="82.0" minHeight="0.0" minWidth="0.0" prefHeight="233.0" prefWidth="252.0">
+         <children>
+            <ImageView fx:id="active_sprite" fitHeight="130.0" fitWidth="130.0" layoutX="61.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../main/resources/Cryo1.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="active_speciesName" alignment="CENTER" layoutY="134.0" prefHeight="27.0" prefWidth="252.0" text="Cryo">
+               <font>
+                  <Font name="Roboto Condensed Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="active_name" alignment="CENTER" layoutY="159.0" prefHeight="27.0" prefWidth="252.0" text="Nama Engimon">
+               <font>
+                  <Font name="Roboto Condensed Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="192.0" prefHeight="27.0" prefWidth="39.0" text="LV">
+               <font>
+                  <Font name="Roboto Condensed Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="94.0" layoutY="192.0" prefHeight="27.0" prefWidth="110.0" text="Skill Power : ">
+               <font>
+                  <Font name="Roboto Condensed Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="active_el1" fitHeight="30.0" fitWidth="30.0" layoutX="7.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../main/resources/el_electric.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="active_el2" fitHeight="30.0" fitWidth="30.0" layoutX="40.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../main/resources/el_ice.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="active_level" layoutX="36.0" layoutY="192.0" prefHeight="27.0" prefWidth="41.0" text="80">
+               <font>
+                  <Font name="Roboto Condensed Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="active_skillPower" layoutX="202.0" layoutY="192.0" prefHeight="27.0" prefWidth="50.0" text="2000">
+               <font>
+                  <Font name="Roboto Condensed Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

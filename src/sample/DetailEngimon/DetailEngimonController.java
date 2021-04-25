@@ -2,12 +2,14 @@ package sample.DetailEngimon;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import main.java.element.Element;
 import main.java.engimon.Engimon;
 import main.java.skill.Skill;
@@ -31,6 +33,9 @@ public class DetailEngimonController {
     @FXML private GridPane ally_dualInfo;
     // Info dari skill
     @FXML private GridPane ally_skills;
+
+    // Button
+    @FXML private Button btn_exit;
 
     // Melakukan load data sesuai parameter engimon yang disuplai
     public void loadData(Engimon ally){
@@ -71,9 +76,11 @@ public class DetailEngimonController {
         for(Skill skill : ally.getSkill()){
             // Mastery
             StackPane mastery = new StackPane();
+            ImageView iconSprite = new ImageView(skill.getIcon(40.0,40.0));
             ImageView masterySprite = new ImageView(skill.getSprite(25.0,25.0));
-            mastery.getChildren().add(masterySprite);
-            mastery.setAlignment(masterySprite, Pos.CENTER);
+            mastery.getChildren().addAll(iconSprite,masterySprite);
+            mastery.setAlignment(iconSprite,Pos.CENTER);
+            mastery.setAlignment(masterySprite, Pos.BOTTOM_RIGHT);
             this.ally_skills.add(mastery,0,i);
 
             // Power Skill
@@ -85,6 +92,7 @@ public class DetailEngimonController {
             Label name = new Label(skill.getName());
             name.setFont(new Font("Roboto",14));
             this.ally_skills.add(name,2,i);
+
 
             // Deskripsi Skill
             Label description = new Label(skill.getDesc());
@@ -103,6 +111,11 @@ public class DetailEngimonController {
             }
             i++;
         }
+    }
+    // Exit command
+    public void exit(){
+        Stage stage = (Stage) this.btn_exit.getScene().getWindow();
+        stage.close();
     }
 
 }

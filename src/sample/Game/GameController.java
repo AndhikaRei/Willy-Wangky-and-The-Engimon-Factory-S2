@@ -5,6 +5,7 @@ import main.java.engimon.Breeding_Fountain;
 import sample.AlertBox;
 import sample.BreedConfirm.BreedConfirm;
 import sample.DetailEngimon.DetailEngimon;
+import sample.DetailSkillItem.DetailSkillItem;
 import sample.ReplaceSkill.ReplaceSkill;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -109,6 +110,7 @@ public class GameController {
         if(player.getActiveEngimon() == null){
             this.active_engimonPane.setVisible(false);
         } else {
+            this.active_engimonPane.setVisible(true);
             this.active_sprite.setImage(this.player.getActiveEngimon().getSprite(130,130));
             this.active_speciesName.setText(this.player.getActiveEngimon().getSpecies());
             this.active_name.setText(this.player.getActiveEngimon().getName());
@@ -205,25 +207,25 @@ public class GameController {
     public void setupInventory(){
         // Setup kolom spesies pada tabel engimon
         TableColumn<Engimon, String> speciesColumn = new TableColumn<>("Species");
-        speciesColumn.setMinWidth(70);
+        speciesColumn.setPrefWidth(70);
         speciesColumn.setSortable(false);
         speciesColumn.setCellValueFactory(new PropertyValueFactory<>("species"));
 
         // Setup kolom name pada tabel engimon
         TableColumn<Engimon, String> nameColumn = new TableColumn<>("Name");
-        nameColumn.setMinWidth(90);
+        nameColumn.setPrefWidth(110);
         nameColumn.setSortable(false);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         // Setup kolom elemen pada tabel engimon
         TableColumn<Engimon, List<String>> elementColumn = new TableColumn<>("Element");
-        elementColumn.setMinWidth(90);
+        elementColumn.setPrefWidth(110);
         elementColumn.setSortable(false);
         elementColumn.setCellValueFactory(new PropertyValueFactory<>("element"));
 
         // Setup kolom level pada tabel engimon
         TableColumn<Engimon, Integer> levelColumn = new TableColumn<>("Level");
-        levelColumn.setMinWidth(30);
+        levelColumn.setPrefWidth(45);
         levelColumn.setSortable(false);
         levelColumn.setCellValueFactory(new PropertyValueFactory<>("level"));
 
@@ -235,25 +237,25 @@ public class GameController {
 
         // Setup kolom quantity pada tabel Skill_Item
         TableColumn<Skill_Item, Integer> quantityColumn = new TableColumn<>("Qty");
-        quantityColumn.setMinWidth(25);
+        quantityColumn.setPrefWidth(45);
         quantityColumn.setSortable(false);
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
         // Setup kolom name pada tabel Skill_Item
         TableColumn<Skill_Item, String> skillNameColumn = new TableColumn<>("Name");
-        skillNameColumn.setMinWidth(90);
+        skillNameColumn.setPrefWidth(110);
         skillNameColumn.setSortable(false);
         skillNameColumn.setCellValueFactory(new PropertyValueFactory<>("skillName"));
 
         // Setup kolom elemen pada tabel Skill_Item
         TableColumn<Skill_Item, List<String>> skillElementColumn = new TableColumn<>("Element");
-        skillElementColumn.setMinWidth(90);
+        skillElementColumn.setPrefWidth(110);
         skillElementColumn.setSortable(false);
         skillElementColumn.setCellValueFactory(new PropertyValueFactory<>("element"));
 
         // Setup kolom base power pada tabel Skill_Item
         TableColumn<Skill_Item, Integer> basePowerColumn = new TableColumn<>("BP");
-        basePowerColumn.setMinWidth(25);
+        basePowerColumn.setPrefWidth(45);
         basePowerColumn.setSortable(false);
         basePowerColumn.setCellValueFactory(new PropertyValueFactory<>("basePower"));
 
@@ -382,6 +384,18 @@ public class GameController {
                 throw new Exception("Pilihlah tepat satu engimon untuk di examine");
             } else {
                 DetailEngimon.display(this.player.getInventory().getEngimon(this.table_Engimon.getSelectionModel().getSelectedIndex()));
+            }
+        } catch (Exception e){
+            AlertBox.displayWarning(e.getMessage());
+        }
+    }
+
+    public void inspectItem(){
+        try{
+            if ((this.table_Item.getSelectionModel().getSelectedIndices()).size() != 1) {
+                throw new Exception("Pilihlah tepat satu item untuk di inspect");
+            } else {
+                DetailSkillItem.display(this.player.getInventory().getItem(this.table_Item.getSelectionModel().getSelectedIndex()));
             }
         } catch (Exception e){
             AlertBox.displayWarning(e.getMessage());

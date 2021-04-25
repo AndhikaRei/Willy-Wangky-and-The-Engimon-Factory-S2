@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.java.engimon.Engimon;
 import sample.AlertBox;
 
@@ -20,6 +21,7 @@ public class BreedConfirm {
             breedConfirmController.loadData(ally,enemy);
             Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
             breedingStage.setScene(scene);
+            breedingStage.initStyle(StageStyle.UNDECORATED);
             breedingStage.showAndWait();
             return breedConfirmController.getIsBreed();
         } catch (Exception e){
