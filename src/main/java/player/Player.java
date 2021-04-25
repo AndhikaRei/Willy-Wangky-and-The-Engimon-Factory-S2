@@ -32,8 +32,8 @@ public class Player {
         a4.setLevel(40);
         a5.setLevel(40);
         try{
-            // a1.addSkill(new Skill("Fire Breath", "Hah Naga!", 20, Element.Fire));
-            // a2.addSkill(new Skill("Gush", "Ciuhh!", 20, Element.Water));
+            a1.addSkill(new Skill("Fire Breath", "Hah Naga!", 20, Element.Fire));
+            a2.addSkill(new Skill("Gush", "Ciuhh!", 20, Element.Water));
             this.inventoryEntity.addEngimon(a2);
             this.inventoryEntity.addEngimon(a1);
             this.inventoryEntity.addEngimon(a3);

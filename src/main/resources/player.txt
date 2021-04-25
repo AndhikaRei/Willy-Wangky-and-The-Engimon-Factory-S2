@@ -3,7 +3,7 @@ Hydro
 Hydro1
 3
 No Parent
-{(Purification!,1);}
+{(Purification!,1);(Gush,1);}
 40
 0
 0
@@ -79,8 +79,7 @@ No Parent
 100
 0
 10000
-Active engimon index : 0
-Total Skill Item: 3
-ONE-PUNCH,2
+Active engimon index : 3
+Total Skill Item: 2
 Fire Breath,5
 Rupture,10

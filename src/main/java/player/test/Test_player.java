@@ -27,7 +27,6 @@ public class Test_player {
             test.getInventory().addEngimon(whotau);
             test.getInventory().addEngimon(chongyun);
             test.changeActiveEngimon(3);
-            test.getInventory().addItem(new Skill_Item(Skidex.getSkillByName("ONE-PUNCH"),2));
             test.getInventory().addItem(new Skill_Item(Skidex.getSkillByName("Fire Breath"),5));
             test.getInventory().addItem(new Skill_Item(Skidex.getSkillByName("Rupture"),10));
         }catch (Exception e){
