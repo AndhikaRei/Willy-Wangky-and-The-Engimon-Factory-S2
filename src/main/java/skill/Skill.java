@@ -1,8 +1,10 @@
 package main.java.skill;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javafx.scene.image.Image;
 import main.java.element.Element;
@@ -14,7 +16,7 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
     private String desc;                    // Deskripsi Skill
     private Integer basePower;              // Base Power
     private Integer masteryLevel;           // Mastery level, maksimal level 3
-    private List<Element> listElements;     // Element yang bisa mempelajari skill
+    private Set<Element> elements;      // Element yang bisa mempelajari skill
 
     /*** METHODS ***/
     /** Default Constructor */
@@ -31,8 +33,8 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
         this.desc = desc;
         this.basePower = basePower;
         this.masteryLevel = 1;
-        this.listElements = new ArrayList<Element>();
-        this.listElements.add(el);
+        this.elements = new HashSet<>();
+        this.elements.add(el);
     }
 
     public Skill(String name, String desc, int basePower, Element el1, Element el2) {
@@ -40,9 +42,9 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
         this.desc = desc;
         this.basePower = basePower;
         this.masteryLevel = 1;
-        this.listElements = new ArrayList<Element>();
-        this.listElements.add(el1);
-        this.listElements.add(el2);
+        this.elements = new HashSet<>();
+        this.elements.add(el1);
+        this.elements.add(el2);
     }
 
     public Skill(String name, String desc, int basePower, List<Element> listEl) {
@@ -50,7 +52,7 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
         this.desc = desc;
         this.basePower = basePower;
         this.masteryLevel = 1;
-        this.listElements = new ArrayList<Element>(listEl);
+        this.elements = new HashSet<>(listEl);
     }
 
     /** Copy Constructor **/
@@ -61,15 +63,13 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
         // this.masteryLevel = other.masteryLevel;
         // this.listElements = new ArrayList<Element>(other.listElements);
         try {
-            Skill newSk = other;
+            Skill newSk = other.cloneSkill();
             this.name = newSk.name;
             this.desc = newSk.desc;
             this.basePower = newSk.basePower;
             this.masteryLevel = newSk.masteryLevel;
-            this.listElements = new ArrayList<Element>();
-            for (Element el : newSk.getListElement()){
-                this.listElements.add(el);
-            }
+            this.elements = new HashSet<>();
+            this.elements.addAll(newSk.getListElement());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -99,14 +99,14 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
 
     /** Mengcek apakah suatu elemen compatible dengan skill */
     public boolean isElementCompatible(Element el) {
-        return listElements.contains(el);
+        return elements.contains(el);
     }
 
     /** Mengcek apakah suatu list of elemen compatible dengan skill */
     public boolean isElementCompatible(List<Element> listEl) {
         boolean found = false;
         for (Element el : listEl) {
-            if (listElements.contains(el)) {
+            if (elements.contains(el)) {
                 found = true;
                 break;
             }
@@ -128,7 +128,7 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
         return masteryLevel;
     }
     public List<Element> getListElement() {
-        return listElements;
+        return new ArrayList<>(this.elements);
     }
     // Untuk tableview
     public List<Element> getElement(){
@@ -152,24 +152,21 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
         System.out.println("BasePower    : " + basePower);
         System.out.println("MasteryLevel : " + masteryLevel);
         System.out.print("Elements     : ");
-        for (int i = 0; i < listElements.size(); i++) {
-            System.out.print(listElements.get(i));
-            if (i < listElements.size() - 1) {
-                System.out.print("/");
-            }
-        }
-        System.out.println("");
+        showSkillElements();
     }
 
     public void printSimple() {
         System.out.println("Skill : " + name);
         System.out.println("BP/ML : " + basePower + "/" + masteryLevel);
         System.out.print("EL    : ");
-        for (int i = 0; i < listElements.size(); i++) {
-            System.out.print(listElements.get(i));
-            if (i < listElements.size() - 1) {
-                System.out.print("/");
-            }
+        showSkillElements();
+    }
+
+    private void showSkillElements() {
+        for (Element el : elements) {
+            System.out.print("[");
+            System.out.print(el);
+            System.out.print("] ");
         }
         System.out.println("");
     }
@@ -189,7 +186,7 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, desc, basePower, masteryLevel, listElements);
+        return Objects.hash(name, desc, basePower, masteryLevel, elements);
     }
 
     public Image getSprite(Double rw, Double rh){
@@ -213,7 +210,7 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
     public Object clone() throws CloneNotSupportedException {
         // System.out.println("This clone skill");
         Skill newSk = (Skill) super.clone();
-        newSk.listElements = new ArrayList<Element>(this.listElements);
+        newSk.elements = new HashSet<>(this.elements);
         // System.out.println(newSk);
         return newSk;
     }
