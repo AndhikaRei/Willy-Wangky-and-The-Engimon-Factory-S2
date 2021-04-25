@@ -1,9 +1,9 @@
-Total Engimon: 10
+Total Engimon: 5
 Hydro
 Hydro1
 3
 No Parent
-{(Purification!,1);(Gush,1);}
+{;(Purification!,1);(Gush,1);}
 40
 0
 0
@@ -11,75 +11,33 @@ Electro
 Electro1
 3
 No Parent
-{(Thunderstorm,1);}
+{;(Thunderstorm,1);}
 40
 0
 0
 Geo
-Geo1
+Save
 3
 No Parent
-{(Tanah tinggi!,1);}
+{;(Tanah tinggi!,1);}
 40
-0
-0
-Cryo
-neula
-3
-No Parent
-{(Freeze!,1);}
-0
 0
 0
 Cryo
 Cryo1
 3
 No Parent
-{(Freeze!,1);}
+{;(Freeze!,1);}
 40
-0
-0
-Cryo
-Chongyun
-3
-No Parent
-{(Freeze!,1);}
-100
-0
-10000
-Pyro
-dulic
-3
-No Parent
-{(Explosion!,1);}
-0
 0
 0
 Pyro
 Pyro1
 3
 No Parent
-{(Explosion!,1);(Fire Breath,1);}
+{;(Explosion!,1);(Fire Breath,1);}
 40
 0
 0
-Pyro
-bennet
-3
-No Parent
-{(Explosion!,1);}
-100
-0
-10000
-Pyro
-hutao
-3
-No Parent
-{(Explosion!,1);}
-100
-0
-10000
-Active engimon index : 3
-Total Skill Item: 2
-Fire Breath,5
-Rupture,10
+Active engimon index : 0
+Total Skill Item: 0
