@@ -57,7 +57,8 @@ public class Test_player {
         }
 
 
-
+        System.out.println(test.getInventory().toString());
+        //System.out.println(test.getInventory().ListEngimonToString());
         //System.out.print("wkkw");
     }
 }

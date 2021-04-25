@@ -166,7 +166,7 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
     }
 
     public String toString(){
-        return "";
+        return ListItemToString() + "\n" + ListEngimonToString();
     }
 
     public String ListItemToString(){
@@ -178,11 +178,13 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         return Integer.toString(this.ListItem.size()) + "\n" + temp.toString();
     }
     public String ListEngimonToString(){
-        StringBuilder temp = new StringBuilder("");
-        this.ListEngimon
-                .stream()
-                .map(i -> temp.append(i.toString()).append("\n"));
-
+        StringBuilder temp = new StringBuilder();
+//        this.ListEngimon
+//                .stream()
+//                .map(i -> temp.append(i.toString()).append("\n"));
+        for(int i = 0;i < this.ListEngimon.size();i++){
+            temp.append(this.ListEngimon.get(i).toString()).append("\n");
+        }
         return Integer.toString(this.ListEngimon.size()) + "\n" + temp.toString();
     }
 }

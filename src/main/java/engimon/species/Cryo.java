@@ -9,6 +9,11 @@ import javafx.scene.image.Image;
 import javafx.scene.effect.DropShadow;
 
 public class Cryo extends Engimon {
+    @Override
+    public String toString() {
+        return this.getSpecies() + " " + this.getName() + " " + this.getLives() + " " + getLevel() + " " + getCumulExp() + " " + getParent() + " " + getSkill().toString();
+    }
+
     /* CONSTRUCTORS */
     // ctor tanpa parent
     public Cryo(String name, boolean isWild) {

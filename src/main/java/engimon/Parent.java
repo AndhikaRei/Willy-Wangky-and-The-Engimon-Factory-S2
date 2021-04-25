@@ -71,4 +71,7 @@ public class Parent{
         }
 
     }
+    public String toString() {
+        return "PARENTNOTIMPLEMENTED";
+    }
 }

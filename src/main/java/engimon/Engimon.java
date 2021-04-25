@@ -31,6 +31,8 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon>, Printab
     protected int cumul_exp;
     protected String slogan;
 
+
+
     /* CONSTRUCTORS */
     // Using Wild Flag
     public Engimon ( String name, boolean isWild ){
@@ -319,7 +321,7 @@ public abstract class Engimon implements Cloneable, Comparable<Engimon>, Printab
     public abstract Image getSprite(double rw, double rh);
     public abstract DropShadow getAura();
     public abstract String getSlogan();
-
+    public abstract String toString();
     @Override
     public int compareTo(Engimon E) {
         if(Element.toInt(this.getElement()) - Element.toInt(E.getElement()) == 0 ){
