@@ -11,6 +11,7 @@
 
 ## Requirement
 - [IntelliJ IDE]
+- JDK 8
 
 
 ## Executing
