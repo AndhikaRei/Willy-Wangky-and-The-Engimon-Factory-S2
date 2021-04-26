@@ -174,4 +174,24 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         return this.ListEngimon.size() + countItem;
     }
 
+    public String toString(){
+        return "";
+    }
+
+    public String ListItemToString(){
+        StringBuilder temp = new StringBuilder("");
+        this.ListItem
+                .stream()
+                .map(i -> temp.append(i.toString()).append("\n"));
+
+        return Integer.toString(this.ListItem.size()) + "\n" + temp.toString();
+    }
+    public String ListEngimonToString(){
+        StringBuilder temp = new StringBuilder("");
+        this.ListEngimon
+                .stream()
+                .map(i -> temp.append(i.toString()).append("\n"));
+
+        return Integer.toString(this.ListEngimon.size()) + "\n" + temp.toString();
+    }
 }

@@ -223,5 +223,7 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
         return (Skill) this.clone();     
     }
 
-
+    public String toString() {
+        return name +" "+ Integer.toString(masteryLevel) + "\n";
+    }
 }
