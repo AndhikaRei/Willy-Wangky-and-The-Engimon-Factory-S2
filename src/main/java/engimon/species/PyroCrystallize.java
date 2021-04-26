@@ -47,7 +47,7 @@ public class PyroCrystallize extends Engimon {
     }
     @Override
     public Image getSprite(double rw, double rh){
-        if (this.getLevel() < 7){
+        if (this.getLevel() < 50){
             return new Image("./main/resources/PyroCrystallize1.png",rw,rh,false,false);
         } else {
             return new Image("./main/resources/PyroCrystallize2.png",rw,rh,false,false);

@@ -26,11 +26,11 @@ public class Player {
         Engimon a3 = new Electro("Electro1",3);
         Engimon a4 = new Geo("Geo1",3);
         Engimon a5 = new Cryo("Cryo1",3);
-        a1.setLevel(40);
-        a2.setLevel(40);
-        a3.setLevel(40);
-        a4.setLevel(40);
-        a5.setLevel(40);
+        a1.setLevel(20);
+        a2.setLevel(20);
+        a3.setLevel(20);
+        a4.setLevel(20);
+        a5.setLevel(20);
         try{
             a1.addSkill(new Skill("Fire Breath", "Hah Naga!", 20, Element.Fire));
             a2.addSkill(new Skill("Gush", "Ciuhh!", 20, Element.Water));
@@ -45,23 +45,6 @@ public class Player {
 
         this.activeEngimon = this.inventoryEntity.getEngimon(0);
     }
-
-//    public Player(String JsonFIle ){
-//        java.net.URL url = this.getClass().getResource(JsonFIle);
-//        File jsonFile = new File(url.getFile());
-//        System.out.println("Full path of file: " + jsonFile);
-//
-//        try{
-//            BufferedReader br = new BufferedReader(new FileReader(JsonFIle));
-//            Player temp = new Gson().fromJson(br, Player.class);
-//            this = temp;
-//        }catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-//    }
-
-
 
     public Inventory getInventory(){
         return this.inventoryEntity;
@@ -96,50 +79,19 @@ public class Player {
         this.activeEngimon = e;
     }
 
-//    public void save() throws Exception {
-//        Gson gson = new Gson();
-//        String filePath = "";
-//        gson.toJson(this, new FileWriter(filePath));
-//        System.out.println(new Gson().toJson(this));
-//    }
-
-    public static void save(Player player)throws Exception{
-        Gson gson = new Gson();
-        String filePath = "./wkkw.json";
-        gson.toJson(player, new FileWriter(filePath));
-        System.out.println(new Gson().toJson(player));
-
-        try {
-            File myObj = new File("./playerSaveFile.json");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        try {
-            FileWriter myWriter = new FileWriter("./playerSaveFile.json");
-            myWriter.write(new Gson().toJson(player));
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-    }
-
     public void savePlayer(){
         try {
             FileWriter myWriter = new FileWriter("src\\main\\resources\\savePlayer.txt");
             String textToSave;
             StringBuilder sb = new StringBuilder();
             // Save Engimon in Inventory
-            String activeName = this.getActiveEngimon().getName();
-            int indexActive = 0, i = 0;
+            String activeName;
+            if(this.getActiveEngimon()==null){
+                activeName = "undefined";
+            }else{
+                activeName = this.getActiveEngimon().getName();
+            }
+            int indexActive = -1, i = 0;
             List<Engimon> listEngi = this.inventoryEntity.getEngimons();
             sb.append("Total Engimon: ").append(listEngi.size()).append('\n');
             for(Engimon e : listEngi){
@@ -175,36 +127,11 @@ public class Player {
         }
     }
 
-    public static Player load(String JsonFIle )throws IOException   {
-
-        //java.net.URL url = JsonFIle.getClass().getResource(JsonFIle);
-        try{
-            File jsonFile = new File(JsonFIle);
-            System.out.println("Full path of file: " + jsonFile);
-        }catch (Exception e){
-            System.out.println("File Not Found");
-            throw e;
-        }
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(JsonFIle));
-            Player temp = new Gson().fromJson(br, Player.class);
-            return temp;
-        }catch (IOException e)
-        {
-
-            e.printStackTrace();
-
-            throw e;
-        }
-
-    }
-
     public void loadPlayer(String txt) throws Exception{
-        int i, j, totalEngimons=0, totalItems=0;
+        int i,totalEngimons=0;
         Engidex.initEngidex();
         Skidex.initSkill();
         i = 0;
-        j = 0;
         String filename = "src\\main\\resources\\".concat(txt);
         File file=new File(filename);
         Scanner sc = new Scanner(file);
@@ -259,9 +186,13 @@ public class Player {
             }else if(i==(totalEngimons*8+1)){
                 this.inventoryEntity.setEngimons(newEngimons);
                 int index= Integer.parseInt(currLine.substring(23));
-                changeActiveEngimon(index);
+                if(index==-1){
+                    this.setActiveEngimon(null);
+                }else{
+                    changeActiveEngimon(index);
+                }
             }else if(i==(totalEngimons*8+2)){
-                totalItems = Integer.parseInt(currLine.substring(18));
+                // totalItems = Integer.parseInt(currLine.substring(18));
             }else{
                 String name = currLine.substring(0, currLine.indexOf(','));
                 int amount = Integer.parseInt(currLine.substring(currLine.indexOf(',')+1));

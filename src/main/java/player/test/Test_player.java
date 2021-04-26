@@ -26,7 +26,7 @@ public class Test_player {
             test.getInventory().addEngimon(bennet);
             test.getInventory().addEngimon(whotau);
             test.getInventory().addEngimon(chongyun);
-            test.changeActiveEngimon(3);
+            test.setActiveEngimon(null);
             test.getInventory().addItem(new Skill_Item(Skidex.getSkillByName("Fire Breath"),5));
             test.getInventory().addItem(new Skill_Item(Skidex.getSkillByName("Rupture"),10));
         }catch (Exception e){
@@ -37,12 +37,12 @@ public class Test_player {
         System.out.println("================================================================================");
         Player test2 = new Player();
         try{
-            test2.loadPlayer("player.txt");
+            test2.loadPlayer("savePlayer.txt");
         }catch (Exception e){
             e.printStackTrace();
         }
         test2.getInventory().printInventory();
-        test2.getActiveEngimon().getName();
+        System.out.println(test2.getActiveEngimon());
         System.out.println("Loaded");
     }
 }

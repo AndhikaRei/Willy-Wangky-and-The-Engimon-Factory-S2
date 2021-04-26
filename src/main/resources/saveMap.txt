@@ -1,15 +1,19 @@
+^^^^^^^F^^oooooooooo
 ^^^^^^^^^^oooooooooo
+^^^^^F^^^^oooooooooo
+^^^^^^^PX^oooooooooo
 ^^^^^^^^^^oooooooooo
-^^^^^^^^^^oooooooooo
-^^^^XP^^^^oooooooooo
-^^^^^^^^^^oooooooooo
-----------***I******
-----------**********
+--------G-**********
+-----E----********K*
 ----------**********
 ----------**********
 ----------**********
 20 10
-Player 3 5
-"Hydro" 3 4
-Total Engimon: 1
-5,13,"Cryo",{Freeze!,Freezing Field,},41,4000
+Player 3 7
+"Electro" 3 8
+Total Engimon: 7
+0,7,"Pyro",{Explosion!,},21,2000
+2,5,"Pyro",{Explosion!,},50,4900
+5,8,"Geo",{Tanah tinggi!,Feast,},44,4300
+6,5,"Electro",{Thunderstorm,Flamming Lasso,},54,5300
+6,18,"CryoCrystallize",{Golem Es!,},25,2400

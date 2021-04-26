@@ -70,7 +70,23 @@ public class Skidex implements Iterable<Skill> {
         listSkill.add(new Skill("Mana Void", "Duarr", 30, Element.Electric, Element.Ground));
         listSkill.add(new Skill("Heartstopper Aura", "Nyicil Darah", 30, Element.Electric, Element.Ice));
         listSkill.add(new Skill("Dark Ascension", "Stalker in The Night", 30, Element.Ground, Element.Ice));
-
+        
+        /* Basic Skill */
+        listSkill.add(new Skill("Freeze!", "I'll never use my dad's power.", 20, Element.Ice));
+        listSkill.add(new Skill("Golem Es!", "Ez tank 4.", 20, Element.Ground, Element.Ice));
+        listSkill.add(new Skill("Thunderstorm", "Lightning goes brrr.", 20, Element.Electric));
+        listSkill.add(new Skill("Charged Water!", "Hati-hati kesetrum.", 20, Element.Water, Element.Electric));
+        listSkill.add(new Skill("Golem Petir!", "Ez tank 3.", 20, Element.Electric, Element.Ground));
+        listSkill.add(new Skill("Let it go~", "Elsa approved.", 20, Element.Water, Element.Ice));
+        listSkill.add(new Skill("Tanah tinggi!", "Ez cover.", 20, Element.Ground));
+        listSkill.add(new Skill("Purification!", "Aqua approved.", 20, Element.Water));
+        listSkill.add(new Skill("Golem Air!", "Ez tank 2.", 20, Element.Water, Element.Ground));
+        listSkill.add(new Skill("Half-Cold Half-Hot", "Todoroki not approve.", 20, Element.Fire, Element.Ice));
+        listSkill.add(new Skill("Korsleting", "Api berpadu dengan Listrik", 20, Element.Fire, Element.Electric));
+        listSkill.add(new Skill("Explosion!", "Megumin approved.", 20, Element.Fire));
+        listSkill.add(new Skill("Golem Api!", "Ez tank.", 20, Element.Fire, Element.Ground));
+        listSkill.add(new Skill("Atta Halilintar", "Masa listrik bisa berpadu dengan es?", 20, Element.Electric, Element.Ice));
+        listSkill.add(new Skill("Indomie rebus", "Masak aer.", 20, Element.Fire, Element.Water));
     }
 
     @Override

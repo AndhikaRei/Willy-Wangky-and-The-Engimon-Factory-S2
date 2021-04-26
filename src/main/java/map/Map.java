@@ -709,7 +709,9 @@ public class Map {
             if(getExtraSkill==1){
                 int randomSkill = rand.nextInt(list.size());
                 Skill newSkill = list.get(randomSkill);
-                newEngimon.addSkill(newSkill);
+                if(!newEngimon.getSkill().contains(newSkill)){
+                    newEngimon.addSkill(newSkill);
+                }
             }
             this.addEngimon(y, x, newEngimon);
         } catch (Exception e){
