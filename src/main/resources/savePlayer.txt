@@ -1,36 +1,52 @@
-Total Engimon: 8
+Total Engimon: 14
+Hydro
+Hydro1
+3
+No Parent
+{;(Purification!,1);(Gush,1);}
+30
+0
+1000
+Electro
+anak22
+3
+Electro1,Electro,lala,ElectroCrystallize
+{;(Thunderstorm,2);(Golem Petir!,2);(Chronosphere,1);(Golem Api!,1);}
+11
+0
+1000
 Electro
 Electro1
 3
 No Parent
-{;(Thunderstorm,1);}
-20
+{;(Thunderstorm,1);(Golem Petir!,1);}
+17
 0
 0
 Electro
-Coba kawan
+lele
 3
 No Parent
-{;(Thunderstorm,1);}
-23
+{;(Thunderstorm,1);(Flamming Lasso,1);}
+44
 0
-2200
+4300
 Electro
-Yey
+hehe
 3
 No Parent
-{;(Thunderstorm,1);(Ball Lighting,1);}
-34
+{;(Thunderstorm,1);(Chronosphere,1);}
+50
 0
-3300
+4900
 Geo
 Geo1
 3
 No Parent
 {;(Tanah tinggi!,1);}
-20
+40
 0
-0
+2000
 Cryo
 Cryo1
 3
@@ -41,30 +57,61 @@ No Parent
 0
 Pyro
 Pyro1
-3
+2
 No Parent
 {;(Explosion!,1);(Fire Breath,1);}
-50
+40
 0
-3000
-Vaporize
+2000
+ElectroCrystallize
 lala
 3
 No Parent
-{;(Indomie rebus,1);(Zoroaster,1);}
-24
+{;(Golem Petir!,1);(Chronosphere,1);(Thunderstorm,1);(Golem Api!,1);}
+39
 0
-2300
-CryoCrystallize
-jhehe
+4100
+Frozen
+rasengan
 3
 No Parent
-{;(Golem Es!,1);}
+{;(Let it go~,1);(Flux,1);}
+45
+0
+4400
+Frozen
+ere
+3
+No Parent
+{;(Let it go~,1);}
+51
+0
+5000
+Overload
+oi
+3
+No Parent
+{;(Korsleting,1);}
 21
 0
 2000
-Active engimon index : 2
-Total Skill Item: 3
-Thunderstorm,2
-Golem Es!,1
-Indomie rebus,1
+Overload
+rakan
+3
+No Parent
+{;(Korsleting,1);(Chronosphere,1);}
+43
+0
+4200
+PyroCrystallize
+hehe
+3
+No Parent
+{;(Golem Api!,1);}
+44
+0
+4300
+Active engimon index : 1
+Total Skill Item: 2
+Korsleting,1
+Let it go~,2

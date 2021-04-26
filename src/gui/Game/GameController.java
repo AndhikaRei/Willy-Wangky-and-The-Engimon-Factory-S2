@@ -1,12 +1,12 @@
-package sample.Game;
+package gui.Game;
 import java.util.List;
 
 import main.java.engimon.Breeding_Fountain;
-import sample.AlertBox;
-import sample.BreedConfirm.BreedConfirm;
-import sample.DetailEngimon.DetailEngimon;
-import sample.DetailSkillItem.DetailSkillItem;
-import sample.ReplaceSkill.ReplaceSkill;
+import gui.AlertBox;
+import gui.BreedConfirm.BreedConfirm;
+import gui.DetailEngimon.DetailEngimon;
+import gui.DetailSkillItem.DetailSkillItem;
+import gui.ReplaceSkill.ReplaceSkill;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +29,7 @@ import main.java.engimon.Engimon;
 import main.java.exception.SkillFullException;
 import main.java.inventory.Skill_Item;
 import main.java.map.*;
-import sample.BattleConfirm.BattleConfirm;
+import gui.BattleConfirm.BattleConfirm;
 import main.java.player.Player;
 import main.java.skill.Skidex;
 

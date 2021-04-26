@@ -1,4 +1,4 @@
-package sample.BattleConfirm;
+package gui.BattleConfirm;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

@@ -1,19 +1,25 @@
-^^^^^^^F^^oooooooooo
 ^^^^^^^^^^oooooooooo
-^^^^^F^^^^oooooooooo
-^^^^^^^PX^oooooooooo
 ^^^^^^^^^^oooooooooo
---------G-**********
------E----********K*
+^^^^^^^^^^oooooooooo
+^^^^^^^^^^ooooooPooo
+^^^^^^^^^^ooWSooXooo
+----B-----******I***
 ----------**********
-----------**********
-----------**********
+----------C*********
+---------G**III*****
+-----L----****I*****
 20 10
-Player 3 7
-"Electro" 3 8
-Total Engimon: 7
-0,7,"Pyro",{Explosion!,},21,2000
-2,5,"Pyro",{Explosion!,},50,4900
-5,8,"Geo",{Tanah tinggi!,Feast,},44,4300
-6,5,"Electro",{Thunderstorm,Flamming Lasso,},54,5300
-6,18,"CryoCrystallize",{Golem Es!,},25,2400
+Player 3 16
+"Electro" 4 16
+Total Engimon: 11
+4,12,"Hydro",{Purification!,},47,4600
+4,13,"Frozen",{Let it go~,Chronosphere,},54,5300
+5,4,"PyroCrystallize",{Golem Api!,},50,4900
+5,16,"Cryo",{Freeze!,Golem Es!,},52,5100
+7,10,"Melt",{Half-Cold Half-Hot,},50,4900
+8,9,"Geo",{Tanah tinggi!,Fissure,},47,4600
+8,12,"Cryo",{Freeze!,},52,5100
+8,13,"Cryo",{Freeze!,},52,5100
+8,14,"Cryo",{Freeze!,Heartstopper Aura,},48,4700
+9,5,"Overload",{Korsleting,Rupture,},46,4500
+9,14,"Cryo",{Freeze!,},50,4900

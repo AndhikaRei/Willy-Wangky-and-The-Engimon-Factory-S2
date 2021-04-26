@@ -1,4 +1,4 @@
-package sample.BattleConfirm;
+package gui.BattleConfirm;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,7 +7,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.engimon.Engimon;
-import sample.AlertBox;
+import gui.AlertBox;
 
 public class BattleConfirm {
     // Menampilkan konfirmasi battle

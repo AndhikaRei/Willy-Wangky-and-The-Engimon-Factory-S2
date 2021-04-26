@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="733.0" prefWidth="1358.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Game.GameController">
+<AnchorPane prefHeight="733.0" prefWidth="1358.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Game.GameController">
    <children>
       <GridPane fx:id="MapGridPane" layoutX="25.0" layoutY="22.0" prefHeight="382.0" prefWidth="760.0">
         <columnConstraints>

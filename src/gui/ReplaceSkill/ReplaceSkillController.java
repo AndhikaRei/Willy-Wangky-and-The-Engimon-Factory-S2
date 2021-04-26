@@ -1,6 +1,6 @@
-package sample.ReplaceSkill;
+package gui.ReplaceSkill;
 
-import sample.AlertBox;
+import gui.AlertBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

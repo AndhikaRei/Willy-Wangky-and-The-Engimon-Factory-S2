@@ -1,4 +1,4 @@
-package sample.DetailSkillItem;
+package gui.DetailSkillItem;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -6,10 +6,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import main.java.engimon.Engimon;
 import main.java.inventory.Skill_Item;
-import sample.AlertBox;
-import sample.DetailEngimon.DetailEngimonController;
+import gui.AlertBox;
 
 public class DetailSkillItem {
     // Menampilkan detail suatu skillItem
