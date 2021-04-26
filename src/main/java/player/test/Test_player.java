@@ -7,11 +7,12 @@ import main.java.engimon.species.HydroCrystallize;
 import main.java.engimon.species.Pyro;
 import main.java.inventory.Skill_Item;
 import main.java.player.*;
+import main.java.skill.Skidex;
 public class Test_player {
     public static void main(String[] args) {
+        Skidex.initSkill();
         Player test = new Player();
         Engimon neula = new Cryo("neula",3);
-
         Engimon diluc = new Pyro("dulic",3);
         Engimon bennet = new Pyro("bennet",3);
         bennet.addExp(10000);
@@ -25,39 +26,23 @@ public class Test_player {
             test.getInventory().addEngimon(bennet);
             test.getInventory().addEngimon(whotau);
             test.getInventory().addEngimon(chongyun);
+            test.changeActiveEngimon(3);
+            test.getInventory().addItem(new Skill_Item(Skidex.getSkillByName("Fire Breath"),5));
+            test.getInventory().addItem(new Skill_Item(Skidex.getSkillByName("Rupture"),10));
         }catch (Exception e){
             System.out.println("Something Went Wrong");
         }
-
         test.getInventory().printInventory();
-
-        Skill_Item item = new Skill_Item();
-
-        try {
-            Player.save(test);
-        }catch (Exception e){
-            System.out.print(e.getMessage());
-        }
-
-        Engimon illegal = new HydroCrystallize("illegal",3);
+        test.savePlayer();
+        System.out.println("================================================================================");
+        Player test2 = new Player();
         try{
-            test.getInventory().addEngimon(illegal);
+            test2.loadPlayer("player.txt");
         }catch (Exception e){
-            System.out.println("Something Went Wrong");
+            e.printStackTrace();
         }
-
-
-
-
-        try {
-            test = Player.load("./playerSaveFile.json");
-            test.getInventory().printInventory();
-        }catch (Exception e){
-            System.out.print(e.getMessage());
-        }
-
-
-
-        //System.out.print("wkkw");
+        test2.getInventory().printInventory();
+        test2.getActiveEngimon().getName();
+        System.out.println("Loaded");
     }
 }

@@ -71,4 +71,12 @@ public class Parent{
         }
 
     }
+
+    public String bothParent(){
+        if(this.name.isEmpty()){
+            return ("No Parent");
+        } else {
+            return String.format("%s,%s,%s,%s", this.name.get(0), this.species.get(0), this.name.get(1), this.species.get(1));
+        }
+    }
 }

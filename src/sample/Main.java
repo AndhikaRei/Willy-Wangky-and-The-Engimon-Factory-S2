@@ -27,13 +27,11 @@ public class Main extends Application {
         catch (Exception e){
             AlertBox.displayWarning(e.getMessage());
         }
-        finally {
-            primaryStage.setTitle("Tutturu");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.setFullScreen(false);
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.show();
-        }
+        primaryStage.setTitle("Tutturu");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setFullScreen(false);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.show();
     }
 
 

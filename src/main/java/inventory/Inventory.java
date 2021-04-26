@@ -129,6 +129,15 @@ public class Inventory<E extends Engimon,I extends Skill_Item> {
         }
         return maxengimon;
     }
+    /** Setter **/
+    public void setItems(List<I> list){
+        this.ListItem = list;
+    }
+
+    public void setEngimons(List<E> list){
+        this.ListEngimon = list;
+    }
+
     /** printer**/
     public void printItems(){
         System.out.println("Items : ");

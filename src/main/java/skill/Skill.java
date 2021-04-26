@@ -199,6 +199,10 @@ public class Skill implements Comparable<Skill>, Cloneable, Printable {
         }
     }
 
+    public Image getIcon(Double rw, Double rh){
+        return new Image("./main/resources/".concat(this.name).concat(".jpg"),rw,rh,false,false);
+    }
+
 
     @Override
     public int compareTo(Skill o) {

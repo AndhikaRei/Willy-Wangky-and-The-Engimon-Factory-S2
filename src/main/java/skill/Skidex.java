@@ -47,7 +47,6 @@ public class Skidex implements Iterable<Skill> {
         listSkill.add(new Skill("Punch", "Pukulan Maut!",10,allElements)); 
         listSkill.add(new Skill("Kick", "Sikat Miring!",10,allElements));
         listSkill.add(new Skill("ONE-PUNCH", "Hiyaa jurus si botak", 20, allElements));
-
         /* 1 Element Skill */
         listSkill.add(new Skill("Fire Breath", "Hah Naga!", 20, Element.Fire));
         listSkill.add(new Skill("Zoroaster", "Api keabadian", 30, Element.Fire));
@@ -72,7 +71,6 @@ public class Skidex implements Iterable<Skill> {
         listSkill.add(new Skill("Heartstopper Aura", "Nyicil Darah", 30, Element.Electric, Element.Ice));
         listSkill.add(new Skill("Dark Ascension", "Stalker in The Night", 30, Element.Ground, Element.Ice));
 
-        // Skill s66 = new Skill("DOOM","JURUS DAJAL",666,allElements);
     }
 
     @Override

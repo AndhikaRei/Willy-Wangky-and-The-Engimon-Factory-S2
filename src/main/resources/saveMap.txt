@@ -1,0 +1,15 @@
+^^^^^^^^^^oooooooooo
+^^^^^^^^^^oooooooooo
+^^^^^^^^^^oooooooooo
+^^^^XP^^^^oooooooooo
+^^^^^^^^^^oooooooooo
+----------***I******
+----------**********
+----------**********
+----------**********
+----------**********
+20 10
+Player 3 5
+"Hydro" 3 4
+Total Engimon: 1
+5,13,"Cryo",{Freeze!,Freezing Field,},41,4000

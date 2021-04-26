@@ -126,9 +126,11 @@ public class BattleConfirmController {
         for(Skill skill : ally.getSkill()){
             // Mastery
             StackPane mastery = new StackPane();
+            ImageView iconSprite = new ImageView(skill.getIcon(40.0,40.0));
             ImageView masterySprite = new ImageView(skill.getSprite(25.0,25.0));
-            mastery.getChildren().add(masterySprite);
-            mastery.setAlignment(masterySprite, Pos.CENTER);
+            mastery.getChildren().addAll(iconSprite,masterySprite);
+            mastery.setAlignment(iconSprite, Pos.CENTER);
+            mastery.setAlignment(masterySprite, Pos.BOTTOM_RIGHT);
             this.ally_skills.add(mastery,0,i);
 
             // Power Skill
@@ -158,9 +160,11 @@ public class BattleConfirmController {
         for(Skill skill : enemy.getSkill()){
             // Mastery
             StackPane mastery = new StackPane();
+            ImageView iconSprite = new ImageView(skill.getIcon(40.0,40.0));
             ImageView masterySprite = new ImageView(skill.getSprite(25.0,25.0));
-            mastery.getChildren().add(masterySprite);
-            mastery.setAlignment(masterySprite, Pos.CENTER);
+            mastery.getChildren().addAll(iconSprite,masterySprite);
+            mastery.setAlignment(iconSprite, Pos.CENTER);
+            mastery.setAlignment(masterySprite, Pos.BOTTOM_RIGHT);
             this.enemy_skills.add(mastery,0,i);
 
             // Power Skill

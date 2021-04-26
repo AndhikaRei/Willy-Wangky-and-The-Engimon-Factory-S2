@@ -205,7 +205,7 @@ public class Map {
         // F.S. File akan disimpan dalam txt
         this.updateMap();
         try {
-            FileWriter myWriter = new FileWriter("src\\main\\resources\\save.txt");
+            FileWriter myWriter = new FileWriter("src\\main\\resources\\saveMap.txt");
             String textToSave;
             StringBuilder sb = new StringBuilder();
             // Save map symbol

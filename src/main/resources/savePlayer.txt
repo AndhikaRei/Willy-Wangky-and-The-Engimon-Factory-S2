@@ -1,0 +1,43 @@
+Total Engimon: 5
+Hydro
+Hydro1
+3
+No Parent
+{;(Purification!,1);(Gush,1);}
+40
+0
+0
+Electro
+Electro1
+3
+No Parent
+{;(Thunderstorm,1);}
+40
+0
+0
+Geo
+Save
+3
+No Parent
+{;(Tanah tinggi!,1);}
+40
+0
+0
+Cryo
+Cryo1
+3
+No Parent
+{;(Freeze!,1);}
+40
+0
+0
+Pyro
+Pyro1
+3
+No Parent
+{;(Explosion!,1);(Fire Breath,1);}
+40
+0
+0
+Active engimon index : 0
+Total Skill Item: 0
