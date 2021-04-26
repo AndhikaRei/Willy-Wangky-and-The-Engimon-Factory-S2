@@ -1,34 +1,34 @@
-Total Engimon: 10
-Hydro
-Hydro1
-3
-No Parent
-{;(Purification!,1);(Gush,1);}
-40
-0
-0
+Total Engimon: 8
 Electro
 Electro1
 3
 No Parent
 {;(Thunderstorm,1);}
-40
+20
 0
 0
+Electro
+Coba kawan
+3
+No Parent
+{;(Thunderstorm,1);}
+23
+0
+2200
+Electro
+Yey
+3
+No Parent
+{;(Thunderstorm,1);(Ball Lighting,1);}
+34
+0
+3300
 Geo
 Geo1
 3
 No Parent
 {;(Tanah tinggi!,1);}
-40
-0
-0
-Cryo
-neula
-3
-No Parent
-{;(Freeze!,1);}
-0
+20
 0
 0
 Cryo
@@ -36,23 +36,7 @@ Cryo1
 3
 No Parent
 {;(Freeze!,1);}
-40
-0
-0
-Cryo
-Chongyun
-3
-No Parent
-{;(Freeze!,1);}
-100
-0
-10000
-Pyro
-dulic
-3
-No Parent
-{;(Explosion!,1);}
-0
+20
 0
 0
 Pyro
@@ -60,26 +44,27 @@ Pyro1
 3
 No Parent
 {;(Explosion!,1);(Fire Breath,1);}
-40
+50
 0
-0
-Pyro
-bennet
+3000
+Vaporize
+lala
 3
 No Parent
-{;(Explosion!,1);}
-100
+{;(Indomie rebus,1);(Zoroaster,1);}
+24
 0
-10000
-Pyro
-hutao
+2300
+CryoCrystallize
+jhehe
 3
 No Parent
-{;(Explosion!,1);}
-100
+{;(Golem Es!,1);}
+21
 0
-10000
-Active engimon index : -1
-Total Skill Item: 2
-Fire Breath,5
-Rupture,10
+2000
+Active engimon index : 2
+Total Skill Item: 3
+Thunderstorm,2
+Golem Es!,1
+Indomie rebus,1

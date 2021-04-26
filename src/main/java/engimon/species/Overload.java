@@ -47,7 +47,7 @@ public class Overload extends Engimon {
     }
     @Override
     public Image getSprite(double rw, double rh){
-        if (this.getLevel() < 7){
+        if (this.getLevel() < 50){
             return new Image("./main/resources/Overload1.png",rw,rh,false,false);
         } else {
             return new Image("./main/resources/Overload2.png",rw,rh,false,false);
