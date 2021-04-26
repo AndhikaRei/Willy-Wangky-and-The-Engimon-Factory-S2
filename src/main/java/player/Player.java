@@ -138,8 +138,13 @@ public class Player {
             String textToSave;
             StringBuilder sb = new StringBuilder();
             // Save Engimon in Inventory
-            String activeName = this.getActiveEngimon().getName();
-            int indexActive = 0, i = 0;
+            String activeName;
+            if(this.getActiveEngimon()==null){
+                activeName = "undefined";
+            }else{
+                activeName = this.getActiveEngimon().getName();
+            }
+            int indexActive = -1, i = 0;
             List<Engimon> listEngi = this.inventoryEntity.getEngimons();
             sb.append("Total Engimon: ").append(listEngi.size()).append('\n');
             for(Engimon e : listEngi){
@@ -200,11 +205,10 @@ public class Player {
     }
 
     public void loadPlayer(String txt) throws Exception{
-        int i, j, totalEngimons=0, totalItems=0;
+        int i,totalEngimons=0;
         Engidex.initEngidex();
         Skidex.initSkill();
         i = 0;
-        j = 0;
         String filename = "src\\main\\resources\\".concat(txt);
         File file=new File(filename);
         Scanner sc = new Scanner(file);
@@ -259,9 +263,13 @@ public class Player {
             }else if(i==(totalEngimons*8+1)){
                 this.inventoryEntity.setEngimons(newEngimons);
                 int index= Integer.parseInt(currLine.substring(23));
-                changeActiveEngimon(index);
+                if(index==-1){
+                    this.setActiveEngimon(null);
+                }else{
+                    changeActiveEngimon(index);
+                }
             }else if(i==(totalEngimons*8+2)){
-                totalItems = Integer.parseInt(currLine.substring(18));
+                // totalItems = Integer.parseInt(currLine.substring(18));
             }else{
                 String name = currLine.substring(0, currLine.indexOf(','));
                 int amount = Integer.parseInt(currLine.substring(currLine.indexOf(',')+1));
