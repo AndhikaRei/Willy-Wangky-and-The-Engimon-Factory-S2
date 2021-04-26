@@ -17,8 +17,9 @@
 ## Executing
 - buka project menggunakan IntelliJ IDE 
 - pastikan run configuration memiliki main class "gui.Main" tanpa kutip 
+![plot](./img/pic1.jpg)
 - eksekusi program dengan run 'main' 
-
+![plot](./img/pic2.jpg)
 ## Author
 - 13519008 / Ronggur Mahendra Widya Putra
 - 13519014 / Mahameru Ds
