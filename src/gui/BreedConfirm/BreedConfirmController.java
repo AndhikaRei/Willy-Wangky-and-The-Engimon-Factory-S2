@@ -1,4 +1,4 @@
-package sample.BreedConfirm;
+package gui.BreedConfirm;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

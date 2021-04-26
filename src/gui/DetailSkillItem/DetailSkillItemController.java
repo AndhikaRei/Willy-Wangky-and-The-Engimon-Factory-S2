@@ -1,19 +1,15 @@
-package sample.DetailSkillItem;
+package gui.DetailSkillItem;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import main.java.element.Element;
-import main.java.engimon.Engimon;
 import main.java.inventory.Skill_Item;
-import main.java.skill.Skill;
 
 
 public class DetailSkillItemController {

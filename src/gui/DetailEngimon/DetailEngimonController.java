@@ -1,4 +1,4 @@
-package sample.DetailEngimon;
+package gui.DetailEngimon;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
